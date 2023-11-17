@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-irish-grover: "Irish Grover";
+
+  /* font sizes */
+  --font-size-4xl: 23px;
+  --font-size-base: 16px;
+  --font-size-11xl: 30px;
+  --font-size-xl: 20px;
+
+  /* Colors */
+  --color-black: #000;
+  --pink: #b519a6;
+  --yellow: #f9fadf;
+  --color-gainsboro: rgba(217, 217, 217, 0);
+  --blue: #3ed7e5;
+  --green: #4cb24c;
+
+  /* Gaps */
+  --gap-31xl: 50px;
+  --gap-3xs: 10px;
+
+  /* Paddings */
+  --padding-3xs: 10px;
+
+  /* Border radiuses */
+  --br-base: 16px;
+}

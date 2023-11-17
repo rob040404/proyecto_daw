@@ -1,0 +1,473 @@
+
+
+.background-icon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 8.35%;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.login1 {
+  text-shadow: 0 4px 30px #4cb24c;
+  cursor: pointer;
+  color: green;
+}
+.login {
+  position: absolute;
+  top: 10px;
+  right: 27px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--padding-3xs);
+  cursor: pointer;
+  font-size: var(--font-size-11xl);
+  color: green;
+}
+.sign-3-icon {
+  position: relative;
+  width: 211px;
+  height: 97px;
+  object-fit: cover;
+  z-index: 0;
+}
+.contacto1 {
+  position: absolute;
+  margin: 0 !important;
+  top: 44px;
+  left: 46px;
+  display: inline-block;
+  width: 101px;
+  height: 22px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.contacto {
+  height: 97px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  gap: var(--gap-3xs);
+}
+.trabajo1 {
+  position: absolute;
+  margin: 0 !important;
+  top: 44px;
+  left: 59px;
+  display: inline-block;
+  width: 101px;
+  height: 22px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.botones-der {
+  position: absolute;
+  top: 55px;
+  right: 68px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-31xl);
+  color: var(--color-black);
+}
+.carta1,
+.reservar1 {
+  position: absolute;
+  margin: 0 !important;
+  top: 44px;
+  left: 49px;
+  display: inline-block;
+  width: 101px;
+  height: 22px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.carta1 {
+  left: 69px;
+}
+.botones-izq {
+  position: absolute;
+  top: 55px;
+  left: 119px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-31xl);
+  color: var(--color-black);
+}
+.calavera-icon {
+  position: relative;
+  width: 170px;
+  /*height: 210.9px;*/
+  height: 180px;
+  object-fit: cover;
+}
+.frame-calavera {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.bajo,
+.logo {
+  position: absolute;
+}
+.logo {
+  top: 50px;
+  left: calc(50% - 85px);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-3xs);
+}
+.bajo {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-black);
+}
+.crunchy-rancho {
+  position: relative;
+}
+.desde-tacos-tradicionales {
+  position: relative;
+  font-size: var(--font-size-base);
+  color: var(--yellow);
+  display: inline-block;
+  width: 239px;
+  height: 95px;
+  flex-shrink: 0;
+}
+.desc-footer,
+.mapa {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.desc-footer {
+  height: 100%;
+  width: 21.51%;
+  top: 0;
+  right: 78.49%;
+  bottom: 0;
+  left: 0;
+  gap: 15px;
+  font-size: var(--font-size-11xl);
+  color: var(--pink);
+}
+.mapa {
+  height: 74.66%;
+  width: 13.95%;
+  top: 19.86%;
+  right: 43.29%;
+  bottom: 5.48%;
+  left: 42.75%;
+  gap: 11px;
+}
+.calle-ficcin-nmero {
+  margin: 0;
+}
+.direccion {
+  position: absolute;
+  height: 54.11%;
+  width: 23.04%;
+  top: 19.86%;
+  right: 0;
+  bottom: 26.03%;
+  left: 76.96%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 22px;
+}
+.taco-footer-1,
+.taco-footer-2 {
+  height: 42.19%;
+  width: 6.86%;
+  top: 32.88%;
+  bottom: 24.93%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.taco-footer-2 {
+  position: absolute;
+  right: 29.68%;
+  left: 63.46%;
+}
+.taco-footer-1 {
+  right: 63.08%;
+  left: 30.06%;
+}
+.back,
+.footer,
+.taco-footer-1 {
+  position: absolute;
+}
+.back {
+  height: 90.68%;
+  width: 77.15%;
+  top: 0;
+  right: 11.74%;
+  bottom: 9.32%;
+  left: 11.11%;
+}
+.footer {
+  
+  position: relative;
+  background-color: var(--color-black);
+  width: 100%;
+  height: 200px;
+  font-size: var(--font-size-base);
+}
+.borde-rosa,
+.foto-local-2 {
+  border-radius: var(--br-base);
+}
+.borde-rosa {
+  position: absolute;
+  top: 0;
+  left: 146px;
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px rgba(235, 20, 239, 0.65);
+  border: 2px solid var(--pink);
+  box-sizing: border-box;
+  width: 780px;
+  height: 335px;
+}
+.foto-local-2 {
+  left: 792px;
+  width: 270px;
+  object-fit: cover;
+}
+.desc-local,
+.foto-local-1,
+.foto-local-2 {
+  position: absolute;
+  top: 39px;
+  height: 270px;
+}
+.foto-local-1 {
+  left: 0;
+  border-radius: var(--br-base);
+  width: 270px;
+  object-fit: cover;
+}
+.desc-local {
+  left: 356px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 361px;
+}
+.borde-verde,
+.local {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1062px;
+  height: 335px;
+}
+.borde-verde {
+  left: 150px;
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px #4cb24c;
+  border: 2px solid var(--green);
+  box-sizing: border-box;
+  width: 780px;
+}
+.desc-taco,
+.taco-icon {
+  position: absolute;
+  top: 32px;
+  height: 270px;
+}
+.desc-taco {
+  left: 335px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 548px;
+}
+.taco-icon {
+  left: 0;
+  border-radius: var(--br-base);
+  width: 270px;
+  object-fit: cover;
+}
+.borde-azul,
+.comida {
+  position: absolute;
+  top: 439px;
+  left: 0;
+  width: 930px;
+  height: 335px;
+}
+.borde-azul {
+  top: 0;
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px #3ed7e5;
+  border: 2px solid var(--blue);
+  box-sizing: border-box;
+  width: 780px;
+}
+.coctel-icon,
+.desc-coctel {
+  position: absolute;
+  height: 270px;
+}
+.desc-coctel {
+  top: 32px;
+  left: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 543px;
+}
+.coctel-icon {
+  top: 35px;
+  left: 642px;
+  border-radius: var(--br-base);
+  width: 270px;
+  object-fit: cover;
+}
+.bebidas {
+  position: absolute;
+  top: 856px;
+  left: 150px;
+  width: 912px;
+  height: 335px;
+}
+.contenido,
+.descripcion {
+  position: absolute;
+  top: 14%;
+  left: calc(50% - 552px);
+  width: 1103px;
+  height: 1191px;
+  text-align: center;
+  font-size: var(--font-size-4xl);
+}
+.descripcion {
+  top: 7%;
+  left: calc(50% - 560px);
+  display: inline-block;
+  width: 1120px;
+  height: 74px;
+  -webkit-text-stroke: 0.5px #b519a6;
+}
+.crunchy-rancho1 {
+  position: relative;
+  text-shadow: 0 4px 30px #b519a6;
+}
+.header {
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 218px);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  font-size: 50px;
+  
+}
+.home {
+  position: relative;
+  background-color: var(--color-black);
+  width: 100%;
+  /*height: 1939px;*/
+  height: 1600px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+
+.header-default {
+  position: relative;
+  background-color: var(--color-black);
+  width: 100%;
+  height: 150px;
+  
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+  z-index:2;
+  width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página */
+	left: 0; /* Posicionamos la cabecera al lado izquierdo */
+	top: 0; /* Posicionamos la cabecera pegada arriba */
+	position: fixed; /* Hacemos que la cabecera tenga una posición fija */
+}
+
+.footer-default {
+  
+  position: relative;
+  
+  background-color: var(--color-black);
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+
+.login1 {
+    a:link, a:visited{
+    color: greenyellow;
+    text-decoration:none;
+    }
+    a:active {
+        color: green;
+    }
+}
+
+.menu {
+    a:link, a:visited{
+        color: cornsilk;
+    text-decoration:none;
+    }
+    a:active {
+        color: #666666;
+    }
+}
+.crunchy-rancho1{
+     a:link, a:visited{
+         color:var(--pink);
+    text-decoration:none;
+    }
+}
+header{
+    position: relative;
+    
+    width: 100%;
+    height: 150px;
+}
+section{
+    top:150px;
+}
