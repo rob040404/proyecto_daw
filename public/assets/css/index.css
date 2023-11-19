@@ -438,28 +438,30 @@
 }
 
 .login1 {
-    a:link, a:visited{
-    color: greenyellow;
-    text-decoration:none;
+    :any-link, :link, :visited{
+        text-decoration: none;
+        color: greenyellow;
     }
-    a:active {
+    :active {
         color: green;
     }
+    
 }
 
 .menu {
-    a:link, a:visited{
+    :any-link, :link, :visited{
         color: cornsilk;
-    text-decoration:none;
+        text-decoration:none;
     }
-    a:active {
+    :active {
         color: #666666;
     }
 }
+
 .crunchy-rancho1{
-     a:link, a:visited{
-         color:var(--pink);
-    text-decoration:none;
+    :any-link, :link, :visited{
+        color:var(--pink);
+        text-decoration:none;
     }
 }
 header{
