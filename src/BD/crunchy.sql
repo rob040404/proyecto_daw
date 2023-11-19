@@ -1,7 +1,7 @@
 -- 1.- Creamos la Base de Datos
-create database crunchy DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- Seleccionamos la base de datos "tarea7"
-use crunchy;
+create database if not exists crunchydb DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Seleccionamos la base de datos "crunchydb"
+use crunchydb;
 drop table if exists restar;
 drop table if exists stock;
 drop table if exists pedir;
@@ -16,7 +16,7 @@ create table if not exists usuarios(
     apellidos varchar(100),
     contrasena varchar(8) not null,
     rol enum("admin", "cocinero", "camarera"),
-    email varchar (50) not null
+    email varchar (50) not null unique
 )
 ENGINE InnoDB;
 -- 2.1.2.- Tabla mesas
@@ -85,6 +85,10 @@ create table if not exists restar(
     )
 ENGINE InnoDB;
 
+-- 3.- Creamos un usuario  
+create user if not exists crunchy@'localhost' identified by "1234";
+-- 4.- Le damos permiso en la base de datos "crunchy"
+grant all on crunchydb.* to crunchy@'localhost';
 
 
 

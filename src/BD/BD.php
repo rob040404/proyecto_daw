@@ -1,7 +1,26 @@
 <?php
+namespace App\BD;
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+class BD
+{
+    protected static $bd = null;
+    
+    private function __construct()
+    {
+        try {
+            self::$bd = new \PDO("mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_DATABASE'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+            self::$bd->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
+    }
 
+    public static function getConection()
+    {
+        if (!self::$bd) {
+            new BD();
+        }
+        return self::$bd;
+    }
+}
+//ANTES DE PROBAR ESTE FECHERO INSTALAR .ENV
