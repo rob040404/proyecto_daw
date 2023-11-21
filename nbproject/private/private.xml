@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/login.blade.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/principal.blade.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/index.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/app.blade.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/trabaja_con_nosotros.blade.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/contacto.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/reservas.css</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/reservas.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/nueva_reserva.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/reservas.php</file>
         </group>
     </open-files>
 </project-private>
