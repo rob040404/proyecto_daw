@@ -15,7 +15,7 @@ class Empleado
     private $rol;
     private $email;
 
-    public function __construct($id_usuario, $nombre, $apellidos, $contrasena, $rol, $email)
+    public function __construct($id_usuario = null, $nombre = null, $apellidos = null, $contrasena = null, $rol = null, $email = null)
     {
         if (!is_null($id_usuario)) {
             $this->id_usuario = $id_usuario;

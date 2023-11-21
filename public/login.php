@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use eftec\bladeone\BladeOne;
 use Dotenv\Dotenv;
 use App\BD\BD;
+use App\DAO\EmpleadoDAO;
 
 session_start();
 
@@ -27,10 +28,33 @@ try {
     $bd = BD::getConection($host, $port, $database, $usuario, $password);
 } catch (PDOException $error) {
     echo $blade->run("errorbd", compact('error'));
-    die;
+    exit;
+}
+
+$empleado = null;
+$dao = new EmpleadoDAO($bd);
+if (isset($_SESSION['empleado'])) {
+    // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
+    header("Location: pagina_de_administracion.php");
+    exit;
+} else if (isset($_POST['confirmar'])) {
+    // si alguien ha pulsado el boton confirmar, hay que comprobar si el usuario y la pass son correctos
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
+    $empleado = $dao->select($usuario, $password);
+    if ($empleado) {
+        //Login correcto
+        $_SESSION['empleado'] = $empleado;
+        header("Location: pagina_de_administracion.php");
+        exit;
+    } else {
+        $test = "Usuario/password incorrectos!";
+    }
+} else {
+    // si no hay nada, nos quedamos en la pagina login
+    $test = "";
 }
 
 //Verificar sesion abierta, procesar formulario index del ahorcado
-$test = "Hola Crunchy!";
-echo $blade->run("principal", compact('test'));
-
+//$test = "Hola Crunchy!";
+echo $blade->run("login", compact('test'));
