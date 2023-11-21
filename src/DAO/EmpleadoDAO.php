@@ -15,7 +15,17 @@ class EmpleadoDAO
         $this->bd = $bd;
     }
 
-    
+    function select($email, $pwd)
+    {
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'select * from usuarios where email=:email and contrasena=:pwd';
+        $sth = $this->bd->prepare($sql);
+        $sth->execute([":email" => $email, ":pwd" => $pwd]);
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $usuario = ($sth->fetch()) ?: null;
+        return $usuario;
+    }
+
     /*private function existeNombre($usuario)
     {
         $consulta = $this->bd->prepare('SELECT * FROM usuarios WHERE nombre=:nombre');
@@ -81,15 +91,4 @@ class EmpleadoDAO
         $consulta->bindParam(':id', $id, PDO::PARAM_STR);
         return $consulta->execute();
     }*/
-
-    function select ($email, $pwd)
-    {
-        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-        $sql = 'select * from usuarios where email=:email and contrasena=:pwd';
-        $sth = $this->bd->prepare($sql);
-        $sth->execute([":email" => $email, ":pwd" => $pwd]);
-        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
-        $usuario = ($sth->fetch()) ?: null;
-        return $usuario;
-    }
 }
