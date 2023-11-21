@@ -1,4 +1,5 @@
-.reservas-container {
+.reservas-container 
+{
   position: relative;
   background-color: var(--color-black);
   width: 100%;
@@ -6,31 +7,35 @@
   font-family: var(--font-irish-grover);
 }
 
-.reservas-contenido {
-  top: 6%;
-  left: 160px;
-  width: 1235px;
+.reservas-contenido 
+{
+  position: absolute;
+  top: 4%;
+  width: 100%;
   height: 800px;
   color: var(--yellow);
 }
 
-.titulo-reservas {
-  top: 5%;
-  color: var(--blue);
-  display: inline-block;
-  width: 173px;
-  height: 47px;
-  -webkit-text-stroke: 0.5px #b519a6;
+.boton-volver
+{
+    text-align: left;
+    margin-left: 200px;
+    font-size: 20px;
+    text-decoration: none;
+    color: greenyellow;
 }
 
-.reservas-contenido,
-.titulo-reservas {
-  font-size: var(--font-size-17xl);
-  text-align: center;
+.titulo-reservas 
+{
+    text-align: center;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    color: var(--blue);
+    -webkit-text-stroke: 0.5px #b519a6;
 }
 
-.botones-reserva {
-  top: 10%;
+.botones-reserva 
+{
   display: flex;
   width: 100%;
   height: 80.4px;
@@ -75,31 +80,60 @@
     box-shadow: 0 4px 4px var(--color-firebrick);
 }
 
-.listado-de-reservas {
-  top: 25%;
-  width: 100%;
+.listado-de-reservas 
+{
   text-align: center;
+  margin-block-start: 1.5em;
+  margin-block-end: 0.2em;
   color: var(--blue);
   -webkit-text-stroke: 0.5px #b519a6;
 }
 
 .contenedor-tabla-listado-de-reservas
 {
-    top: 35%;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
     text-align: center;
 }
 
-.reservas-contenido,
-.botones-reserva,
-.listado-de-reservas,
-.contenedor-tabla-listado-de-reservas
+.paginacion
 {
-    position: absolute;
+    display: flex;
+    align-items: center;
+}
+.pagina_actual,
+.pagina_anterior,
+.pagina_siguiente
+{
+  width: 100%;
+}
+.pagina_actual
+{
+    text-align: center;
+    font-size: 2em;
+}
+.pagina_anterior
+{
+    text-align: left;
+}
+.pagina_siguiente
+{
+    text-align: right;
+}
+.pagina_actual
+{
+    text-align: center;
+}
+.link_paginacion
+{
+    background-color: transparent;
+    font-family: var(--font-irish-grover);
+    color: var(--font-irish-grover);
 }
 table
 {
-    margin: auto;
+    width: 100%;
     background-color: #000; 
 }
 table, th, td

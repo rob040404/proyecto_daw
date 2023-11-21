@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../public/assets/css/Login.css" />
     <link rel="stylesheet" href="../public/assets/css/Contacto.module.css" />
     <link rel="stylesheet" href="../public/assets/css/reservas.css"/>
+    <link rel="stylesheet" href="../public/assets/css/nueva_reserva.css"/>
+    <link rel="stylesheet" href="../public/assets/css/eliminar_reservas.css"/>
     <link rel="stylesheet" href="../public/assets/css/TrabajaConNosotros.css" />
     
     <link
