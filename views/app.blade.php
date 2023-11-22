@@ -44,7 +44,7 @@
                 <div class="contacto">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
 
-                  <div class="reservar1 menu"><a href="reservar.php">RESERVAR</a></div>
+                  <div class="reservar1 menu"><a href="reservas.php">RESERVAR</a></div>
                 </div>
                 <div class="contacto ">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
