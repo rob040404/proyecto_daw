@@ -6,7 +6,7 @@
     <div class="reservas-contenido">
         <a class="boton-volver" href="reservas.php"><- Volver</a>
         <h1 class="titulo-reservas">Reservas</h1>
-        <h1 class="titulo-nueva-reserva">Eliminar reserva/s</h1>
+        <h1 class="titulo-reservas">Eliminar reserva/s</h1>
         <form method="post" action="#">
             <div class="borrar-reserva-container">
                 <div class="form-containers">

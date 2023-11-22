@@ -2,30 +2,24 @@
 {
   position: relative;
   background-color: var(--color-black);
-  width: 100%;
   height: 1939px;
   font-family: var(--font-irish-grover);
 }
-
 .reservas-contenido 
 {
   position: absolute;
   top: 4%;
   width: 100%;
-  height: 800px;
   color: var(--yellow);
 }
-
 .boton-volver
 {
-    text-align: left;
     margin-left: 200px;
     font-size: 20px;
     text-decoration: none;
     color: greenyellow;
 }
-
-.titulo-reservas 
+.titulo-reservas
 {
     text-align: center;
     margin-block-start: 1em;
@@ -33,17 +27,13 @@
     color: var(--blue);
     -webkit-text-stroke: 0.5px #b519a6;
 }
-
-.botones-reserva 
+.botones-reservas 
 {
   display: flex;
-  width: 100%;
-  height: 80.4px;
   justify-content: center;
   font-size: var(--font-size-xl);
   column-gap: 70px;
 }
-
 .boton-eliminar,
 .boton-modificar,
 .boton-nueva-reserva
@@ -54,7 +44,6 @@
   width: 251px;
   height: 80px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   :any-link, :link, :visited
@@ -63,7 +52,6 @@
         color: white;
     }
 }
-
 .boton-nueva-reserva
 {
     border: 2px solid var(--blue);
@@ -79,7 +67,6 @@
     border: 2px solid var(--color-firebrick);
     box-shadow: 0 4px 4px var(--color-firebrick);
 }
-
 .listado-de-reservas 
 {
   text-align: center;
@@ -88,7 +75,6 @@
   color: var(--blue);
   -webkit-text-stroke: 0.5px #b519a6;
 }
-
 .contenedor-tabla-listado-de-reservas
 {
     margin-left: auto;
@@ -96,7 +82,6 @@
     width: 900px;
     text-align: center;
 }
-
 .paginacion
 {
     display: flex;

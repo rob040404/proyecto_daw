@@ -6,12 +6,12 @@
  <div class="reservas-contenido">
  <a class="boton-volver" href="login.php"><- Volver</a>
  <h1 class="titulo-reservas">Reservas</h1>
- <div class="botones-reserva">
+ <div class="botones-reservas">
  <div class="boton-nueva-reserva">
  <div><a href="../public/nueva_reserva.php">Nueva Reserva</a></div>
  </div>
  <div class="boton-modificar">
- <div><a href="#">Modificar Reserva</a></div>
+ <div><a href="../public/modificar_reserva.php">Modificar Reserva</a></div>
  </div>
  <div class="boton-eliminar">
  <div><a href="../public/eliminar_reservas.php">Eliminar reserva/s</a></div>
