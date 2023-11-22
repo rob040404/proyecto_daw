@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/.env</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/login.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/src/BD/crunchy.sql</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/index.php</file>
+=======
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/eliminar_reservas.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/reservas.css</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/nueva_reserva.css</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/reservas.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/nueva_reserva.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/eliminar_reservas.css</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/reservas.php</file>
+>>>>>>> 7443733982ab3b9f293e6f8f0f2341c349d3e2dc
         </group>
     </open-files>
 </project-private>

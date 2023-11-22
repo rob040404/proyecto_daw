@@ -1,12 +1,12 @@
 @extends('app')
-@section('titulo', 'Nueva Reserva')
+@section('titulo', $opcion)
 @section('content')
 <div class="reservas-container">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
     <div class="reservas-contenido">
         <a class="boton-volver" href="reservas.php"><- Volver</a>
         <h1 class="titulo-reservas">Reservas</h1>
-        <h1 class="titulo-nueva-reserva">Nueva Reserva</h1>
+        <h1 class="titulo-reservas">{{$opcion}}</h1>
         <form method="post" action="#">
             <div class="nueva-reserva-container">
                 <div class="form-containers">
@@ -23,7 +23,7 @@
                         <input type="text">
                         <label class="titulo-form">Correo electronico:</label>
                         <input type="email">
-                        <input class="boton-guardar" type="submit" value="Confirmar la reserva">
+                        <input class="boton-guardar" type="submit" value='Confirmar la reserva'>
                     </div>
                 </div>
             </div>
