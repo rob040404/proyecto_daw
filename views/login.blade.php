@@ -18,7 +18,7 @@
     </div>
 
     <div class="login-child1">
-      <input type="text" name="usuario" id="usuario" placeholder="Email de usuario" />
+      <input type="text" name="usuario" id="usuario" class="login-input" placeholder="Email de usuario" />
     </div>
     <div class="login-child2">
       <input type="password" name="password" id="password" placeholder="Contraseña" />
