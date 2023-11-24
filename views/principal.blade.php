@@ -1,17 +1,12 @@
 @extends('app')
 @section('titulo', 'Home')
 @section('content')
-
 <div class="home">
   <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
-
-
-
   <div class="contenido">
     <div class="local">
       <div class="borde-rosa"></div>
       <img class="foto-local-2" alt="" src="../public/assets/img/foto-local-2@2x.png" />
-
       <img class="foto-local-1" alt="" src="../public/assets/img/foto-local-1@2x.png" />
       <div class="desc-local">
         ¡Nuestro restaurante mexicano es como un viaje express a México, sin
@@ -53,6 +48,5 @@
     tus papilas gustativas y margaritas que hacen vibrar tu felicidad. ¡Ven
     a disfrutar de una fiesta de sabor con mariachis en tu plato!"
   </div>
-
 </div>
 @endsection

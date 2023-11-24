@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/proyecto_daw/views/eliminar_reservas.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/nueva_modificar_reserva.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/modificar_reserva.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/reservas.css</file>
             <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/nueva_reserva.css</file>
             <file>file:/C:/xampp/htdocs/proyecto_daw/views/reservas.blade.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_daw/views/nueva_reserva.blade.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/eliminar_reservas.css</file>
-            <file>file:/C:/xampp/htdocs/proyecto_daw/public/reservas.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/nueva_reserva.php</file>
         </group>
     </open-files>
 </project-private>
