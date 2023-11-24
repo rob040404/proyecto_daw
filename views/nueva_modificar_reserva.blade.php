@@ -1,5 +1,9 @@
 @extends('app')
 @section('titulo', $opcion)
+@section('estilos')
+<link rel="stylesheet" href="../public/assets/css/reservas.css"/>
+<link rel="stylesheet" href="../public/assets/css/nueva_reserva.css"/>
+@endsection
 @section('content')
 <div class="reservas-container">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
