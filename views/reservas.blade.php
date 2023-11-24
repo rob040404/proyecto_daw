@@ -1,8 +1,8 @@
 @extends('app')
-@section('titulo', 'Reservas')
 @section('estilos')
 <link rel="stylesheet" href="../public/assets/css/reservas.css"/>
 @endsection
+@section('titulo', 'Reservas')
 @section('content')
 <div class="reservas-container">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>

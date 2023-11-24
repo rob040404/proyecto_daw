@@ -1,8 +1,8 @@
 @extends('app')
-@section('titulo', 'Trabaja con nosotros')
 @section('estilos')
 <link rel="stylesheet" href="../public/assets/css/TrabajaConNosotros.css"/>
 @endsection
+@section('titulo', 'Trabaja con nosotros')
 @section('content')
 <div class="trabaja-con-nosotros1">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
