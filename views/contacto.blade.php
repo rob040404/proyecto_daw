@@ -1,7 +1,7 @@
 @extends('app')
-@section('titulo', 'Contacto')
 @section('estilos')
 <link rel="stylesheet" href="../public/assets/css/Contacto.module.css"/>
+@section('titulo', 'Contacto')
 @endsection
 @section('content')
 <div class="contacto-contacto">

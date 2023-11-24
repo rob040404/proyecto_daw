@@ -1,10 +1,10 @@
 @extends('app')
-@section('titulo', 'Eliminar Reservas')
 @section('estilos')
 <link rel="stylesheet" href="../public/assets/css/reservas.css"/>
 <link rel="stylesheet" href="../public/assets/css/nueva_reserva.css"/>
 <link rel="stylesheet" href="../public/assets/css/eliminar_reservas.css"/>
 @endsection
+@section('titulo', 'Eliminar Reservas')
 @section('content')
 <div class="reservas-container">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>

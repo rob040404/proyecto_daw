@@ -1,8 +1,8 @@
 @extends('app')
-@section('titulo', 'Home')
 @section('estilos')
 <link rel="stylesheet" href="../public/assets/css/Login.css"/>
 @endsection
+@section('titulo', 'Login')
 @section('content')
 <div class="login2">
 <div class="login-child"></div>
