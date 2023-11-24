@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../public/assets/css/nueva_reserva.css"/>
     <link rel="stylesheet" href="../public/assets/css/eliminar_reservas.css"/>
     <link rel="stylesheet" href="../public/assets/css/TrabajaConNosotros.css" />
+    <link rel="stylesheet" href="../public/assets/css/GestinDeMenscartaAlPulsarAadir.css" />
+
     
     <link
       rel="stylesheet"
@@ -44,7 +46,7 @@
                 <div class="contacto">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
 
-                  <div class="reservar1 menu"><a href="reservas.php">RESERVAR</a></div>
+                  <div class="reservar1 menu"><a href="reservar.php">RESERVAR</a></div>
                 </div>
                 <div class="contacto ">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />

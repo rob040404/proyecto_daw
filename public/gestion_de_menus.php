@@ -1,7 +1,11 @@
 <?php
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+require_once '../vendor/autoload.php';
+use eftec\bladeone\BladeOne;
+
+$views= __DIR__.'/../views';
+$cache= __DIR__.'/../cache';
+
+$blade= new BladeOne($views, $cache);
+echo $blade->run('gestion_de_menus');
 
