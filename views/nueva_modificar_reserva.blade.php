@@ -1,4 +1,8 @@
 @extends('app')
+@section('estilos')
+<link rel="stylesheet" href="../public/assets/css/reservas.css"/>
+<link rel="stylesheet" href="../public/assets/css/nueva_reserva.css"/>
+@endsection
 @section('titulo', $opcion)
 @section('content')
 <div class="reservas-container">

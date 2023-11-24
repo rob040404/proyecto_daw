@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="../public/assets/css/global.css" />
     <link rel="stylesheet" href="../public/assets/css/index.css" />
@@ -19,12 +20,16 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap"
     />
+=======
+    <link rel="stylesheet" href="../public/assets/css/global.css"/>
+    <link rel="stylesheet" href="../public/assets/css/index.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap"/>
+    @yield('estilos')
+>>>>>>> e9b26b31943010bea61ae3ce0044ebc97b879e44
     <title>@yield('titulo')</title>
   </head>
-
 <body>
     <!-- Header -->
-   
     <header>
         <div class="header-default">
             <div class="login" id="loginContainer">
@@ -33,24 +38,20 @@
               <div class="botones-der">
                 <div class="contacto">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
-
                   <div class="contacto1 menu"><a href="contacto.php">CONTACTO</a></div>
                 </div>
                 <div class="contacto">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
-
                   <div class="trabajo1 menu"><a href="trabaja_con_nosotros.php">TRABAJO</a></div>
                 </div>
               </div>
               <div class="botones-izq">
                 <div class="contacto">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
-
                   <div class="reservar1 menu"><a href="reservar.php">RESERVAR</a></div>
                 </div>
                 <div class="contacto ">
                   <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
-
                   <div class="carta1 menu"><a href="carta.php">CARTA</a></div>
                 </div>
               </div>
@@ -65,13 +66,11 @@
         </div>
     </header>
     <!-- Termina Header -->
-    
     <!-- Contenido -->
     <main>
         @yield('content')
     </main>
     <!-- Termina Contenido -->
-    
     <!-- Footer -->
     <footer>
         <div class="footer-default">
@@ -102,7 +101,6 @@
                     </div>
                   </div>
                   <img class="taco-footer-2" alt="" src="../public/assets/img/taco-footer-2.svg" />
-
                   <img class="taco-footer-1" alt="" src="../public/assets/img/taco-footer-2.svg" />
                 </div>
               </div>
