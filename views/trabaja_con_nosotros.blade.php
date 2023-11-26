@@ -1,11 +1,11 @@
 @extends('app')
 @section('estilos')
-<link rel="stylesheet" href="../public/assets/css/TrabajaConNosotros.css"/>
+<link rel="stylesheet" href="../public/assets/css/TrabajaConNosotros.css" />
 @endsection
-@section('titulo', 'Trabaja con nosotros')
+@section('titulo', 'Administador')
 @section('content')
 <div class="trabaja-con-nosotros1">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
+    <img class="background-icon" alt="" src="../public/assets/img/background_admin@2x.png" />
     <div class="trabaja-con-nosotros-wrapper">
         <div class="trabaja-con-nosotros2"></div>
     </div>
@@ -34,4 +34,3 @@
     <div class="correo-electrnico">Correo electrónico:</div>
 </div>
 @endsection
-
