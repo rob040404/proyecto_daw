@@ -1,11 +1,11 @@
-.login-child {
+/*.login-child {
   position: absolute;
   bottom: 0;
   left: 0;
   background-color: var(--color-black);
   width: 1440px;
   height: 171px;
-}
+}*/
 .login-item {
   position: absolute;
   height: 60.84%;
@@ -168,18 +168,7 @@
   color: var(--pink);
   text-shadow: 0 4px 30px #b519a6;
 }
-.login-child1 {
-  position: absolute;
-  top: 415px;
-  left: 536px;
-  border-radius: var(--br-5xs);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
-  backdrop-filter: blur(4px);
-  border: 3px solid var(--yellow);
-  box-sizing: border-box;
-  width: 364px;
-  height: 73px;
-}
+
 
 input {
     position: absolute;
@@ -192,6 +181,8 @@ input {
     box-sizing: border-box;
     width: 364px;
     height: 73px;
+    font-size: 20px;
+    font-family: 'Irish Grover';
   }
 
 .login-input {
@@ -205,14 +196,15 @@ input {
     box-sizing: border-box;
     width: 364px;
     height: 73px;
+    opacity: 0.5;
 }
 .confirmar-wrapper,
 .login-child2 {
   position: absolute;
   border-radius: var(--br-5xs);
-  opacity: 0.75;
+  font-size: 20px;
 }
-.login-child2 {
+#password {
   top: 533px;
   left: 536px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
@@ -221,6 +213,9 @@ input {
   box-sizing: border-box;
   width: 364px;
   height: 73px;
+  font-size: 20px;
+  opacity: 0.5;
+  font-family: 'Irish Grover';
 }
 .confirmar-wrapper {
   top: 646px;
@@ -232,6 +227,7 @@ input {
   justify-content: center;
   padding: var(--padding-3xs);
   color: var(--pink);
+  border: 3px solid var(--yellow);
 }
 .desde-tacos-tradicionales1 {
   position: relative;
@@ -299,7 +295,7 @@ input {
   position: relative;
   background-color: var(--color-black);
   width: 100%;
-  height: 1024px;
+  height: 800px;
   overflow: hidden;
   text-align: left;
   font-size: var(--font-size-5xl);

@@ -15,7 +15,7 @@ create table if not exists usuarios(
     nombre varchar(100) not null,
     apellidos varchar(100),
     contrasena varchar(8) not null,
-    rol enum("admin", "cocinero", "camarera"),
+    rol enum("admin", "cocinero", "camarero"),
     email varchar (50) not null unique
 )
 ENGINE InnoDB;
@@ -69,7 +69,7 @@ ENGINE InnoDB;
 
 -- 2.1.6 .- Tabla stock
 create table if not exists stock(
-    id_producto int primary key,
+    id_producto int auto_increment primary key,
     nombre_producto text,
     precio decimal (5,2),
     cantidad decimal (5,2)
