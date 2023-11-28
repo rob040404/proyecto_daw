@@ -3,29 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-<<<<<<< HEAD
-
-    <link rel="stylesheet" href="../public/assets/css/global.css" />
-    <link rel="stylesheet" href="../public/assets/css/index.css" />
-    <link rel="stylesheet" href="../public/assets/css/Login.css" />
-    <link rel="stylesheet" href="../public/assets/css/Contacto.module.css" />
-    <link rel="stylesheet" href="../public/assets/css/reservas.css"/>
-    <link rel="stylesheet" href="../public/assets/css/nueva_reserva.css"/>
-    <link rel="stylesheet" href="../public/assets/css/eliminar_reservas.css"/>
-    <link rel="stylesheet" href="../public/assets/css/TrabajaConNosotros.css" />
-    <link rel="stylesheet" href="../public/assets/css/GestinDeMenscartaAlPulsarAadir.css" />
-
-    
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap"
-    />
-=======
     <link rel="stylesheet" href="../public/assets/css/global.css"/>
     <link rel="stylesheet" href="../public/assets/css/index.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap"/>
     @yield('estilos')
->>>>>>> e9b26b31943010bea61ae3ce0044ebc97b879e44
     <title>@yield('titulo')</title>
   </head>
 <body>

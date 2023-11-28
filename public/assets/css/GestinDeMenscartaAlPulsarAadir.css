@@ -1,13 +1,6 @@
 
-.estado,
-.precio {
-  position: absolute;
-  top: 1186px;
-  left: 777px;
-}
-.estado {
-  left: 1042px;
-}
+
+
 .texto-gm {
   position: relative;
   color: var(--yellow);
@@ -15,7 +8,20 @@
   font-family: var(--font-irish-grover);
   
 }
+input, textarea, select
+{
+    background-color: transparent;
+    height: 35px;
+    color: var(--yellow);
+}
 
+option{
+    background-color: black;
+}
+label, input, textarea
+{
+    display: block;
+}
 .rectangulo-input
  {
   position: relative;
@@ -27,6 +33,64 @@
   box-sizing: border-box;
   width: 50%;
   height: 40px;
+}
+.rectangulo-input-centro{
+  position: relative;
+  display:inline;
+  border-radius: var(--br-5xs);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  border: 3px solid var(--yellow);
+  box-sizing: border-box;
+  width: 25%;
+  height: 40px;
+}
+.rectangulo-pequeno
+ {
+  position: relative;
+  
+  border-radius: var(--br-5xs);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  border: 3px solid var(--yellow);
+  box-sizing: border-box;
+  width: 75%;
+  height: 40px;
+}
+.categoria-borrar{
+    position: relative;
+  
+  border-radius: var(--br-5xs);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  border: 3px solid var(--yellow);
+  box-sizing: border-box;
+  width: 25%;
+  height: 40px;
+}
+.rectangulo-textarea
+ {
+  position: relative;
+  
+  border-radius: var(--br-5xs);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  border: 3px solid var(--yellow);
+  box-sizing: border-box;
+  width: 50%;
+  height: 160px;
+}
+.rectangulo-textarea-trabaja
+ {
+  position: relative;
+  display:inline;
+  border-radius: var(--br-5xs);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  border: 3px solid var(--yellow);
+  box-sizing: border-box;
+  width: 25%;
+  height: 160px;
 }
 .nueva-reserva-inner,
 .nueva-reserva-item {
@@ -114,10 +178,7 @@
 
 .aadir-nuevo-producto {
   position: relative;
-  height: 2.55%;
-  width: 26.32%;
-  top: 49.47%;
-  left: 36.81%;
+  margin: 0 auto;
   font-size: var(--font-size-17xl);
   color: var(--blue);
   display: inline-block;
@@ -128,7 +189,22 @@
   left: 0;
   background-color: var(--color-black);
 }
-
+.guardar-wrapper {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 5px;;
+  background-color: var(--yellow);
+  width: 20%;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  box-sizing: border-box;
+  opacity: 0.75;
+  color: var(--pink);
+}
 .boton-anadir {
   border-radius: var(--br-base);
   box-shadow: 0 4px 4px #3ed7e5;
@@ -232,6 +308,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 2%;
+    margin-bottom: 0%
+    
+    
 }
 
 .anadir-izq{
@@ -268,7 +347,7 @@
 
 .subcontenedor-precio{
     width: 25%;
-    margin-bottom: 5%;
+    
     .etiqueta-izq{
         margin-left: 20%;
     }
@@ -280,8 +359,29 @@
 }
 .subcontenedor-estado{
     width: 25%;
-    margin-bottom: 5%;
+    
     .etiqueta-der{
         margin-left: 20%;
     }
+}
+.botones-form{
+    
+    text-align: center;
+    
+    margin-bottom: 10%;
+}
+
+.contenedor_opciones{
+    text-align: center;
+}
+
+.contenedor_form_trabaja{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.contenedor_borrar{
+    
+   margin-bottom: 20%;
+   
 }
