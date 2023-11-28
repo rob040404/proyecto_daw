@@ -1,0 +1,104 @@
+
+.boton,
+.h1 {
+  position: absolute;
+}
+.boton {
+  cursor: pointer;
+  border: 2px solid var(--blue);
+  padding: var(--padding-3xs);
+  background-color: var(--color-black);
+  top: 250px;
+  border-radius: var(--br-base);
+  box-shadow: 0 4px 4px #3ed7e5;
+  box-sizing: border-box;
+  width: 200px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: var(--yellow);
+  font-size: var(--font-size-xl);
+  font-family: var(--font-irish-grover);
+  position: absolute;
+}
+.h1 {
+  margin: 0;
+  top: 135px;
+  left: calc(50% - 176px);
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+  -webkit-text-stroke: 1px #3ed7e5;
+  font-size: 35px;
+  font-family: var(--font-irish-grover)
+}
+.label {
+  cursor: pointer;
+  position: relative;
+  font-size: var(--font-size-xl);
+  font-family: var(--font-irish-grover);
+  color: var(--yellow);
+  text-align: left;
+}
+.input {
+  border: 1px solid var(--yellow);
+  background-color: transparent;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+  width: 200px;
+  height: 70px;
+  font-family: var(--font-irish-grover);
+  color: var(--yellow);
+  font-size: 20px;
+}
+.nombre {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 18px;
+}
+.formulario,
+.nombre,
+.precio {
+  display: flex;
+  align-items: center;
+}
+.precio {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-smi);
+}
+.formulario {
+  position: absolute;
+  top: 270px;
+  left: calc(50% - 402px);
+  border-radius: var(--br-base);
+  width: 804px;
+  flex-direction: row;
+  justify-content: center;
+  gap: 101px;
+}
+.nuevo-producto {
+  position: relative;
+  width: 100%;
+  height: 713px;
+  background-color: var(--color-black);
+}
+
+.background-icon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  right: 0;
+  bottom: 0%;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}

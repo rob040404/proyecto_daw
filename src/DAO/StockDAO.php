@@ -14,16 +14,6 @@ class StockDAO
         $this->bd = $bd;
     }
 
-    /*function select($email, $pwd)
-    {
-        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-        $sql = 'select * from usuarios where email=:email and contrasena=:pwd';
-        $sth = $this->bd->prepare($sql);
-        $sth->execute([":email" => $email, ":pwd" => $pwd]);
-        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
-        $usuario = ($sth->fetch()) ?: null;
-        return $usuario;
-    }*/
     function selectall()
     {
         $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
@@ -33,5 +23,13 @@ class StockDAO
         $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Stock::class);
         $stock = ($sth->fetchAll()) ?: null;
         return $stock;
+    }
+
+    function delete($stock)
+    {
+        $consulta = $this->bd->prepare('DELETE FROM stock WHERE  id_producto=:id_producto');
+        $id_producto = $stock->getId_producto();
+        $consulta->bindParam(':id_producto', $id_producto, PDO::PARAM_STR);
+        return $consulta->execute();
     }
 }

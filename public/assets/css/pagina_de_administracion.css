@@ -74,7 +74,7 @@
 
 .boton-inventario {
     left: calc(50% - 385.5px);
-    box-shadow: 0 4px 4px #bc1327;
+    box-shadow: 0 4px 4px var(--color-firebrick);
     border: 2px solid var(--red);
 }
 
