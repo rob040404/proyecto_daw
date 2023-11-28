@@ -30,7 +30,7 @@
   font-size: inherit;
   font-weight: 400;
   font-family: inherit;
-  -webkit-text-stroke: 1px #3ed7e5;
+  color: #3ed7e5;
   font-size: 35px;
   font-family: var(--font-irish-grover)
 }
@@ -55,6 +55,7 @@
   font-family: var(--font-irish-grover);
   color: var(--yellow);
   font-size: 20px;
+  text-align: center;
 }
 .nombre {
   flex-direction: column;
