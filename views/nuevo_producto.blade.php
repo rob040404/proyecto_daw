@@ -16,11 +16,11 @@
         </div>
         <div class="precio">
             <label class="label" htmlfor="precio">Precio (eur):</label>
-            <input class="input" name="precio" id="precio" type="text" />
+            <input type="number" class="input" name="precio" id="precio" type="text" />
         </div>
         <div class="precio">
             <label class="label" htmlfor="cantidad">Cantidad:</label>
-            <input class="input" name="cantidad" id="cantidad" type="text" />
+            <input type="number" class=" input" name="cantidad" id="cantidad" type="text" />
         </div>
         <input type="submit" class="boton" name="anadir" id="anadir" value="Añadir" />
 
