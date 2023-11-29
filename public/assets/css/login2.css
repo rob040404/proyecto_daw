@@ -14,17 +14,19 @@
 }
 
 .input-login {
-  border: 3px solid var(--yellow);
+  border: 2px solid var(--yellow);
   background-color: transparent;
   position: relative;
-  border-radius: var(--br-5xs);
+  border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
   backdrop-filter: blur(4px);
   box-sizing: border-box;
-  width: 364px;
-  height: 73px;
+  width: 360px;
+  height: 75px;
   font-family: 'Irish Grover';
   font-size: larger;
+  text-align: center;
+  color: var(--yellow);
 }
 
 .grupo-login,
@@ -44,18 +46,19 @@
 }
 
 .input-password {
-  border: 3px solid var(--yellow);
+  border: 2px solid var(--yellow);
   background-color: transparent;
   position: relative;
-  border-radius: var(--br-5xs);
+  border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
   backdrop-filter: blur(4px);
   box-sizing: border-box;
-  width: 364px;
-  height: 73px;
-  opacity: 0.75;
+  width: 360px;
+  height: 75px;
   font-family: 'Irish Grover';
   font-size: larger;
+  text-align: center;
+  color: var(--yellow);
 }
 
 .boton-confirmar,
@@ -67,14 +70,20 @@
 }
 
 .boton-confirmar {
-  background-color: var(--yellow);
-  border-radius: var(--br-5xs);
+  cursor: pointer;
+  border: 2px solid #4cb24c;
+  background-color: var(--color-black);
+  border-radius: 8px;
   flex-direction: row;
   justify-content: center;
   padding: var(--padding-3xs);
   opacity: 0.75;
-  color: var(--pink);
-  font-size: larger;
+  color: #4cb24c;
+  font-size: 25px;
+  width: 180px;
+  height: 75px;
+  box-shadow: 0 4px 4px #4cb24c;
+  transform: translateX(50%);
 }
 
 .grupo-formulario {

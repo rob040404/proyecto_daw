@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../public/assets/css/index.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap" />
   @yield('estilos')
+  @yield('javascript')
   <title>@yield('titulo')</title>
 </head>
 
