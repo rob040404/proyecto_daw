@@ -33,9 +33,11 @@ try {
 
 $empleado = null;
 $dao = new EmpleadoDAO($bd);
+$sesion_abierta = false;
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
-    header("Location: pagina_de_administracion.php");
+    $sesion_abierta = true;
+    header("Location: index.php");
     exit;
 } else if (isset($_POST['confirmar'])) {
     // si alguien ha pulsado el boton confirmar, hay que comprobar si el usuario y la pass son correctos
@@ -45,7 +47,8 @@ if (isset($_SESSION['empleado'])) {
     if ($empleado) {
         //Login correcto
         $_SESSION['empleado'] = $empleado;
-        header("Location: pagina_de_administracion.php");
+        $sesion_abierta = true;
+        header("Location: index.php");
         exit;
     } else {
         $test = "Usuario/password incorrectos!";
@@ -57,4 +60,4 @@ if (isset($_SESSION['empleado'])) {
 
 //Verificar sesion abierta, procesar formulario index del ahorcado
 //$test = "Hola Crunchy!";
-echo $blade->run("login", compact('test'));
+echo $blade->run("login2", compact('test', 'sesion_abierta'));

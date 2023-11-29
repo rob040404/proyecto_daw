@@ -4,6 +4,7 @@ require_once '../vendor/autoload.php';
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
+use App\DAO\StockDAO;
 use Dotenv\Dotenv;
 
 session_start();
@@ -39,4 +40,6 @@ if (isset($_SESSION['empleado'])) {
 }
 
 
-echo $blade->run('pagina_de_administracion', compact('sesion_abierta'));
+
+
+echo $blade->run('nuevo_producto', compact('sesion_abierta'));
