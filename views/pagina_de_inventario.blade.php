@@ -2,7 +2,12 @@
 @section('estilos')
 <link rel="stylesheet" href="../public/assets/css/pagina_de_inventario.css" />
 @endsection
-@section('titulo', 'Login')
+@section('javascript')
+<script src="./assets/js/jquery/jquery-3.6.0.min.js"></script>
+<script src="./assets/js/inventario.js"></script>
+
+@endsection
+@section('titulo', 'Inventario')
 @section('content')
 
 <div class="inventario">
@@ -35,21 +40,25 @@
                     {{$producto->getCantidad()}}
                 </td>
                 <td>
-                    <img src="assets/img/lapiz.png" alt="" width="28" height="28">
+                    <input type="number" value="">
+                    <img class="botonlapiz" src="assets/img/lapiz.png" alt="" width="28" height="28">
                 </td>
                 <td>
-                    <img src="assets/img/papelera.png" alt="" width="28" height="28">
+                    <img class="botonpapelera" src="assets/img/papelera.png" alt="" width="28" height="28">
                 </td>
             </tr>
             @endforeach
 
         </table>
     </div>
-    <div class="boton-parent">
-        <button class="boton">
-            <div class="texto-botones">Nuevo producto</div>
-        </button>
-    </div>
+    <a href="nuevo_producto.php">
+
+        <div class="boton-parent">
+            <button class="boton">
+                <div class="texto-botones">Nuevo producto</div>
+            </button>
+        </div>
+    </a>
 </div>
 
 
