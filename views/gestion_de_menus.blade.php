@@ -31,9 +31,8 @@
             </button></a>
       </div>
     
-    <div class="contenedor_opciones" id="contenedor_opciones">
-        
-    </div>
+    <div class="contenedor_opciones" id="contenedor_opciones"></div>
+    <div class="contenedor_opciones2" id="contenedor_opciones2"></div>
       
 </div>
 @endsection

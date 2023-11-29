@@ -18,6 +18,11 @@
   cursor: pointer;
   color: green;
 }
+.logout1 {
+  text-shadow: 0 4px 30px #4cb24c;
+  cursor: pointer;
+  color: green;
+}
 .login {
   position: absolute;
   top: 10px;
@@ -472,4 +477,8 @@ header{
 }
 section{
     top:150px;
+}
+
+.user-icon{
+  padding-right: 100px;
 }

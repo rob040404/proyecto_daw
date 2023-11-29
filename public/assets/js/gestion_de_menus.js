@@ -116,7 +116,7 @@ function form_borrar(){
 
 function form_anadir(){
     var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir">Añadir nuevo producto</div>'+
+            '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Añadir nuevo producto</p></div>'+
         '<form id="formanadir" method="POST" name="formanadir" novalidate>'+
             '<div class="contenedor-anadir">'+
             
@@ -159,5 +159,5 @@ function form_anadir(){
             
         '</form>';
 
-        document.getElementById("contenedor_opciones").innerHTML=contenido;
+        document.getElementById("contenedor_opciones2").innerHTML=contenido;
 }
