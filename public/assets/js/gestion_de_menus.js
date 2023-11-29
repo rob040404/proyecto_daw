@@ -120,16 +120,13 @@ function form_anadir(){
         '<form id="formanadir" method="POST" name="formanadir" novalidate>'+
             '<div class="contenedor-anadir">'+
             
-                '<div class="anadir-izq">'+
+               ' <div class="anadir-izq">'+
                     
                         '<label for="nombre" class="texto-gm etiqueta-izq">Nombre:</label><br>'+
                         '<input type="text" name="nombre" id="nombre" class="rectangulo-input elemento-form-izq" maxlength="30"><br>'+
-                        '<label for="nombre" class="texto-gm etiqueta-izq">Ingredientes:</label><br>'+
-                        '<textarea type="text" name="nombre" id="nombre" class="rectangulo-textarea elemento-form-izq"></textarea><br>'+
-                        '<button type="button" class="guardar-wrapper elemento-form-izq">'+
-                            '<div class="guardar" name="guardar" id="guardar">Guardar</div>'+
-                        '</button>'+
-                    
+                        '<label for="nombre" class="texto-gm etiqueta-izq">Descripción:</label><br>'+
+                        '<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea elemento-form-izq"></textarea><br>'+
+                        
                 '</div>'+
                 '<div class="anadir-der">'+
                     
@@ -141,22 +138,67 @@ function form_anadir(){
                             '<div class="subcontenedor-precio">'+
                                 '<label for="nombre" class="texto-gm etiqueta-izq elemento-form-der">Precio:</label><br>'+
                                 '<input type="text" name="categoria" id="categoria" class="rectangulo-pequeno elemento-form-der" maxlength="8"><br>'+
-                            '</div>'+
+                                
+                           ' </div>'+
                             '<div class="subcontenedor-estado">'+
                                 '<label for="categoria" class="texto-gm elemento-form-der">Estado:</label><br>'+
                                 '<select type="text" name="categoria" id="categoria" class="rectangulo-pequeno elemento-form-der">'+
                                      '<option value="activado">Activado</option>'+
                                      '<option value="desactivado">Desactivado</option>'+
-                                '</select>'+  
-                                '<br>'+
+                                '</select>'+
+                                '<br><br>'+
+                                
                             '</div>'+
-                        '</div>'+
-                        '<button type="reset" class="guardar-wrapper elemento-form-der">'+
-                            '<div class="guardar" name="reset" id="reset">Reset</div>'+
-                        '</button>'+
+                       ' </div> '+
+               ' </div>'+
+                '<div class="conteiner-ingredientes">'+
+                   ' <p>'+ 
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '</p>'+
+                    
                 '</div>'+
             '</div>'+
-            
+            '<div class="aadir-nuevo-producto">'+
+               
+                '<label for="nombre" class="texto-gm "><h4>Otros:</h4></label><br>'+
+                '<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea-otros"></textarea><br>'+
+                
+            '</div>'+
+            '<div class="container-botones-form">'+
+                '<button type="button" class="guardar-wrapper-anadir ">'+
+                    '<div class="guardar" name="guardar" id="guardar">Guardar</div>'+
+                '</button>'+
+                '<button type="reset" class="guardar-wrapper-anadir">'+
+                    '<div class="guardar" name="reset" id="reset">Reset</div>'+
+                '</button>'+
+           ' </div>'+
         '</form>';
 
         document.getElementById("contenedor_opciones2").innerHTML=contenido;
