@@ -5,12 +5,12 @@
         <group>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/css/index.css</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/js/gestion_de_menus.js</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/gestion_de_menus.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/css/GestinDeMenscartaAlPulsarAadir.css</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/js/contacto.js</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/app.blade.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/gestion_de_menus.blade.php</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/css/global.css</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/trabaja_con_nosotros.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/contacto.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/contacto.blade.php</file>
         </group>
     </open-files>
 </project-private>

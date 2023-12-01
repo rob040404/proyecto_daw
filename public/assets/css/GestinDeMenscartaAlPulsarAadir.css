@@ -233,7 +233,8 @@ label, input, textarea
 .guardar-wrapper {
   position: relative;
   margin: 0 auto;
-  border-radius: 5px;;
+  border-radius: 5px;
+;
   background-color: var(--yellow);
   width: 20%;
   font-family: var(--font-irish-grover);
@@ -250,7 +251,8 @@ label, input, textarea
 .guardar-wrapper-anadir{
   position: relative;
   margin: 0;
-  border-radius: 5px;;
+  border-radius: 5px;
+;
   background-color: var(--yellow);
   width: 20%;
   font-family: var(--font-irish-grover);
@@ -266,7 +268,8 @@ label, input, textarea
 .guardar-wrapper-trabaja {
   position: relative;
   margin: 27% auto;
-  border-radius: 5px;;
+  border-radius: 5px;
+;
   background-color: var(--yellow);
   width: 80%;
   font-family: var(--font-irish-grover);
@@ -282,7 +285,8 @@ label, input, textarea
 .guardar-wrapper-contacto {
   position: relative;
   margin: 0% auto;
-  border-radius: 5px;;
+  border-radius: 5px;
+;
   background-color: var(--yellow);
   width: 80%;
   font-family: var(--font-irish-grover);
@@ -298,7 +302,8 @@ label, input, textarea
 input[type="file"]::file-selector-button {
   position: relative;
   margin-bottom: 2%;
-  border-radius: 5px;;
+  border-radius: 5px;
+;
   background-color: var(--yellow);
   flex-direction: row;
   align-items: center;
@@ -440,6 +445,7 @@ input[type="file"]::file-selector-button {
     margin-right: 35%;
     margin-left: auto;
     width: 20%
+       
 }
 
 .contenedor-precio-estado{
@@ -518,4 +524,9 @@ input[type="file"]::file-selector-button {
     display: flex;
     margin: 0 auto;
     align-content: center;
+}
+
+.error-form{
+    color: #ff3300;
+    
 }

@@ -3,7 +3,7 @@
         'name' => 'restaurante/proyecto_restaurante',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'aed2ada10c4c0d564d9419dcecaffbd4a2fc671b',
+        'reference' => '8f3ed5cfc52933bbb9271f121bb12f611967c9d8',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -28,6 +28,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v6.9.1',
+            'version' => '6.9.1.0',
+            'reference' => '039de174cd9c17a8389754d3b877a2ed22743e18',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.2',
             'version' => '1.9.2.0',
@@ -40,7 +49,7 @@
         'restaurante/proyecto_restaurante' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'aed2ada10c4c0d564d9419dcecaffbd4a2fc671b',
+            'reference' => '8f3ed5cfc52933bbb9271f121bb12f611967c9d8',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
