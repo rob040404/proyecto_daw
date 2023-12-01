@@ -99,3 +99,32 @@ border-bottom: 1px solid var(--color-beige);
   width: 100%;
   border-radius: 16px;
 }
+
+.input-interior {
+  border: 1px solid var(--yellow);
+  background-color: transparent;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+  font-family: 'Irish Grover';
+  text-align: center;
+  color: var(--yellow);
+  width: 90px;
+  height: 30px;
+  font-size: 20px;
+  display: none;
+}
+
+.botonlapiz {
+  display: inline;
+  cursor: pointer;
+}
+
+.botondisquete {
+  display: none;
+  cursor: pointer;
+}
+
+.botonpapelera {
+  cursor: pointer;
+}
