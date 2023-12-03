@@ -66,6 +66,18 @@ label, input, textarea
   width: 75%;
   height: 40px;
 }
+.rectangulo-unidades
+ {
+  position: relative;
+  
+  border-radius: var(--br-5xs);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+  backdrop-filter: blur(4px);
+  border: 3px solid var(--yellow);
+  box-sizing: border-box;
+  width: 40px;
+  height: 25px;
+}
 .categoria-borrar{
     position: relative;
   
@@ -216,6 +228,14 @@ label, input, textarea
   margin: 0 auto;
   font-size: var(--font-size-17xl);
   color: var(--blue);
+  
+  text-align: center;
+}
+.encabezado-selec-ing {
+  position: relative;
+  margin: 0 auto;
+  font-size: 25px;
+  color: var(--yellow);
   
   text-align: center;
 }
@@ -529,4 +549,24 @@ input[type="file"]::file-selector-button {
 .error-form{
     color: #ff3300;
     
+}
+.correcto-form{
+    color: #4cb24c;
+    font-size: 20px;
+}
+.incorrecto-form{
+    color: #ff3300;
+    font-size: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

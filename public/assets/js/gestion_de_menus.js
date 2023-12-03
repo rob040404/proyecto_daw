@@ -151,36 +151,37 @@ function form_anadir(){
                             '</div>'+
                        ' </div> '+
                ' </div>'+
+               '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades</p></div>'+
                 '<div class="conteiner-ingredientes">'+
                    ' <p>'+ 
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
                     '</p>'+
                     '<p>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
                     '</p>'+
                     '<p>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
                     '</p>'+
                     '<p>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
                     '</p>'+
                     '<p>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
-                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
                     '</p>'+
                     
                 '</div>'+

@@ -10,6 +10,8 @@
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
     <div class="contenedor_form_trabaja" id="contenedor_form_trabaja">
         <div class="aadir-nuevo-producto" id="encabezado-anadir">Envíanos un correo</div>
+        <div class="aadir-nuevo-producto correcto-form" id="correo-correcto"></div>
+        <div class="aadir-nuevo-producto incorrecto-form" id="correo-incorrecto"></div>
         <form id="formanadir" method="POST" name="formanadir" novalidate>
             <div class="contenedor-anadir">
             

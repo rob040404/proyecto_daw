@@ -1,17 +1,20 @@
-window.onload=iniciar;
-console.log("¡¡js contacto funciona!!");
+$(document).ready(iniciar); 
+
 
 function iniciar(){
-    $('#enviar-contacto').click(comprobar);
+    document.getElementById('form-trabaja').addEventListener('submit', comprobar);
 }
 
 
-function comprobar(){
+function comprobar(event){
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const form= event.target;
     var nombre= $('#nombre').val();
     var apellidos= $('#apellidos').val();
     var telefono= $('#telefono').val();
     var correo= $('#correo').val();
-    var asunto= $('#asunto').val();
+    var fichero= $('#archivo').val();
     var mensaje= $('#mensaje').val();
     mensaje= mensaje.replace(/\r?\n/g, "<br>");
     
@@ -46,21 +49,26 @@ function comprobar(){
             $('#error-correo').html('E-mail no válido');
             error_validacion=true;
         }
-        if(!asunto){
-            $('#error-asunto').html('Campo obligatorio');
-            error_validacion=true;
-        }
         if(!mensaje){
             $('#error-mensaje').html('Campo obligatorio');
+            error_validacion=true;
+        }
+        if(!fichero){
+            $('#error-fichero').html('Campo obligatorio');
             error_validacion=true;
         }
     
     if(error_validacion===false){
         $.ajax({
             type: "POST",
-            url: "contacto.php",
-            data: {nom: nombre, ap: apellidos, tel: telefono, cor: correo, as:asunto, men: mensaje},
-            datatype: 'json',
+            url: "trabaja_con_nosotros.php",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+              $("#err").fadeOut();
+            },
             success: function(response){
                 
                 if(response.errores){
@@ -85,6 +93,6 @@ function limpiarInputs(){
     document.getElementById('apellidos').value=""; 
     document.getElementById('correo').value=""; 
     document.getElementById('telefono').value=""; 
-    document.getElementById('asunto').value="";
+    
     document.getElementById('mensaje').value="";
 }
