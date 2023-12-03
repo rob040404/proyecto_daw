@@ -40,8 +40,9 @@
                     {{$producto->getCantidad()}}
                 </td>
                 <td>
-                    <input type="number" value="">
+                    <input class="input-interior" type="number" value="">
                     <img class="botonlapiz" src="assets/img/lapiz.png" alt="" width="28" height="28">
+                    <img class="botondisquete" src="assets/img/save-icon.png" alt="" width="28" height="28">
                 </td>
                 <td>
                     <img class="botonpapelera" src="assets/img/papelera.png" alt="" width="28" height="28">
