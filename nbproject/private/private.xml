@@ -3,10 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/js/gestion_de_menus.js</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/gestion_de_menus.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/login2.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/pagina_cocinero.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/pagina_camarero.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/index.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/css/GestinDeMenscartaAlPulsarAadir.css</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/gestion_de_menus.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/app.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/trabaja_con_nosotros.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/pagina_de_administracion.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/login.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/login.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/pagina_de_administracion.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/pagina_camarero.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/pagina_cocinero.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/trabaja_con_nosotros.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/css/login2.css</file>
         </group>
     </open-files>
 </project-private>

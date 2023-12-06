@@ -16,9 +16,11 @@
         <div class="boton-pedidos">
             <div class="texto-botones">Pedidos pendientes</div>
         </div>
+        <a href="reservas.php">
         <div class="boton-reservas">
-            <div class="texto-botones">Reservas de mesas</div>
+            <div class="texto-botones">Gestión de reservas</div>
         </div>
+        </a>
         <a href="pagina_de_inventario.php">
             <div class="boton-inventario">
                 <div class="texto-botones">Gestión de inventario</div>
