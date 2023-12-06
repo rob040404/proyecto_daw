@@ -4,7 +4,7 @@ require_once '../vendor/autoload.php';
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
-use App\DAO\StockDAO;
+use App\DAO\EmpleadoDAO;
 use Dotenv\Dotenv;
 
 session_start();
@@ -39,15 +39,12 @@ if (isset($_SESSION['empleado'])) {
     exit;
 }
 
-$stock = null;
-$dao = new StockDAO($bd);
-$stock = $dao->selectall();
-error_log(print_r($stock, true));
-if (isset($_GET['anadido'])) {
-    $anadido = true;
-} else {
-    $anadido = false;
-}
+$empleado = null;
+$dao = new EmpleadoDAO($bd);
+$empleado = $dao->selectall();
+error_log(print_r($empleado, true));
 
 
-echo $blade->run('pagina_de_inventario', compact('sesion_abierta', 'stock', 'anadido'));
+
+
+echo $blade->run('pagina_de_personal', compact('sesion_abierta', 'empleado'));

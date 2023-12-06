@@ -51,4 +51,17 @@ class StockDAO
         $sth = $this->bd->prepare($sql);
         return $sth->execute([":id_producto" => $idproducto]);
     }
+
+    function insert($stock)
+    {
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'INSERT INTO stock (nombre_producto, precio, cantidad)
+        VALUES (:nombre_producto, :precio, :cantidad)';
+        $sth = $this->bd->prepare($sql);
+        return $sth->execute([
+            ":nombre_producto" => $stock->getNombre_producto(),
+            ":precio" => $stock->getPrecio(),
+            ":cantidad" => $stock->getCantidad()
+        ]);
+    }
 }
