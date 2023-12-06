@@ -1,10 +1,14 @@
 <?php
+
 namespace App\BD;
+
+use \PDOException;
+use \Exception;
 
 class BD
 {
     protected static $bd = null;
-    
+
     private function __construct()
     {
         try {
@@ -23,4 +27,3 @@ class BD
         return self::$bd;
     }
 }
-//ANTES DE PROBAR ESTE FECHERO INSTALAR .ENV
