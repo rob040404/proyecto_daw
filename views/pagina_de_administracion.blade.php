@@ -24,9 +24,11 @@
                 <div class="texto-botones">Gestión de inventario</div>
             </div>
         </a>
-        <div class="boton-personal">
-            <div class="texto-botones">Administracion de personal</div>
-        </div>
+        <a href="pagina_de_personal.php">
+            <div class="boton-personal">
+                <div class="texto-botones">Administracion de personal</div>
+            </div>
+        </a>
         <div class="boton-carta">
             <div class="texto-botones">Gestión de carta</div>
         </div>
