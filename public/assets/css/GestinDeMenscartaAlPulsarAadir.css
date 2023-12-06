@@ -374,6 +374,77 @@ input[type="file"]::file-selector-button {
   border: 2px solid #bc1327;
   flex-direction: row;
 }
+.boton-carta-cocinero {
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 4px 4px #f5f94a;
+  border: 2px solid #f5f94a;
+  flex-direction: column;
+  
+}
+.boton-carta-cocinero{
+  position: relative;
+  border-radius: var(--br-base);
+  background-color: var(--color-black);
+  box-sizing: border-box;
+  width: 257px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+}
+
+
+.boton-inventario-cocinero{
+  box-shadow: 0 4px 4px #bc1327;
+  border: 2px solid #bc1327;
+  position: relative;
+  border-radius: var(--br-base);
+  background-color: var(--color-black);
+  box-sizing: border-box;
+  width: 257px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  margin-right: 10%;
+}
+
+
+.boton-pedidos-camarero{
+  box-shadow: 0 4px 4px #3ed7e5;
+  border: 2px solid var(--blue);
+  position: relative;
+  border-radius: var(--br-base);
+  background-color: var(--color-black);
+  box-sizing: border-box;
+  width: 257px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  margin-right: 10%;
+}
+
+
+.boton-reservas-camarero{
+  box-shadow: 0 4px 4px #b519a6;
+  border: 2px solid var(--pink);
+  position: relative;
+  border-radius: var(--br-base);
+  background-color: var(--color-black);
+  box-sizing: border-box;
+  width: 257px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  margin-right: 10%;
+}
 .boton-ver,
 .boton-borrar,
 .boton-buscar {
@@ -449,6 +520,32 @@ input[type="file"]::file-selector-button {
 .anadir-der{
     width: 50%;
     margin-bottom: 0%
+}
+
+.contenedor-bot-coc{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    margin-top: 10%;
+    
+    
+}
+.container-botones-izq{
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+    margin-bottom: 0%;
+    margin-right: 10%;
+    
+}
+.container-botones-der{
+    display: flex;
+    
+    width: 40%;
+    margin-bottom: 0%;
+    margin-left: 10%;
 }
 
 .elemento-form-izq{
@@ -569,4 +666,17 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: none;
+   
+}
+
+a{
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: none;
 }
