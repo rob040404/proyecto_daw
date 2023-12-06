@@ -74,12 +74,6 @@
     align-items: center;
 }
 
-.precio {
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: var(--gap-smi);
-}
-
 .formulario {
     position: absolute;
     top: 270px;
