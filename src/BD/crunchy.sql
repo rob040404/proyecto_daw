@@ -32,16 +32,16 @@ create table if not exists reservas(
     -- poner el resto de las columnas
     id_usuario int,
     foreign key(id_usuario) references usuarios(id_usuario) on update cascade on delete set null,
-    num_mesa int,
-    Nombre_Cliente VARCHAR(255),
-    Telefono VARCHAR(20),
-    Correo_Electronico VARCHAR(255),
-    Fecha_Hora_Reserva TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Num_Personas INT,
-    Mesa INT,
-    Fecha_Hora_Llegada TIMESTAMP,
-    Estado VARCHAR(50),
-    Observaciones TEXT
+    mesa int,
+    nombre VARCHAR(255),
+    apellidos VARCHAR(255),
+    fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
+    telefono VARCHAR(20),
+    correo VARCHAR(255),
+    personas INT,
+    fecha_hora_llegada DATETIME DEFAULT CURRENT_TIMESTAMP,
+    estado VARCHAR(50),
+    observaciones TEXT
 )
 ENGINE InnoDB;
 -- 2.1.4 .- Tabla platos
