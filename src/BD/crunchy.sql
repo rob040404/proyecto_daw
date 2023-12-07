@@ -48,7 +48,7 @@ ENGINE InnoDB;
 create table if not exists platos(
     id_plato int auto_increment primary key,
     nombre varchar(30),
-    ingradientes text,
+    ingredientes text,
     categoria varchar(30),
     subcategoria varchar(30),
     precio decimal(5,2),
@@ -70,7 +70,7 @@ ENGINE InnoDB;
 -- 2.1.6 .- Tabla stock
 create table if not exists stock(
     id_producto int auto_increment primary key,
-    nombre_producto text,
+    nombre_producto text unique,
     precio decimal (5,2),
     cantidad decimal (5,2)
     )
