@@ -25,37 +25,26 @@ class EmpleadoDAO
         $usuario = ($sth->fetch()) ?: null;
         return $usuario;
     }
-    
+
     function recuperarUsuarios()
     {
-        $this -> bd -> setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
         $sql = 'select * from usuarios';
-        $sth = $this -> bd -> prepare($sql);
-        $sth -> execute();
-        $sth -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
-        $usuarios = ($sth -> fetchAll()) ?: null;
-        return $usuarios;
-    }
-    
-    function recuperarUsuariosPorRol($rol)
-    {
-        $this -> bd -> setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
-        $sql = 'select * from usuarios where rol=:rol';
-        $sth = $this -> bd -> prepare($sql);
-        $sth -> execute([':rol' => $rol]);
-        $sth -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
-        $usuarios = ($sth -> fetchAll()) ?: null;
+        $sth = $this->bd->prepare($sql);
+        $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $usuarios = ($sth->fetchAll()) ?: null;
         return $usuarios;
     }
 
-    private function existeNombre($usuario)
+    function recuperarUsuariosPorRol($rol)
     {
-        $this -> bd -> setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
         $sql = 'select * from usuarios where rol=:rol';
-        $sth = $this -> bd -> prepare($sql);
-        $sth -> execute([':rol' => $rol]);
-        $sth -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
-        $usuarios = ($sth -> fetchAll()) ?: null;
+        $sth = $this->bd->prepare($sql);
+        $sth->execute([':rol' => $rol]);
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $usuarios = ($sth->fetchAll()) ?: null;
         return $usuarios;
     }
 
