@@ -48,6 +48,17 @@ class EmpleadoDAO
         return $usuarios;
     }
 
+    private function existeNombre($usuario)
+    {
+        $this -> bd -> setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'select * from usuarios where rol=:rol';
+        $sth = $this -> bd -> prepare($sql);
+        $sth -> execute([':rol' => $rol]);
+        $sth -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $usuarios = ($sth -> fetchAll()) ?: null;
+        return $usuarios;
+    }
+
     function selectall()
     {
         $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
