@@ -51,6 +51,10 @@ function eliminarProducto(e){
     let fila=$(this).parent().parent();
     let celdas=$(fila).children();
     let idprod=$(celdas[0]).text().trim();
+    if (!confirm("Seguro?")){
+        console.log("cancelado");
+        return;
+    }
     console.log('Vamos a eliminar el producto '+idprod);
     $.ajax({
         type: "POST",
@@ -58,10 +62,8 @@ function eliminarProducto(e){
         contentType: "application/x-www-form-urlencoded",
         data: { "eliminarStock": true, "idproducto": idprod},
         success: function (response) {
-            //muestraPista(response.letra);
             console.log(response);
             if (response.resultado) {
-                //MODIFICAR LA CANTIDAD
                 alert ("Eliminado!");
                 $(celdas[3]).html(response.cantidad);
 

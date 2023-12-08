@@ -2,11 +2,11 @@ use crunchydb;
 
 -- Creamos un usuario del restaurante.
 INSERT INTO usuarios (nombre, apellidos, contrasena, rol, email) 
-VALUES ('Sancho', 'Panza', '1234', 'admin', 'sancho@crunchy.com');
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellidos`, `contrasena`, `rol`, `email`) 
-VALUES ('2', 'Alonso', 'Quijano', '1234', 'cocinero', 'quijote@quijote.com');
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellidos`, `contrasena`, `rol`, `email`) 
-VALUES ('3', 'Dulcinea', 'del Toboso', '1234', 'camarero', 'dulcinea@crunchy.com');
+VALUES ('Sancho', 'Panza', '1234', 'admin', 'sancho@crunchy.com'),
+        ('Alonso', 'Quijano', '1234', 'cocinero', 'quijote@quijote.com'),
+        ('Dulcinea', 'del Toboso', '1234', 'camarero', 'dulcinea@crunchy.com'),
+        ('Rocinante', 'Exposito', '1234', 'admin', 'rocinante@crunchy.com');
+
 -- Creamos varios clientes para probar la gestión de las reservas
 INSERT INTO reservas (id_reserva, id_usuario, mesa, nombre, apellidos, fecha_hora_reserva, telefono, 
 correo, num_personas, fecha_hora_llegada, estado, observaciones)

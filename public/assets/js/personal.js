@@ -74,6 +74,10 @@ function eliminarUsuario(){
     let idusuario=$(celdas[0]).text().trim(); // Texto que hay en la primera celda td con el id del producto
     //let disquete=$(celdas[6]).children()[1];
     //let lapiz=$(celdas[6]).children()[0];
+    if (!confirm("Seguro?")){
+        console.log("cancelado");
+        return;
+    }
     console.log('Vamos a borrar el usuario '+idusuario);
     $.ajax({
         type: "POST",

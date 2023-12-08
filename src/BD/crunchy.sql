@@ -38,7 +38,7 @@ create table if not exists reservas(
     fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
     telefono VARCHAR(20),
     correo VARCHAR(255),
-    personas INT,
+    num_personas INT,
     fecha_hora_llegada DATETIME DEFAULT CURRENT_TIMESTAMP,
     estado VARCHAR(50),
     observaciones TEXT
@@ -70,9 +70,10 @@ ENGINE InnoDB;
 -- 2.1.6 .- Tabla stock
 create table if not exists stock(
     id_producto int auto_increment primary key,
-    nombre_producto text unique,
-    precio decimal (5,2),
-    cantidad decimal (5,2)
+    nombre_producto text unique not null,
+    precio decimal (5,2) not null,
+    cantidad decimal (5,2) not null,
+    constraint `cantidad siempre mayor que cero` check (cantidad>=0.0)
     )
 ENGINE InnoDB;
 -- 2.1.7 .- Tabla restar

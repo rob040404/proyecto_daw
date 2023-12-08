@@ -16,6 +16,10 @@ $cache = __DIR__ . '/../cache';
 
 $blade = new BladeOne($views, $cache);
 
+set_exception_handler(function ($exception) use ($blade) {
+    echo $blade->run('error', compact('exception'));
+    exit;
+});
 // Establece conexión a la base de datos PDO
 try {
     $host = $_ENV['DB_HOST'];

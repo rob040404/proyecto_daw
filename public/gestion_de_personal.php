@@ -17,6 +17,11 @@ $dotenv->load();
 //solo las peticiones con ajax
 header('Content-type: application/json');
 
+set_exception_handler(function ($exception) {
+    echo json_encode(["resultado" => false, "mensaje" => "Error: " . $exception->getMessage()]);
+    exit;
+});
+
 // Establece conexión a la base de datos PDO
 try {
     $host = $_ENV['DB_HOST'];
