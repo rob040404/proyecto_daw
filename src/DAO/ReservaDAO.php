@@ -119,12 +119,14 @@ class ReservaDAO
         $usuarioDao = new EmpleadoDAO($this->bd);
         $camareros = $usuarioDao->recuperarUsuariosPorRol('camarero');
         $id_camarero_mesa = null;
-        $min_reservas_camarero = !null;
-        for ($i = 0; $i < sizeof($camareros); $i++) {
+        $min_reservas_camarero = null;
+        for ($i = 0; $i < sizeof($camareros); $i++) 
+        {
             $id_camarero = $camareros[$i]->getId_Usuario();
             $reservas = $this->recuperarporIdUsuarioYFecha($id_camarero, $fecha);
             $num_reservas_camarero = !is_null($reservas) ? sizeof($reservas) : 0;
-            if ($i == 0 || $num_reservas_camarero < $min_reservas_camarero) {
+            if ($i == 0 || $num_reservas_camarero < $min_reservas_camarero) 
+            {
                 $min_reservas_camarero = $num_reservas_camarero;
                 $id_camarero_mesa = $id_camarero;
             }
@@ -233,8 +235,8 @@ class ReservaDAO
 
     function nuevaReserva(Reserva $reserva)
     {
-        $sql = 'insert into reservas (id_usuario, mesa, nombre, apellidos, fecha_hora_reserva, telefono, correo, Personas) '
-            . 'VALUES (:id_usuario, :mesa, :nombre, :apellidos, :fecha, :telefono, :correo, :personas)';
+        $sql = 'insert into reservas (id_usuario, mesa, nombre, apellidos, fecha_hora_reserva, telefono, correo, personas, estado) '
+            . 'VALUES (:id_usuario, :mesa, :nombre, :apellidos, :fecha, :telefono, :correo, :personas, \'Aceptada\')';
         $sth = $this->bd->prepare($sql);
         $sth->execute([
             ':id_usuario' => $reserva->getId_usuario(), ':mesa' => $reserva->getMesa(),
