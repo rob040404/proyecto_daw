@@ -17,6 +17,10 @@ $cache = __DIR__ . '/../cache';
 
 $blade = new BladeOne($views, $cache);
 
+set_exception_handler(function ($exception) use ($blade) {
+    echo $blade->run('error', compact('exception'));
+    exit;
+});
 // Establece conexión a la base de datos PDO
 try {
     $host = $_ENV['DB_HOST'];
@@ -43,7 +47,11 @@ $stock = null;
 $dao = new StockDAO($bd);
 $stock = $dao->selectall();
 error_log(print_r($stock, true));
+if (isset($_GET['anadido'])) {
+    $anadido = true;
+} else {
+    $anadido = false;
+}
 
 
-
-echo $blade->run('pagina_de_inventario', compact('sesion_abierta', 'stock'));
+echo $blade->run('pagina_de_inventario', compact('sesion_abierta', 'stock', 'anadido'));

@@ -4,8 +4,7 @@ require_once '../vendor/autoload.php';
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
-use App\DAO\StockDAO;
-use App\modelo\Stock;
+use App\DAO\EmpleadoDAO;
 use Dotenv\Dotenv;
 
 session_start();
@@ -22,7 +21,6 @@ set_exception_handler(function ($exception) use ($blade) {
     echo $blade->run('error', compact('exception'));
     exit;
 });
-
 // Establece conexión a la base de datos PDO
 try {
     $host = $_ENV['DB_HOST'];
@@ -35,32 +33,22 @@ try {
     echo $blade->run("errorbd", compact('error'));
     exit;
 }
-$error = null;
+
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
-    $dao = new StockDAO($bd);
-    if (isset($_POST['anadir'])) {
-        $nombre_producto = $_POST['nombre_producto'];
-        $precio = $_POST['precio'];
-        $cantidad = $_POST['cantidad'];
-        //El id 0 se ignora, pero hay que ponerlo para que funcione el constructor
-        $stock = new Stock(0, $nombre_producto, $precio, $cantidad);
-        $consultaok = $dao->insert($stock);
-        if ($consultaok) {
-            header('Location: pagina_de_inventario.php?anadido=1');
-            exit;
-        } else {
-            $error = "Algo ha fallado...";
-        }
-    }
 } else {
     $sesion_abierta = false;
     header('Location: index.php');
     exit;
 }
 
+$empleado = null;
+$dao = new EmpleadoDAO($bd);
+$empleado = $dao->selectall();
+error_log(print_r($empleado, true));
 
 
 
-echo $blade->run('nuevo_producto', compact('sesion_abierta', 'error'));
+
+echo $blade->run('pagina_de_personal', compact('sesion_abierta', 'empleado'));
