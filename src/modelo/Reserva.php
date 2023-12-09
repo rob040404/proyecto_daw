@@ -11,12 +11,12 @@ class Reserva
     private $telefono;
     private $correo;
     private $personas;
-    private $fecha_hora_llegada;
     private $estado;
+    private $fecha_hora_llegada;
     private $observaciones;
     private $nombre_empleado;
 
-    public function __construct($id_reserva = null, $id_usuario = null, $mesa = null, $nombre = null, $apellidos = null, $fecha_hora_reserva = null, $telefono = null, $correo = null, $personas = null, $fecha_hora_llegada = null, $estado = null, $observaciones = null, $nombre_empleado = null)
+    public function __construct($id_reserva = null, $id_usuario = null, $mesa = null, $nombre = null, $apellidos = null, $fecha_hora_reserva = null, $telefono = null, $correo = null, $personas = null, $estado = null, $fecha_hora_llegada = null, $observaciones = null, $nombre_empleado = null)
     {
         if(!is_null($id_reserva))
         {
@@ -54,13 +54,13 @@ class Reserva
         {
             $this -> personas = $personas;
         }
-        if(!is_null($fecha_hora_llegada))
-        {
-            $this -> fecha_hora_llegada = $fecha_hora_llegada;
-        }
         if(!is_null($estado))
         {
             $this -> estado = $estado;
+        }
+        if(!is_null($fecha_hora_llegada))
+        {
+            $this -> fecha_hora_llegada = $fecha_hora_llegada;
         }
         if(!is_null($observaciones))
         {
@@ -162,16 +162,6 @@ class Reserva
         return $this -> personas;
     }
     
-    public function setFecha_hora_llegada($fecha_hora_llegada): void
-    {
-        $this -> fecha_hora_llegada = $fecha_hora_llegada;
-    }
-
-    public function getFecha_hora_llegada()
-    {
-        return $this -> fecha_hora_llegada;
-    }
-    
     public function setEstado($estado): void
     {
         $this -> estado = $estado;
@@ -180,6 +170,16 @@ class Reserva
     public function getEstado()
     {
         return $this -> estado;
+    }
+    
+    public function setFecha_hora_llegada($fecha_hora_llegada): void
+    {
+        $this -> fecha_hora_llegada = $fecha_hora_llegada;
+    }
+
+    public function getFecha_hora_llegada()
+    {
+        return $this -> fecha_hora_llegada;
     }
     
     public function setObservaciones($observaciones): void

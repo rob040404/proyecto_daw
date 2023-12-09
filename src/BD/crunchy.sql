@@ -38,9 +38,9 @@ create table if not exists reservas(
     fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
     telefono VARCHAR(20),
     correo VARCHAR(255),
-    num_personas INT,
+    personas INT,
+    estado enum("Aceptada", "En progreso", "Finalizada"),
     fecha_hora_llegada DATETIME DEFAULT CURRENT_TIMESTAMP,
-    estado VARCHAR(50),
     observaciones TEXT
 )
 ENGINE InnoDB;
@@ -57,12 +57,12 @@ create table if not exists platos(
 ENGINE InnoDB;
 -- 2.1.5 .-Tabla pedir
 create table if not exists pedir(
-    id_plato int,
-    foreign key (id_plato) references platos(id_plato) on update cascade on delete set null,
     id_reserva int,
     foreign key (id_reserva) references reservas(id_reserva) on update cascade on delete set null,
+    id_plato int,
+    foreign key (id_plato) references platos(id_plato) on update cascade on delete set null,
     constraint unique (id_plato, id_reserva),
-    cantidad_platos int
+    unidades int
     -- Aqui se puede anadir la fecha y la hora del pedido.
     )
 ENGINE InnoDB;
@@ -90,8 +90,3 @@ ENGINE InnoDB;
 create user if not exists crunchy@'localhost' identified by "1234";
 -- 4.- Le damos permiso en la base de datos "crunchy"
 grant all on crunchydb.* to crunchy@'localhost';
-
-
-
-
-
