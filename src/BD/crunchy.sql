@@ -73,7 +73,8 @@ create table if not exists stock(
     nombre_producto text unique not null,
     precio decimal (5,2) not null,
     cantidad decimal (5,2) not null,
-    constraint `cantidad siempre mayor que cero` check (cantidad>=0.0)
+    constraint `cantidad siempre mayor que cero` check (cantidad>=0.0),
+    constraint `precio siempre mayor que cero` check (precio>=0.0)
     )
 ENGINE InnoDB;
 -- 2.1.7 .- Tabla restar

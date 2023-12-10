@@ -10,7 +10,6 @@
 @section('titulo', 'Personal')
 @section('content')
 <div class="personal">
-    <img class="background-icon" alt="" src="../public/assets/img/background_personal@2x.png" />
     <h1 class="h1">Personal del restaurante</h1>
     <table class="tabla">
         <tr class="th">
@@ -54,11 +53,11 @@
         @endforeach
     </table>
     <a href="nuevo_empleado.php">
-        <div class="boton-parent">
-            <button class="boton">
-                <div class="texto-botones">Alta empleado</div>
-            </button>
-        </div>
+
+        <button class="boton">
+            <div class="texto-botones">Alta empleado</div>
+        </button>
+
     </a>
 </div>
 @endsection
