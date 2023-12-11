@@ -4,8 +4,8 @@ require_once '../vendor/autoload.php';
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
-use App\DAO\StockDAO;
-use App\modelo\Stock;
+use App\DAO\EmpleadoDAO;
+use App\modelo\Empleado;
 use Dotenv\Dotenv;
 
 session_start();
@@ -39,16 +39,18 @@ $error = null;
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
-    $dao = new StockDAO($bd);
-    if (isset($_POST['anadir'])) {
-        $nombre_producto = $_POST['nombre_producto'];
-        $precio = $_POST['precio'];
-        $cantidad = $_POST['cantidad'];
+    $dao = new EmpleadoDAO($bd);
+    if (isset($_POST['alta'])) {
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $contrasena = $_POST['contrasena'];
+        $rol = $_POST['rol'];
+        $email = $_POST['email'];
         //El id 0 se ignora, pero hay que ponerlo para que funcione el constructor
-        $stock = new Stock(0, $nombre_producto, $precio, $cantidad);
-        $consultaok = $dao->insert($stock);
+        $empleado = new Empleado(0, $nombre, $apellidos, $contrasena, $rol, $email);
+        $consultaok = $dao->insert($empleado);
         if ($consultaok) {
-            header('Location: pagina_de_inventario.php?anadido=1');
+            header('Location: pagina_de_personal.php?anadido=1');
             exit;
         } else {
             $error = "Algo ha fallado...";
@@ -60,7 +62,4 @@ if (isset($_SESSION['empleado'])) {
     exit;
 }
 
-
-
-
-echo $blade->run('nuevo_producto', compact('sesion_abierta', 'error'));
+echo $blade->run('nuevo_empleado', compact('sesion_abierta', 'error'));

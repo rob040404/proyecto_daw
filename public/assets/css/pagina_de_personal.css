@@ -1,0 +1,116 @@
+.h1 {
+    position: relative;
+    top: 100px;
+    margin-right: auto;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    color: var(--pink);
+    font-size: 35px;
+    text-align: center;
+}
+
+.tabla {
+    align-self: stretch;
+    flex: 1;
+    background-color: var(--color-black);
+    position: relative;
+    border-radius: 16px;
+    position: relative;
+    top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: var(--yellow);
+    font-size: 20px;
+}
+
+.personal {
+    background-color: var(--color-black);
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    font-family: var(--font-irish-grover);
+    padding-bottom: 200px;
+    background: url(../img/background_personal@2x.png) repeat fixed center / cover;
+}
+
+.th {
+    -webkit-text-stroke: 1px var(--pink);
+    font-size: 25px;
+}
+
+.boton {
+    cursor: pointer;
+    border: 2px solid var(--pink);
+    padding: var(--padding-3xs);
+    position: relative;
+    top: 150px;
+    left: calc(50% - 99px);
+    border-radius: var(--br-base);
+    box-shadow: 0 4px 4px var(--pink);
+    box-sizing: border-box;
+    width: 200px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-black);
+}
+
+.texto-botones {
+    position: relative;
+    font-size: var(--font-size-xl);
+    font-family: var(--font-irish-grover);
+    text-align: left;
+    color: var(--yellow) !important;
+}
+
+.input-interior-enabled {
+    border: 1px solid var(--yellow);
+    background-color: transparent;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    box-sizing: border-box;
+    font-family: 'Irish Grover';
+    text-align: center;
+    color: var(--yellow);
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.input-interior-disabled {
+    border: none;
+    background-color: var(--color-black);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    box-sizing: border-box;
+    font-family: 'Irish Grover';
+    text-align: center;
+    color: var(--yellow);
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.botonlapiz {
+    display: inline;
+    cursor: pointer;
+}
+
+.botondisquete {
+    display: none;
+    cursor: pointer;
+}
+
+.botonpapelera {
+    cursor: pointer;
+}

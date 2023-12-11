@@ -17,11 +17,13 @@
   <header>
     <div class="header-default">
       <div class="login" id="loginContainer">
-        @if (isset($sesion_abierta) && $sesion_abierta)
+        @if (isset($sesion_abierta))
+        @if ($sesion_abierta)
         <a href="index.php" class="user-icon"> <img src="assets/img/user-icon.png" alt="" width="35" height="35"> </a>
         <div class="login1" id="loginText"><a href="index.php?logout=1">Logout</a></div>
         @else
         <div class="login1" id="loginText"><a href="login.php">Login</a></div>
+        @endif
         @endif
       </div>
       <div class="botones-der">

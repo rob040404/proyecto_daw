@@ -32,23 +32,23 @@ create table if not exists reservas(
     -- poner el resto de las columnas
     id_usuario int,
     foreign key(id_usuario) references usuarios(id_usuario) on update cascade on delete set null,
-    num_mesa int,
-    Nombre_Cliente VARCHAR(255),
-    Telefono VARCHAR(20),
-    Correo_Electronico VARCHAR(255),
-    Fecha_Hora_Reserva TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Num_Personas INT,
-    Mesa INT,
-    Fecha_Hora_Llegada TIMESTAMP,
-    Estado VARCHAR(50),
-    Observaciones TEXT
+    mesa int,
+    nombre VARCHAR(255),
+    apellidos VARCHAR(255),
+    fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
+    telefono VARCHAR(20),
+    correo VARCHAR(255),
+    personas INT,
+    estado enum("Aceptada", "En progreso", "Finalizada"),
+    fecha_hora_llegada DATETIME DEFAULT CURRENT_TIMESTAMP,
+    observaciones TEXT
 )
 ENGINE InnoDB;
 -- 2.1.4 .- Tabla platos
 create table if not exists platos(
     id_plato int auto_increment primary key,
     nombre varchar(30),
-    ingradientes text,
+    ingredientes text,
     categoria varchar(30),
     subcategoria varchar(30),
     precio decimal(5,2),
@@ -57,12 +57,12 @@ create table if not exists platos(
 ENGINE InnoDB;
 -- 2.1.5 .-Tabla pedir
 create table if not exists pedir(
-    id_plato int,
-    foreign key (id_plato) references platos(id_plato) on update cascade on delete set null,
     id_reserva int,
     foreign key (id_reserva) references reservas(id_reserva) on update cascade on delete set null,
+    id_plato int,
+    foreign key (id_plato) references platos(id_plato) on update cascade on delete set null,
     constraint unique (id_plato, id_reserva),
-    cantidad_platos int
+    unidades int
     -- Aqui se puede anadir la fecha y la hora del pedido.
     )
 ENGINE InnoDB;
@@ -70,9 +70,11 @@ ENGINE InnoDB;
 -- 2.1.6 .- Tabla stock
 create table if not exists stock(
     id_producto int auto_increment primary key,
-    nombre_producto text,
-    precio decimal (5,2),
-    cantidad decimal (5,2)
+    nombre_producto text unique not null,
+    precio decimal (5,2) not null,
+    cantidad decimal (5,2) not null,
+    constraint `cantidad siempre mayor que cero` check (cantidad>=0.0),
+    constraint `precio siempre mayor que cero` check (precio>=0.0)
     )
 ENGINE InnoDB;
 -- 2.1.7 .- Tabla restar
@@ -89,8 +91,3 @@ ENGINE InnoDB;
 create user if not exists crunchy@'localhost' identified by "1234";
 -- 4.- Le damos permiso en la base de datos "crunchy"
 grant all on crunchydb.* to crunchy@'localhost';
-
-
-
-
-

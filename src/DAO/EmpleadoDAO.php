@@ -26,69 +26,75 @@ class EmpleadoDAO
         return $usuario;
     }
 
-    /*private function existeNombre($usuario)
+    function recuperarUsuarios()
     {
-        $consulta = $this->bd->prepare('SELECT * FROM usuarios WHERE nombre=:nombre');
-        $nombre = $usuario->getNombre();
-        $consulta->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-        $consulta->execute();
-        if ($consulta->fetch()) {
-            return true;
-        } else {
-            return false;
-        }
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'select * from usuarios';
+        $sth = $this->bd->prepare($sql);
+        $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $usuarios = ($sth->fetchAll()) ?: null;
+        return $usuarios;
     }
 
-    private function existeEmail($usuario)
+    function recuperarUsuariosPorRol($rol)
     {
-        $consulta = $this->bd->prepare('SELECT * FROM usuarios WHERE email=:email');
-        $email = $usuario->getEmail();
-        $consulta->bindParam(':email', $email, PDO::PARAM_STR);
-        $consulta->execute();
-        if ($consulta->fetch()) {
-            return true;
-        } else {
-            return false;
-        }
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'select * from usuarios where rol=:rol';
+        $sth = $this->bd->prepare($sql);
+        $sth->execute([':rol' => $rol]);
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $usuarios = ($sth->fetchAll()) ?: null;
+        return $usuarios;
     }
 
-    function crea($usuario)
+    function selectall()
     {
-        if ($this->existeNombre($usuario) || $this->existeEmail($usuario)) {
-            return false;
-        } else {
-            $consulta = $this->bd->prepare('INSERT INTO usuarios (nombre, clave, email) ' .
-                'VALUES (:nombre, :clave, :email)');
-            $nombre = $usuario->getNombre();
-            $clave = $usuario->getClave();
-            $email = $usuario->getEmail();
-            $consulta->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-            $consulta->bindParam(':clave', $clave, PDO::PARAM_STR);
-            $consulta->bindParam(':email', $email, PDO::PARAM_STR);
-            return $consulta->execute();
-        }
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'select * from usuarios';
+        $sth = $this->bd->prepare($sql);
+        $sth->execute([]);
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Empleado::class);
+        $empleado = ($sth->fetchAll()) ?: null;
+        return $empleado;
     }
 
-    function modifica($usuario)
+    function update($empleado)
     {
-        /*if ($this->existeEmail($usuario)) {
-            return false;
-        } else { 
-        $consulta = $this->bd->prepare('UPDATE usuarios SET clave=:clave, email=:email WHERE id=:id');
-        $clave = $usuario->getClave();
-        $email = $usuario->getEmail();
-        $id = $usuario->getId();
-        $consulta->bindParam(':clave', $clave, PDO::PARAM_STR);
-        $consulta->bindParam(':email', $email, PDO::PARAM_STR);
-        $consulta->bindParam(':id', $id, PDO::PARAM_STR);
-        return $consulta->execute();
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'UPDATE usuarios SET nombre=:nombre, apellidos=:apellidos, contrasena=:contrasena,
+        rol=:puesto, email=:email WHERE id_usuario=:id_usuario';
+        $sth = $this->bd->prepare($sql);
+        return $sth->execute([
+            ":nombre" => $empleado->getNombre(),
+            ":apellidos" => $empleado->getApellidos(),
+            ":contrasena" => $empleado->getContrasena(),
+            ":puesto" => $empleado->getRol(),
+            ":email" => $empleado->getEmail(),
+            ":id_usuario" => $empleado->getId_usuario()
+        ]);
     }
 
-    function elimina($usuario)
+    function delete($idusuario)
     {
-        $consulta = $this->bd->prepare('DELETE FROM usuarios WHERE  id=:id');
-        $id = $usuario->getId();
-        $consulta->bindParam(':id', $id, PDO::PARAM_STR);
-        return $consulta->execute();
-    }*/
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'DELETE FROM usuarios WHERE id_usuario=:id_usuario AND rol<>"admin"'; //y no != porque ahorras 0,10 segundos
+        $sth = $this->bd->prepare($sql);
+        return $sth->execute([":id_usuario" => $idusuario]) && $sth->rowCount() > 0;
+    }
+
+    function insert($empleado)
+    {
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'INSERT INTO usuarios (nombre, apellidos, contrasena, rol, email) 
+        VALUES (:nombre, :apellidos, :contrasena, :rol, :email)';
+        $sth = $this->bd->prepare($sql);
+        return $sth->execute([
+            ":nombre" => $empleado->getNombre(),
+            ":apellidos" => $empleado->getApellidos(),
+            ":contrasena" => $empleado->getContrasena(),
+            ":rol" => $empleado->getRol(),
+            ":email" => $empleado->getEmail()
+        ]);
+    }
 }
