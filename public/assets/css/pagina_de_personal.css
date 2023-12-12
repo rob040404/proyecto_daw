@@ -39,6 +39,7 @@
     font-family: var(--font-irish-grover);
     padding-bottom: 200px;
     background: url(../img/background_personal@2x.png) repeat fixed center / cover;
+    background-color: var(--color-black);
 }
 
 .th {
