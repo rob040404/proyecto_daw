@@ -1,0 +1,52 @@
+.pedidos {
+    height: auto;
+    background-color: var(--color-black);
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    font-family: var(--font-irish-grover);
+    padding-bottom: 200px;
+    background: url(../img/background-login@2x.png) repeat fixed center / cover;
+}
+
+.tabla-pedidos {
+    position: relative;
+    top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 931px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+
+.tabla {
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    align-self: stretch;
+    flex: 1;
+    background-color: var(--color-black);
+    color: var(--yellow);
+        font-size: 20px;
+}
+
+.h1 {
+    position: relative;
+    top: 100px;
+    margin-right: auto;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    color: var(--orange);
+    font-size: 35px;
+    text-align: center;
+}
+
+.th {
+    -webkit-text-stroke: 1px var(--orange);
+    font-size: 25px;
+}

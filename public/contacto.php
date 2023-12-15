@@ -12,6 +12,13 @@ $cache= __DIR__.'/../cache';
 
 $blade= new BladeOne($views, $cache);
 
+session_start();
+if (isset($_SESSION['empleado'])) {
+    // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
+    $sesion_abierta = true;
+} else {
+    $sesion_abierta = false;
+}
 
 
 if(!empty($_POST) && isset($_POST['nom']) && isset($_POST['ap']) && isset($_POST['tel']) && isset($_POST['cor']) && isset($_POST['as']) && isset($_POST['men'])){
@@ -53,7 +60,7 @@ if(!empty($_POST) && isset($_POST['nom']) && isset($_POST['ap']) && isset($_POST
        
     
 }
-echo $blade->run('contacto');
+echo $blade->run('contacto', compact('sesion_abierta'));
 
 
        

@@ -428,10 +428,31 @@
 	position: fixed; /* Hacemos que la cabecera tenga una posición fija */
 }
 
+main {
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: var(--yellow);
+  cursor: pointer;
+}
+
+a:hover{
+  color: var(--pink);
+}
+
+.crunchy-rancho1 a{
+  color: var(--pink);
+}
+
+.login1 a {
+  color: var(--green);
+}
 .footer-default {
   
-  position: relative;
-  
+  /*position: relative;*/
+  /*quitar el position relative */
   background-color: var(--color-black);
   width: 100%;
   height: 200px;
@@ -481,4 +502,8 @@ section{
 
 .user-icon{
   padding-right: 100px;
+}
+
+body {
+  background-color: var(--color-black);
 }

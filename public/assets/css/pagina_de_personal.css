@@ -31,13 +31,15 @@
 }
 
 .personal {
-    position: relative;
     background-color: var(--color-black);
     width: 100%;
-    height: 713px;
+    height: auto;
     overflow: hidden;
     text-align: center;
     font-family: var(--font-irish-grover);
+    padding-bottom: 200px;
+    background: url(../img/background_personal@2x.png) repeat fixed center / cover;
+    background-color: var(--color-black);
 }
 
 .th {
@@ -49,8 +51,8 @@
     cursor: pointer;
     border: 2px solid var(--pink);
     padding: var(--padding-3xs);
-    position: absolute;
-    bottom: 100px;
+    position: relative;
+    top: 150px;
     left: calc(50% - 99px);
     border-radius: var(--br-base);
     box-shadow: 0 4px 4px var(--pink);
@@ -69,7 +71,7 @@
     font-size: var(--font-size-xl);
     font-family: var(--font-irish-grover);
     text-align: left;
-    color: var(--yellow);
+    color: var(--yellow) !important;
 }
 
 .input-interior-enabled {

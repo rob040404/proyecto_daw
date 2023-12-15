@@ -11,7 +11,6 @@
 @section('content')
 
 <div class="inventario">
-    <img class="background-icon" alt="" src="../public/assets/img/background-login@2x.png" />
 
     <h1 class="inventario-del-restaurante">Inventario del restaurante</h1>
     @if (isset($anadido) && $anadido)
