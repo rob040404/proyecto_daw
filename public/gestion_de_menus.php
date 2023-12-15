@@ -5,6 +5,8 @@ use eftec\bladeone\BladeOne;
 use App\BD\BD;
 use App\modelo\Plato;
 use App\DAO\PlatoDAO;
+use App\DAO\RestarDAO;
+use App\DAO\StockDAO;
 use Dotenv\Dotenv;
 
 session_start();
@@ -39,20 +41,73 @@ if (isset($_SESSION['empleado'])) {
     exit;
 }
 
-$plato1= new Plato();
-$plato1DAO= new PlatoDAO($bd);
+if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['precio']) && isset($_POST['estado'])){
+    $nombre=trim(filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW));
+    $descripcion=filter_input(INPUT_POST, 'descripcion', FILTER_UNSAFE_RAW);
+    $categoria=filter_input(INPUT_POST, 'categoria', FILTER_UNSAFE_RAW);
+    $subcategoria=filter_input(INPUT_POST, 'subcategoria', FILTER_UNSAFE_RAW);
+    $precio=filter_input(INPUT_POST, 'precio', FILTER_UNSAFE_RAW);
+    $estado=filter_input(INPUT_POST, 'estado', FILTER_UNSAFE_RAW);
+    $ingredientes=$_POST['ingredientes'];
+    $errores=false;
+    $existe=false;
+    $errorIngredientes=false;
+    $plato1= new Plato();
+    $plato1DAO= new PlatoDAO($bd);
+    $stock1DAO= new StockDAO($bd);
+    $restar1DAO=new RestarDAO($bd);
+
+    
+    $plato1->setNombre($nombre);
+    $plato1->setIngredientes($descripcion);
+    $plato1->setCategoria($categoria);
+    if($subcategoria){
+        $plato1->setSubcategoria($subcategoria);
+    }
+    $plato1->setPrecio($precio);
+    $plato1->setEstado($estado);
+    
+    $respuesta=$plato1DAO->insertarPlato($plato1->getNombre(), $plato1->getIngredientes(), $plato1->getCategoria(), $plato1->getSubcategoria(), $plato1->getPrecio(), $plato1->getEstado());
+    
+    if($respuesta==='existe'){
+        $existe=true;
+    }else if($respuesta===false){
+        $errores=true;
+    }else{
+        $id_plato=$plato1DAO->obtener_id($plato1->getNombre());
+        foreach ($ingredientes as $ingrediente){
+            $ing=$ingrediente[0];
+            $cantidad=$ingrediente[1];
+            $id_producto=$stock1DAO->obtener_id($ing);
+            if($id_producto){
+                $resultado=$restar1DAO->insertar($id_plato, $id_producto, $cantidad);
+                if($resultado===false){
+                    $errorIngredientes=true;
+                }
+            } else {
+                $errorIngredientes=true;
+            }
+        }
+    }
+    
+    $response= compact('existe', 'errores', 'errorIngredientes');
+    header('Content-type: application/json');
+    echo json_encode($response);
+    die;
+}
+
+
+
+
+
+
+
+/*
 
 $antiguo_nom="Tacos al pastor";
-$plato1->setNombre("tacos al pastor");
-$plato1->setIngredientes('Carne a la brasa, cilantro, lima, tortita de maiz');
-$plato1->setCategoria('principal');
-$plato1->setSubcategoria('tacos');
-$plato1->setPrecio(8.9);
-$plato1->setEstado('activado');
-
 
 $modificacion= $plato1DAO->modificar($antiguo_nom, $plato1->getNombre(), $plato1->getIngredientes(), $plato1->getCategoria(), $plato1->getSubcategoria(), $plato1->getPrecio(), $plato1->getEstado());
-/*
+
 
 
 $insercion= $plato1DAO->insertarPlato($plato1->getNombre(), $plato1->getIngredientes(), $plato1->getCategoria(), $plato1->getSubcategoria(), $plato1->getPrecio(), $plato1->getEstado());

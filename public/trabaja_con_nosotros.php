@@ -11,6 +11,15 @@ $cache= __DIR__.'/../cache';
 
 $blade= new BladeOne($views, $cache);
 
+session_start();
+if (isset($_SESSION['empleado'])) {
+    // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
+    $sesion_abierta = true;
+} else {
+    $sesion_abierta = false;
+    //header('Location: index.php');
+    //exit;
+}
 
 if(!empty($_POST) && !empty($_FILES) && isset($_POST['nombre']) && isset($_POST['apellidos']) && isset($_POST['telefono']) && isset($_POST['correo']) && isset($_POST['mensaje']) && $_FILES['archivo']){
     $nombre= filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW);
@@ -18,7 +27,8 @@ if(!empty($_POST) && !empty($_FILES) && isset($_POST['nombre']) && isset($_POST[
     $telefono= filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW);
     $correo= filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
     
-    $mensaje= filter_input(INPUT_POST, 'mensaje', FILTER_UNSAFE_RAW);
+    $men= filter_input(INPUT_POST, 'mensaje', FILTER_UNSAFE_RAW);
+    $mensaje=str_replace( "\n", '<br />', $men );
     
     //First handle the upload
     //Don't trust provided filename - same goes for MIME types
@@ -68,5 +78,5 @@ if(!empty($_POST) && !empty($_FILES) && isset($_POST['nombre']) && isset($_POST[
     
 }
 
-echo $blade->run('trabaja_con_nosotros');
+echo $blade->run('trabaja_con_nosotros', compact('sesion_abierta'));
 

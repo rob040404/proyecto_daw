@@ -13,7 +13,7 @@ class PlatoDAO{
     
     public function insertarPlato($nom, $ing, $cat, $sub, $pre, $es) {
         if($this->buscarPorNombre($nom)){
-            return "Ya existen platos con ese nombre";
+            return "existe";
         }
         $consulta= "INSERT INTO platos (nombre, ingredientes, categoria, subcategoria, precio, estado) VALUES (:n, :i, :c, :s, :p, :e)"; 
         $stm= $this->bd->prepare($consulta);
@@ -83,7 +83,7 @@ class PlatoDAO{
     
     public function borrarPorNombre($nom){
         if(!$this->buscarPorNombre($nom)){
-            return "No existen platos con ese nombre";
+            return "No existe";
         }
         $consulta= "DELETE FROM platos WHERE nombre=:n";
         $stm=$this->bd->prepare($consulta);
@@ -109,6 +109,21 @@ class PlatoDAO{
             return true;
         }else{
             return false;
+        }
+    }
+    
+    public function obtener_id($nom){
+        $consultaSelect= "SELECT id_plato FROM platos WHERE nombre=:n";
+        $stm=$this->bd->prepare($consultaSelect);
+        $stm->execute([':n'=>$nom]);
+        $resultadoSelect= $stm->rowCount();
+        
+        if($resultadoSelect==0){
+            return false;
+        }else{
+            $registro=$stm->fetch(PDO::FETCH_OBJ);
+            $id=$registro->id_plato;
+            return $id;
         }
     }
 }

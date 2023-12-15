@@ -64,4 +64,18 @@ class StockDAO
             ":cantidad" => $stock->getCantidad()
         ]);
     }
+    
+    function obtener_id($nombre_producto){
+        $sql = 'SELECT * from stock WHERE nombre_producto=:np';
+        $sth = $this->bd->prepare($sql);
+        $registro=$sth->execute([':np'=>$nombre_producto]);
+        
+        if($registro){
+            $registro=$sth->fetch(PDO::FETCH_OBJ);
+            $id=$registro->id_producto;
+            return $id;
+        }else{
+            return false;
+        }
+    }
 }

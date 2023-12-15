@@ -588,7 +588,7 @@ input[type="file"]::file-selector-button {
     width: 25%;
     
     .etiqueta-der{
-        margin-left: 20%;
+       /* margin-left: 20%;*/
     }
 }
 .botones-form{
@@ -679,4 +679,8 @@ a{
     color: -webkit-link;
     cursor: pointer;
     text-decoration: none;
+}
+
+optgroup{
+    color: gray;
 }

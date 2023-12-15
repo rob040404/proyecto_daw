@@ -32,4 +32,17 @@ class RestarDAO
         $restar = ($sth->fetchAll()) ?: null;
         return $restar;
     }
+    
+    function insertar($id_plato, $id_producto, $cantidad){
+        $consulta= 'INSERT INTO restar (id_plato, id_producto, cantidad) VALUES(:ipl, :ipr, :c)';
+        $stm= $this->bd->prepare($consulta);
+        $resultado= $stm->execute([':ipl'=>$id_plato, ':ipr'=>$id_producto, ':c'=>$cantidad]);
+        
+        if($resultado){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 }

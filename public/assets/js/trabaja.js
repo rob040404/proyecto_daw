@@ -16,7 +16,7 @@ function comprobar(event){
     var correo= $('#correo').val();
     var fichero= $('#archivo').val();
     var mensaje= $('#mensaje').val();
-    mensaje= mensaje.replace(/\r?\n/g, "<br>");
+    
     
     var error_validacion=false;
     var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
