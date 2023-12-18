@@ -96,4 +96,3 @@ INSERT INTO `restar` (`id_plato`, `id_producto`, `cantidad`) VALUES
 (52, 1, '1.00'),
 (53, 3, '1.00'),
 (54, 1, '3.00');
-

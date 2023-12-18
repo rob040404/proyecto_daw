@@ -1,10 +1,10 @@
 @extends('app')
 @section('estilos')
-<link rel="stylesheet" href="../public/assets/css/reservas.css"/>
+<link rel="stylesheet" href="../public/assets/css/gestion_de_reservas.css"/>
 @endsection
 @section('javascript')
 <script src="./assets/js/jquery/jquery-3.6.0.min.js"></script>
-<script src="../public/assets/js/reservas.js"></script>
+<script src="../public/assets/js/gestion_de_reservas.js"></script>
 @endsection
 @section('titulo', 'Gestión de reservas')
 @section('content')
@@ -29,10 +29,10 @@
                 <label class="titulo-label">Código de reseva:</label>
                 <select id="id_reserva" name="id_reserva">
                     @foreach($reservas as $reserva)
-                        @if(isset($reserva_editar) && $reserva -> getId_reserva() == $reserva_editar -> getId_reserva())
-                        <option selected value="{{$reserva -> getId_reserva()}}">{{$reserva -> getId_reserva()}}</option>
+                        @if(isset($reserva_editar) && $reserva -> getIdReserva() == $reserva_editar -> getIdReserva())
+                        <option selected value="{{$reserva -> getIdReserva()}}">{{$reserva -> getIdReserva()}}</option>
                         @else
-                        <option value="{{$reserva -> getId_reserva()}}">{{$reserva -> getId_reserva()}}</option>
+                        <option value="{{$reserva -> getIdReserva()}}">{{$reserva -> getIdReserva()}}</option>
                         @endif
                     @endforeach
                 </select>
@@ -46,7 +46,7 @@
                             <select id="id_usuario" name="id_usuario">
                             @foreach($usuarios as $usuario)
                                 @if($usuario -> getRol() == 'admin' || $usuario -> getRol() == 'camarero')
-                                    @if(isset($reserva_editar) && $usuario -> getId_Usuario() == $reserva_editar -> getId_Usuario())
+                                    @if(isset($reserva_editar) && $usuario -> getId_Usuario() == $reserva_editar -> getIdUsuario())
                                     <option selected value="{{$usuario -> getId_Usuario()}}">{{$usuario -> getNombre()}}</option>
                                     @else
                                     <option value="{{$usuario -> getId_Usuario()}}">{{$usuario -> getNombre()}}</option>
@@ -63,7 +63,7 @@
                             <label class="titulo-label">Personas:</label>
                             <select id="personas" name="personas">
                             @for($i = 1; $i < 6; $i++)
-                                @if(isset($reserva_editar) && $reserva_editar -> getNum_Personas() == $i)
+                                @if(isset($reserva_editar) && $reserva_editar -> getPersonas() == $i)
                                 <option selected value="{{$i}}">{{$i}}</option>
                                 @else
                                 <option value="{{$i}}">{{$i}}</option>
@@ -108,7 +108,7 @@
                                 <label>Código de la reserva:</label>
                                 <select id="id_reserva" name="id_reserva">
                                 @foreach($reservas as $reserva)
-                                    <option value="{{$reserva -> getId_reserva()}}">{{$reserva -> getId_reserva()}}</option>
+                                    <option value="{{$reserva -> getIdReserva()}}">{{$reserva -> getIdReserva()}}</option>
                                 @endforeach
                             </select>
                             </div>
@@ -159,10 +159,10 @@
                 <tbody>
                     @foreach($reservas as $reserva)
                     <tr>
-                        <td>{{$reserva -> getId_reserva()}}</td>
-                        <td>{{$reserva -> getNombre_empleado()}}</td>
+                        <td>{{$reserva -> getIdReserva()}}</td>
+                        <td>{{$reserva -> getNombreEmpleado()}}</td>
                         <td>{{$reserva -> getMesa()}}</td>
-                        <td>{{$reserva -> getFecha_hora_reserva()}}</td>
+                        <td>{{$reserva -> getFechaHoraReserva()}}</td>
                         <td>{{$reserva -> getNombre()}} {{$reserva -> getApellidos()}}</td>
                         <td>{{$reserva -> getPersonas()}}</td>
                         <td>{{$reserva -> getTelefono()}}</td>

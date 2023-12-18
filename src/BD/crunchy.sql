@@ -38,12 +38,10 @@ create table if not exists reservas(
     fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
     telefono VARCHAR(20),
     correo VARCHAR(255),
-    personas INT,
-    estado enum("Aceptada", "En progreso", "Finalizada"),
-    fecha_hora_llegada DATETIME DEFAULT CURRENT_TIMESTAMP,
-    observaciones TEXT
+    personas INT
 )
 ENGINE InnoDB;
+
 -- 2.1.4 .- Tabla platos
 create table if not exists platos(
     id_plato int auto_increment primary key,
@@ -55,15 +53,26 @@ create table if not exists platos(
     estado varchar(10)
 )
 ENGINE InnoDB;
--- 2.1.5 .-Tabla pedir
-create table if not exists pedir(
-    id_reserva int,
-    foreign key (id_reserva) references reservas(id_reserva) on update cascade on delete set null,
+
+--Tabla pedidos
+create table if not exists pedidos(
+    id_pedido INT auto_increment primary key,
+    mesa INT,
+    estado_pedido enum("Pendiente", "Confirmado", "Completado"),
+    fecha_pedido DATETIME,
+    id_reserva INT NOT NULL,
+    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva) ON DELETE CASCADE
+);
+ENGINE InnoDB;
+
+-- Tabla detalle_pedido
+create table if not exists detalle_pedido(
+    id_pedido int,
+    foreign key (id_pedido) references pedidos(id_pedido) on update cascade on delete set null,
     id_plato int,
     foreign key (id_plato) references platos(id_plato) on update cascade on delete set null,
-    constraint unique (id_plato, id_reserva),
+    constraint unique (id_plato, id_pedido),
     unidades int
-    -- Aqui se puede anadir la fecha y la hora del pedido.
     )
 ENGINE InnoDB;
 

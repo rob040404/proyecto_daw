@@ -53,7 +53,7 @@ if(filter_input_array(INPUT_POST))
         $fecha_hora = [filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), filter_input(INPUT_POST, 'hora', FILTER_UNSAFE_RAW)];
         $id_usuario = $reservasDAO -> seleccionarCamarero(filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW));
         $mesa = $reservasDAO -> seleccionarMesa(3, filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), $fecha_hora);
-        $reserva = new Reserva(null, $id_usuario, $mesa, $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null, null, null);
+        $reserva = new Reserva(null, $id_usuario, $mesa, $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null);
         $reservasDAO -> nuevaReserva($reserva);
         echo $blade -> run('reservar', compact('reserva', 'fecha_hora'));
     }

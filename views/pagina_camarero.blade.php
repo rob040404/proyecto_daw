@@ -12,7 +12,7 @@
     <div class="contenedor-bot-coc">
         
         <div class="container-botones-izq">
-            <a href="gestion_de_ordenes.php"><button class="boton-pedidos-camarero" type="button" name="pedidos" id="pedidos">
+            <a href="gestion_de_pedidos.php"><button class="boton-pedidos-camarero" type="button" name="pedidos" id="pedidos">
             <div class="texto-gm">Pedidos pendientes</div>
             </button></a>
         </div>
