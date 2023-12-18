@@ -26,7 +26,7 @@ function cargarFechaActual(fecha)
 
 function cargarHorario(input_data)
 {
-    var pagina = window.document.title === 'Reservar' ? 'reservar.php' : 'reservas.php';
+    var pagina = window.document.title === 'Reservar' ? 'reservar.php' : 'gestion_de_reservas.php';
     $.ajax({
         type: "POST",
         url: pagina,
@@ -102,7 +102,7 @@ function cargarReserva()
 {
     $.ajax({
         type: "POST",
-        url: "reservas.php",
+        url: "gestion_de_reservas.php",
         datatype: "json",
         data: {"buscar_reserva": true, "id_reserva": document.getElementById("id_reserva").value},
         success: function (response)
@@ -141,7 +141,7 @@ function volverHome(e)
 {
     document.getElementById(e.target.id).style.boxShadow = '';
     document.getElementById(e.target.id).removeAttribute('value');
-    window.location = "reservas.php";
+    window.location = "gestion_de_reservas.php";
 }
 
 function camposVacios(campos)
@@ -264,7 +264,7 @@ function cargarReservas()
     }
     $.ajax({
         type: "POST",
-        url: "reservas.php",
+        url: "gestion_de_reservas.php",
         datatype: "json",
         data: input_data,
         success: function (response)
@@ -278,7 +278,7 @@ function cargarReservas()
                 actualizarSelect(reservas);
                 notificacion('NO EXISTEN MAS RESERVAS', 'red');
                 setTimeout(function(){
-                    window.location = "reservas.php";
+                    window.location = "gestion_de_reservas.php";
                 }, 2000);
             }
             else

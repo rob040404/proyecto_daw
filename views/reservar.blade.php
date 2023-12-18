@@ -1,10 +1,10 @@
 @extends('app')
 @section('estilos')
-<link rel="stylesheet" href="../public/assets/css/reservas.css"/>
+<link rel="stylesheet" href="../public/assets/css/gestion_de_reservas.css"/>
 @endsection
 @section('javascript')
 <script src="./assets/js/jquery/jquery-3.6.0.min.js"></script>
-<script src="../public/assets/js/reservas.js"></script>
+<script src="../public/assets/js/gestion_de_reservas.js"></script>
 @endsection
 @section('titulo', 'Reservar')
 @section('content')
