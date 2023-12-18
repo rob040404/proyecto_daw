@@ -26,10 +26,10 @@ ENGINE InnoDB;
 --     comensales int default 2
 -- )
 -- ENGINE InnoDB; 
--- 2.1.3 .- Tabla reservas
+
+-- Tabla reservas
 create table if not exists reservas(
     id_reserva int auto_increment primary key,
-    -- poner el resto de las columnas
     id_usuario int,
     foreign key(id_usuario) references usuarios(id_usuario) on update cascade on delete set null,
     mesa int,
@@ -39,6 +39,17 @@ create table if not exists reservas(
     telefono VARCHAR(20),
     correo VARCHAR(255),
     personas INT
+)
+ENGINE InnoDB;
+
+-- Tabla pedidos
+create table if not exists pedidos(
+    id_pedido INT auto_increment primary key,
+    mesa INT,
+    estado_pedido enum("Pendiente", "Confirmado", "Completado"),
+    fecha_pedido DATETIME,
+    id_reserva INT NOT NULL,
+    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva) ON DELETE CASCADE
 )
 ENGINE InnoDB;
 
@@ -52,17 +63,6 @@ create table if not exists platos(
     precio decimal(5,2),
     estado varchar(10)
 )
-ENGINE InnoDB;
-
---Tabla pedidos
-create table if not exists pedidos(
-    id_pedido INT auto_increment primary key,
-    mesa INT,
-    estado_pedido enum("Pendiente", "Confirmado", "Completado"),
-    fecha_pedido DATETIME,
-    id_reserva INT NOT NULL,
-    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva) ON DELETE CASCADE
-);
 ENGINE InnoDB;
 
 -- Tabla detalle_pedido
