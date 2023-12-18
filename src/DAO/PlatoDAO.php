@@ -33,7 +33,7 @@ class PlatoDAO{
         $resultadoSelect= $stm->rowCount();
         
         if($resultadoSelect==0){
-            return "No existen platos con ese nombre";
+            return "inexistente";
         }if($resultadoSelect>0){
             $consultaMod="UPDATE platos SET estado= :e WHERE nombre= :n";
             $stm2= $this->bd->prepare($consultaMod);
