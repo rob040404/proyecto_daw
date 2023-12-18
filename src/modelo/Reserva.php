@@ -11,12 +11,9 @@ class Reserva
     private $telefono;
     private $correo;
     private $personas;
-    private $estado;
-    private $fecha_hora_llegada;
-    private $observaciones;
     private $nombre_empleado;
 
-    public function __construct($id_reserva = null, $id_usuario = null, $mesa = null, $nombre = null, $apellidos = null, $fecha_hora_reserva = null, $telefono = null, $correo = null, $personas = null, $estado = null, $fecha_hora_llegada = null, $observaciones = null, $nombre_empleado = null)
+    public function __construct($id_reserva = null, $id_usuario = null, $mesa = null, $nombre = null, $apellidos = null, $fecha_hora_reserva = null, $telefono = null, $correo = null, $personas = null, $nombre_empleado = null)
     {
         if(!is_null($id_reserva))
         {
@@ -54,40 +51,28 @@ class Reserva
         {
             $this -> personas = $personas;
         }
-        if(!is_null($estado))
-        {
-            $this -> estado = $estado;
-        }
-        if(!is_null($fecha_hora_llegada))
-        {
-            $this -> fecha_hora_llegada = $fecha_hora_llegada;
-        }
-        if(!is_null($observaciones))
-        {
-            $this -> observaciones = $observaciones;
-        }
         if(!is_null($nombre_empleado))
         {
             $this -> nombre_empleado = $nombre_empleado;
         }
     }
     
-    public function setId_reserva($id_reserva): void
+    public function setIdReserva($id_reserva): void
     {
         $this -> id_reserva = $id_reserva;
     }
     
-    public function getId_reserva()
+    public function getIdReserva()
     {
         return $this -> id_reserva;
     }
     
-    public function setId_usuario($id_usuario): void
+    public function setIdUsuario($id_usuario): void
     {
         $this -> id_usuario = $id_usuario;
     }
 
-    public function getId_usuario()
+    public function getIdUsuario()
     {
         return $this -> id_usuario;
     }
@@ -122,12 +107,12 @@ class Reserva
         return $this -> apellidos;
     }
     
-    public function setFecha_hora_reserva($fecha_hora_reserva): void
+    public function setFechaHoraReserva($fecha_hora_reserva): void
     {
         $this -> fecha_hora_reserva = $fecha_hora_reserva;
     }
 
-    public function getFecha_hora_reserva()
+    public function getFechaHoraReserva()
     {
         return $this -> fecha_hora_reserva;
     }
@@ -162,42 +147,12 @@ class Reserva
         return $this -> personas;
     }
     
-    public function setEstado($estado): void
-    {
-        $this -> estado = $estado;
-    }
-
-    public function getEstado()
-    {
-        return $this -> estado;
-    }
-    
-    public function setFecha_hora_llegada($fecha_hora_llegada): void
-    {
-        $this -> fecha_hora_llegada = $fecha_hora_llegada;
-    }
-
-    public function getFecha_hora_llegada()
-    {
-        return $this -> fecha_hora_llegada;
-    }
-    
-    public function setObservaciones($observaciones): void
-    {
-        $this -> observaciones = $observaciones;
-    }
-
-    public function getObservaciones()
-    {
-        return $this -> observaciones;
-    }
-    
-    public function setNombre_empleado($nombre_empleado): void
+    public function setNombreEmpleado($nombre_empleado): void
     {
         $this -> nombre_empleado = $nombre_empleado;
     }
     
-    public function getNombre_empleado()
+    public function getNombreEmpleado()
     {
         return $this -> nombre_empleado;
     }

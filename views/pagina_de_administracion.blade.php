@@ -13,12 +13,12 @@
         <div class="logout" id="logoutText">Logout</div>
     </div>
     <div class="botones">
-        <a href="pedidos_pendientes.php">
+        <a href="gestion_de_pedidos.php">
             <div class="boton-pedidos">
-                <div class="texto-botones">Pedidos pendientes</div>
+                <div class="texto-botones">Gestión de pedidos</div>
             </div>
         </a>
-        <a href="reservas.php">
+        <a href="gestion_de_reservas.php">
             <div class="boton-reservas">
                 <div class="texto-botones">Gestión de reservas</div>
             </div>

@@ -45,7 +45,7 @@ else
     {
         $opcion = filter_input(INPUT_POST, 'btn_nueva_reserva');
         $usuarios = $empleadoDAO -> recuperarUsuarios();
-        echo $blade -> run('reservas', compact('reservas', 'opcion', 'usuarios'));
+        echo $blade -> run('gestion_de_reservas', compact('reservas', 'opcion', 'usuarios'));
     }
     else if(filter_input(INPUT_POST, 'nueva_reserva'))
     {   
@@ -57,7 +57,7 @@ else
         'telefono' => filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW), 
         'correo' => filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW),
         'personas' => filter_input(INPUT_POST, 'personas', FILTER_UNSAFE_RAW)];
-        $reserva = new Reserva(null, $values['id_usuario'], $values['mesa'], $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null, null, null);
+        $reserva = new Reserva(null, $values['id_usuario'], $values['mesa'], $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null);
         $reservasDAO -> nuevaReserva($reserva);
         $reservas = $reservasDAO -> recuperarReservas2();
         $response = compact('reservas');
@@ -69,7 +69,7 @@ else
     {
         $opcion = filter_input(INPUT_POST, 'btn_modificar_reserva');
         $usuarios = $empleadoDAO -> recuperarUsuarios();
-        echo $blade -> run('reservas', compact('reservas', 'opcion', 'usuarios'));
+        echo $blade -> run('gestion_de_reservas', compact('reservas', 'opcion', 'usuarios'));
     }
     else if(filter_input(INPUT_POST, 'buscar_reserva', FILTER_UNSAFE_RAW))
     {
@@ -91,7 +91,7 @@ else
         'telefono' => filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW), 
         'correo' => filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW),
         'personas' => filter_input(INPUT_POST, 'personas', FILTER_UNSAFE_RAW)];
-        $reserva = new Reserva($values['id_reserva'], $values['id_usuario'], $values['mesa'], $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null, null, null);
+        $reserva = new Reserva($values['id_reserva'], $values['id_usuario'], $values['mesa'], $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null);
         $reservasDAO -> actualizarReserva($reserva);
         $reservas = $reservasDAO -> recuperarReservas2();
         $response = compact('reservas');
@@ -102,7 +102,7 @@ else
     else if(filter_input(INPUT_POST, 'btn_eliminar_reserva/s'))
     {
         $opcion = filter_input(INPUT_POST, 'btn_eliminar_reserva/s');
-        echo $blade -> run('reservas', compact('reservas', 'opcion'));
+        echo $blade -> run('gestion_de_reservas', compact('reservas', 'opcion'));
     }
     else if(filter_input(INPUT_POST, 'eliminar_reserva'))
     {
@@ -119,7 +119,7 @@ else
         $reservasDAO -> eliminarReservas();
         $reservas = $reservasDAO -> recuperarReservas();
         $reservas_eliminadas = true;
-        echo $blade -> run('reservas', compact('reservas', 'reservas_eliminadas'));
+        echo $blade -> run('gestion_de_reservas', compact('reservas', 'reservas_eliminadas'));
     }
     else if(filter_input(INPUT_POST, 'cargar_horarios'))
     {
@@ -134,6 +134,6 @@ else
     }
     else
     {
-        echo $blade -> run('reservas', compact('reservas'));
+        echo $blade -> run('gestion_de_reservas', compact('reservas'));
     }
 }

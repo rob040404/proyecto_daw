@@ -11,6 +11,16 @@ class PlatoDAO{
         $this->bd=$bd;
     }
     
+    function recuperarPlatos()
+    {
+        $sql = "select id_plato, nombre, precio from platos";
+        $stmtPlatos = $this -> bd -> prepare($sql);
+        $stmtPlatos -> execute();
+        $stmtPlatos -> setFetchMode(PDO::FETCH_ASSOC);
+        $platos = $stmtPlatos -> fetchAll() ?: null;
+        return $platos;
+    }
+    
     public function insertarPlato($nom, $ing, $cat, $sub, $pre, $es) {
         if($this->buscarPorNombre($nom)){
             return "existe";
