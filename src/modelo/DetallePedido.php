@@ -1,14 +1,14 @@
 <?php
 namespace App\modelo;
-class Detalle_Pedido
+class DetallePedido
 {
     private $id_pedido;
     private $id_plato;
+    private $unidades;
     private $nombre_plato;
     private $precio_plato;
-    private $unidades;
     
-    public function __construct($id_pedido = null, $id_plato = null, $nombre_plato = null, $precio_plato = null, $unidades = null)
+    public function __construct($id_pedido = null, $id_plato = null, $unidades = null, $nombre_plato = null, $precio_plato = null)
     {
         if(!is_null($id_pedido))
         {
@@ -18,6 +18,10 @@ class Detalle_Pedido
         {
             $this -> id_plato = $id_plato;
         }
+        if(!is_null($unidades))
+        {
+            $this -> unidades = $unidades;
+        }
         if(!is_null($nombre_plato))
         {
             $this -> nombre_plato = $nombre_plato;
@@ -26,20 +30,16 @@ class Detalle_Pedido
         {
             $this -> precio_plato = $precio_plato;
         }
-        if(!is_null($unidades))
-        {
-            $this -> unidades = $unidades;
-        }
     }
     
-    public function setIdPedido($id_reserva): void
+    public function setIdPedido($id_pedido): void
     {
-        $this -> id_reserva = $id_reserva;
+        $this -> id_pedido = $id_pedido;
     }
 
     public function getIdPedido()
     {
-        return $this -> id_reserva;
+        return $this -> id_pedido;
     }
     
     public function setIdPlato($id_plato): void
@@ -50,6 +50,16 @@ class Detalle_Pedido
     public function getIdPlato()
     {
         return $this -> id_plato;
+    }
+
+    public function setUnidades($unidades): void
+    {
+        $this -> unidades = $unidades;
+    }
+    
+    public function getUnidades()
+    {
+        return $this -> unidades;
     }
     
     public function setNombrePlato($nombre_plato): void
@@ -71,15 +81,4 @@ class Detalle_Pedido
     {
         return $this -> precio_plato;
     }
-
-    public function setUnidades($unidades): void
-    {
-        $this -> unidades = $unidades;
-    }
-    
-    public function getUnidades()
-    {
-        return $this -> unidades;
-    }
-    
 }

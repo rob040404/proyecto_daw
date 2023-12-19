@@ -30,6 +30,7 @@ catch (PDOException $error)
     exit();
 }
 $reservasDAO = new ReservaDAO($bd);
+const MESAS_RESTAURANTE = 10;
 if(filter_input_array(INPUT_POST))
 {
     if(filter_input(INPUT_POST, 'cargar_horarios'))
@@ -46,14 +47,13 @@ if(filter_input_array(INPUT_POST))
         $values = ['mesa' => filter_input(INPUT_POST, 'mesa', FILTER_UNSAFE_RAW),
         'nombre' => filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW),
         'apellidos' => filter_input(INPUT_POST, 'apellidos', FILTER_UNSAFE_RAW),
-        'fecha_completa' => filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW). " " . filter_input(INPUT_POST, 'hora', FILTER_UNSAFE_RAW),
         'telefono' => filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW), 
         'correo' => filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW),
         'personas' => filter_input(INPUT_POST, 'personas', FILTER_UNSAFE_RAW)];
         $fecha_hora = [filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), filter_input(INPUT_POST, 'hora', FILTER_UNSAFE_RAW)];
         $id_usuario = $reservasDAO -> seleccionarCamarero(filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW));
-        $mesa = $reservasDAO -> seleccionarMesa(3, filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), $fecha_hora);
-        $reserva = new Reserva(null, $id_usuario, $mesa, $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null);
+        $mesa = $reservasDAO -> seleccionarMesa(MESAS_RESTAURANTE, filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), $fecha_hora);
+        $reserva = new Reserva(null, $id_usuario, $mesa, $values['nombre'], $values['apellidos'], $values['telefono'], $values['correo'], implode(' ', $fecha_hora), $values['personas'], null);
         $reservasDAO -> nuevaReserva($reserva);
         echo $blade -> run('reservar', compact('reserva', 'fecha_hora'));
     }
