@@ -4,13 +4,13 @@ class Pedido
 {
     public $id_pedido;
     public $mesa;
-    public $nombre_empleado;
     public $estado_pedido;
-    public $fecha_pedido;
+    public $fecha_hora_pedido;
     public $id_reserva;
+    public $nombre_empleado;
     public $detalles_pedido;
     
-    public function __construct($id_pedido = null, $mesa = null, $nombre_empleado = null, $estado_pedido = null, $fecha_pedido = null, $id_reserva = null, $detalles_pedido = null)
+    public function __construct($id_pedido = null, $mesa = null, $estado_pedido = null, $fecha_hora_pedido = null, $id_reserva = null, $nombre_empleado = null, $detalles_pedido = null)
     {
         if(!is_null($id_pedido))
         {
@@ -20,21 +20,21 @@ class Pedido
         {
             $this -> mesa = $mesa;
         }
-        if(!is_null($nombre_empleado))
-        {
-            $this -> nombre_empleado = $nombre_empleado;
-        }
         if(!is_null($estado_pedido))
         {
             $this -> estado_pedido = $estado_pedido;
+        }
+        if(!is_null($fecha_hora_pedido))
+        {
+            $this -> fecha_hora_pedido = $fecha_hora_pedido;
         }
         if(!is_null($id_reserva))
         {
             $this -> id_reserva = $id_reserva;
         }
-        if(!is_null($fecha_pedido))
+        if(!is_null($nombre_empleado))
         {
-            $this -> fecha_pedido = $fecha_pedido;
+            $this -> nombre_empleado = $nombre_empleado;
         }
         if(!is_null($detalles_pedido))
         {
@@ -57,16 +57,6 @@ class Pedido
         return $this -> mesa;
     }
     
-    public function setNombreEmpleado($nombre_empleado)
-    {
-        $this -> nombre_empleado = $nombre_empleado;
-    }
-
-    public function getNombreEmpleado()
-    {
-        return $this -> nombre_empleado;
-    }
-    
     public function setEstadoPedido($estadoPedido)
     {
         $this -> estado_pedido = $estadoPedido;
@@ -77,14 +67,14 @@ class Pedido
         return $this -> estado_pedido;
     }
     
-    public function setFechaPedido($fecha_pedido)
+    public function setFechaHoraPedido($fecha_pedido)
     {
-        $this -> fecha_pedido = $fecha_pedido;
+        $this -> fecha_hora_pedido = $fecha_pedido;
     }
 
-    public function getFechaPedido()
+    public function getFechaHoraPedido()
     {
-        return $this -> fecha_pedido;
+        return $this -> fecha_hora_pedido;
     }
 
     public function setIdReserva($idReserva)
@@ -95,6 +85,16 @@ class Pedido
     public function getIdReserva()
     {
         return $this -> id_reserva;
+    }
+    
+    public function setNombreEmpleado($nombre_empleado)
+    {
+        $this -> nombre_empleado = $nombre_empleado;
+    }
+
+    public function getNombreEmpleado()
+    {
+        return $this -> nombre_empleado;
     }
     
     public function setDetallesPedido($detalles_pedido)

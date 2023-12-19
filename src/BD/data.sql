@@ -14,10 +14,10 @@ INSERT INTO reservas(id_reserva, id_usuario, mesa, nombre, estado)
 VALUES
 (1, 1, 1, 'Ana', 'Aceptada'),
 (2, 1, 2, 'Bob', 'Aceptada');
-INSERT INTO reservas (id_usuario, mesa, nombre, apellidos, fecha_hora_reserva, telefono, correo, personas, estado)
-VALUES (3, 3, 'Luis', 'Ballesteros', '2023-12-07 21:30:00', '673782981', 'luis1753@gmail.com', 4, 'Aceptada'); 
-INSERT INTO reservas (id_usuario, mesa, nombre, apellidos, fecha_hora_reserva, telefono, correo, personas, estado)
-VALUES (4, 4, 'Ana', 'Ruiz', '2023-12-07 22:00:00', '652738287', 'ana99@gmail.com', 2, 'Aceptada');
+INSERT INTO reservas (id_usuario, mesa, nombre, apellidos, telefono, correo, fecha_hora_reserva, personas)
+VALUES (3, 3, 'Luis', 'Ballesteros', '673782981', 'luis1753@gmail.com', '2023-12-20 21:30:00', 4); 
+INSERT INTO reservas (id_usuario, mesa, nombre, apellidos, telefono, correo, fecha_hora_reserva, personas)
+VALUES (4, 4, 'Ana', 'Ruiz', '652738287', 'ana99@gmail.com', '2023-12-20 22:00:00', 2);
 
 INSERT INTO stock(id_producto, nombre_producto, precio, cantidad)
 VALUES 

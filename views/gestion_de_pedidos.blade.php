@@ -11,7 +11,7 @@
 <div class="contenido-pagina">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
     <div class="pedidos-container">
-        <a class="boton-volver" href="pagina_de_administracion.php"><- Volver</a>
+        <!--<a class="boton-volver" href="pagina_de_administracion.php"><- Volver</a>-->
         <h1 class="titulo-pedidos">Gestión de pedidos</h1>
         <div class="fecha-pedido">
             <input type="date" id="fecha_pedido" value="{{$fecha_pedido}}">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="cabecera-pedido-item">
                         <img src="assets/img/icons8-reloj-30.png" width="35" height="35">
-                        <p>{{substr(explode(' ', $pedido -> getFechaPedido())[1],0,5)}}</p>
+                        <p>{{substr(explode(' ', $pedido -> getFechaHoraPedido())[1],0,5)}}</p>
                     </div>
                 </div>
                 <input type="hidden" id="estado_pedido_{{$pedido -> getIdPedido()}}" value="{{$pedido -> getEstadoPedido()}}">

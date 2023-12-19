@@ -35,9 +35,9 @@ create table if not exists reservas(
     mesa int,
     nombre VARCHAR(255),
     apellidos VARCHAR(255),
-    fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
     telefono VARCHAR(20),
     correo VARCHAR(255),
+    fecha_hora_reserva DATETIME,
     personas INT
 )
 ENGINE InnoDB;
@@ -47,11 +47,26 @@ create table if not exists pedidos(
     id_pedido INT auto_increment primary key,
     mesa INT,
     estado_pedido enum("Pendiente", "Confirmado", "Completado"),
-    fecha_pedido DATETIME,
+    fecha_hora_pedido DATETIME,
     id_reserva INT NOT NULL,
     FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva) ON DELETE CASCADE
 )
 ENGINE InnoDB;
+
+DELIMITER //
+
+CREATE TRIGGER tr_actualizar_pedidos
+AFTER UPDATE
+ON reservas
+FOR EACH ROW
+BEGIN
+    UPDATE pedidos
+    SET mesa = NEW.mesa, 
+        fecha_hora_pedido = NEW.fecha_hora_reserva
+    WHERE id_reserva = NEW.id_reserva;
+END //
+
+DELIMITER ;
 
 -- 2.1.4 .- Tabla platos
 create table if not exists platos(

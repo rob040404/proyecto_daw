@@ -33,93 +33,27 @@ else
         $password = $_ENV['DB_PASSWORD'];
         $bd = BD::getConection($host, $port, $database, $usuario, $password);
     } 
-    catch (PDOException $error) 
+    catch(PDOException $error) 
     {
         echo $blade->run("errorbd", compact('error'));
         exit();
     }
     $empleadoDAO = new EmpleadoDAO($bd);
     $reservasDAO = new ReservaDAO($bd);
-    $reservas = $reservasDAO -> recuperarReservas();
-    if(filter_input(INPUT_POST, 'btn_nueva_reserva'))
+    $sesion_abierta = true;
+    if(filter_input(INPUT_POST, 'btn_nueva_reserva') || filter_input(INPUT_POST, 'btn_modificar_reserva') || filter_input(INPUT_POST, 'btn_eliminar_reserva/s'))
     {
-        $opcion = filter_input(INPUT_POST, 'btn_nueva_reserva');
-        $usuarios = $empleadoDAO -> recuperarUsuarios();
-        echo $blade -> run('gestion_de_reservas', compact('reservas', 'opcion', 'usuarios'));
-    }
-    else if(filter_input(INPUT_POST, 'nueva_reserva'))
-    {   
-        $values = ['id_usuario' => filter_input(INPUT_POST, 'id_usuario', FILTER_UNSAFE_RAW),
-        'mesa' => filter_input(INPUT_POST, 'mesa', FILTER_UNSAFE_RAW),
-        'nombre' => filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW),
-        'apellidos' => filter_input(INPUT_POST, 'apellidos', FILTER_UNSAFE_RAW),
-        'fecha_completa' => filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW). " " .filter_input(INPUT_POST, 'hora', FILTER_UNSAFE_RAW),
-        'telefono' => filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW), 
-        'correo' => filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW),
-        'personas' => filter_input(INPUT_POST, 'personas', FILTER_UNSAFE_RAW)];
-        $reserva = new Reserva(null, $values['id_usuario'], $values['mesa'], $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null);
-        $reservasDAO -> nuevaReserva($reserva);
-        $reservas = $reservasDAO -> recuperarReservas2();
-        $response = compact('reservas');
-        header('Content-type: application/json');
-        echo (json_encode($response));
-        die;
-    }
-    else if(filter_input(INPUT_POST, 'btn_modificar_reserva'))
-    {
-        $opcion = filter_input(INPUT_POST, 'btn_modificar_reserva');
-        $usuarios = $empleadoDAO -> recuperarUsuarios();
-        echo $blade -> run('gestion_de_reservas', compact('reservas', 'opcion', 'usuarios'));
-    }
-    else if(filter_input(INPUT_POST, 'buscar_reserva', FILTER_UNSAFE_RAW))
-    {
-        $id_reserva = filter_input(INPUT_POST, 'id_reserva', FILTER_UNSAFE_RAW);
-        $reserva = $reservasDAO -> recuperarReservaPorId($id_reserva);
-        $response = compact('reserva');
-        header('Content-type: application/json');
-        echo (json_encode($response));
-        die;
-    }
-    else if(filter_input(INPUT_POST, 'modificar_reserva'))
-    { 
-        $values = ['id_reserva' => filter_input(INPUT_POST, 'id_reserva', FILTER_UNSAFE_RAW),
-        'id_usuario' => filter_input(INPUT_POST, 'id_usuario', FILTER_UNSAFE_RAW),
-        'mesa' => filter_input(INPUT_POST, 'mesa', FILTER_UNSAFE_RAW),
-        'nombre' => filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW),
-        'apellidos' => filter_input(INPUT_POST, 'apellidos', FILTER_UNSAFE_RAW),
-        'fecha_completa' => filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW). " " .filter_input(INPUT_POST, 'hora', FILTER_UNSAFE_RAW),
-        'telefono' => filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW), 
-        'correo' => filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW),
-        'personas' => filter_input(INPUT_POST, 'personas', FILTER_UNSAFE_RAW)];
-        $reserva = new Reserva($values['id_reserva'], $values['id_usuario'], $values['mesa'], $values['nombre'], $values['apellidos'], $values['fecha_completa'], $values['telefono'], $values['correo'], $values['personas'], null);
-        $reservasDAO -> actualizarReserva($reserva);
-        $reservas = $reservasDAO -> recuperarReservas2();
-        $response = compact('reservas');
-        header('Content-type: application/json');
-        echo (json_encode($response));
-        die;
-    }
-    else if(filter_input(INPUT_POST, 'btn_eliminar_reserva/s'))
-    {
-        $opcion = filter_input(INPUT_POST, 'btn_eliminar_reserva/s');
-        echo $blade -> run('gestion_de_reservas', compact('reservas', 'opcion'));
-    }
-    else if(filter_input(INPUT_POST, 'eliminar_reserva'))
-    {
-        $id_reserva = filter_input(INPUT_POST, 'id_reserva', FILTER_UNSAFE_RAW); 
-        $reservasDAO -> eliminarReserva($id_reserva);
-        $reservas = $reservasDAO -> recuperarReservas2();
-        $response = compact('reservas');
-        header('Content-type: application/json');
-        echo (json_encode($response));
-        die;
-    }
-    else if(filter_input(INPUT_POST, 'eliminar_reservas'))
-    {
-        $reservasDAO -> eliminarReservas();
-        $reservas = $reservasDAO -> recuperarReservas();
-        $reservas_eliminadas = true;
-        echo $blade -> run('gestion_de_reservas', compact('reservas', 'reservas_eliminadas'));
+        $reservas = $reservasDAO -> recuperarReservas(1);
+        $opcion = array_values(filter_input_array(INPUT_POST))[0];
+        if($opcion != 'Eliminar reserva/s')
+        {
+            $usuarios = $empleadoDAO -> recuperarUsuarios();
+            echo $blade -> run('gestion_de_reservas', compact('sesion_abierta', 'reservas', 'opcion', 'usuarios'));
+        }
+        else
+        {
+            echo $blade -> run('gestion_de_reservas', compact('sesion_abierta', 'reservas', 'opcion'));
+        }
     }
     else if(filter_input(INPUT_POST, 'cargar_horarios'))
     {
@@ -132,8 +66,54 @@ else
         echo (json_encode($response));
         die;
     }
+    else if(filter_input(INPUT_POST, 'nueva_reserva') || filter_input(INPUT_POST, 'modificar_reserva'))
+    {   
+        $values = ['id_reserva' => filter_input(INPUT_POST, 'id_reserva', FILTER_UNSAFE_RAW),
+        'id_usuario' => filter_input(INPUT_POST, 'id_usuario', FILTER_UNSAFE_RAW),
+        'mesa' => filter_input(INPUT_POST, 'mesa', FILTER_UNSAFE_RAW),
+        'nombre' => filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW),
+        'apellidos' => filter_input(INPUT_POST, 'apellidos', FILTER_UNSAFE_RAW),
+        'telefono' => filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW),
+        'correo' => filter_input(INPUT_POST, 'correo', FILTER_UNSAFE_RAW),
+        'fecha_hora_reserva' => filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW). " " .filter_input(INPUT_POST, 'hora', FILTER_UNSAFE_RAW),
+        'personas' => filter_input(INPUT_POST, 'personas', FILTER_UNSAFE_RAW)];
+        $reserva = new Reserva(isset($values['id_reserva']) ? $values['id_reserva'] : null, $values['id_usuario'], $values['mesa'], 
+        $values['nombre'], $values['apellidos'], $values['telefono'], $values['correo'], $values['fecha_hora_reserva'], $values['personas']);
+        !isset($values['id_reserva']) ? $reservasDAO -> nuevaReserva($reserva) : $reservasDAO -> actualizarReserva($reserva);
+        $reservas = $reservasDAO -> recuperarReservas(2);
+        $response = compact('reservas');
+        header('Content-type: application/json');
+        echo (json_encode($response));
+        die;
+    }
+    else if(filter_input(INPUT_POST, 'buscar_reserva', FILTER_UNSAFE_RAW) || filter_input(INPUT_POST, 'eliminar_reserva'))
+    {
+        $reserva = new Reserva(filter_input(INPUT_POST, 'id_reserva', FILTER_UNSAFE_RAW));
+        if(filter_input(INPUT_POST, 'buscar_reserva', FILTER_UNSAFE_RAW))
+        {
+            $reserva = $reservasDAO -> recuperarReservaPorId($reserva);
+            $response = compact('reserva');
+        }
+        else
+        {
+            $reservasDAO -> eliminarReserva($reserva);
+            $reservas = $reservasDAO -> recuperarReservas(2);
+            $response = compact('reservas');
+        }
+        header('Content-type: application/json');
+        echo (json_encode($response));
+        die;
+    }
+    else if(filter_input(INPUT_POST, 'eliminar_reservas'))
+    {
+        $reservasDAO -> eliminarReservas();
+        $reservas = $reservasDAO -> recuperarReservas(1);
+        $reservas_eliminadas = true;
+        echo $blade -> run('gestion_de_reservas', compact('sesion_abierta', 'reservas', 'reservas_eliminadas'));
+    }
     else
     {
-        echo $blade -> run('gestion_de_reservas', compact('reservas'));
+        $reservas = $reservasDAO -> recuperarReservas(1);
+        echo $blade -> run('gestion_de_reservas', compact('sesion_abierta', 'reservas'));
     }
 }

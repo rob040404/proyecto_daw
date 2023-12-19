@@ -113,8 +113,8 @@ function cargarReserva()
             document.getElementById("mesa").value = reserva.mesa;
             document.getElementById("nombre").value = reserva.nombre;
             document.getElementById("apellidos").value = reserva.apellidos;
-            document.getElementById("correo").value = reserva.correo;
             document.getElementById("telefono").value = reserva.telefono;
+            document.getElementById("correo").value = reserva.correo;
             var fecha_hora = reserva.fecha_hora_reserva.split(' ');
             document.getElementById("fecha").value = fecha_hora[0];
             document.getElementById("personas").value = reserva.personas;
@@ -199,8 +199,8 @@ function validarForm(e)
     document.getElementById('telefono').setCustomValidity("");
     document.getElementById('correo').setCustomValidity("");
     var campos = [document.getElementById('nombre').value.trim(), document.getElementById('apellidos').value.trim(),  
-    document.getElementById('correo').value.trim(), document.getElementById('telefono').value.trim()];
-    if(!camposVacios(campos) && comprobarCorreo(campos[2]) && comprobarTelefono(campos[3]))
+    document.getElementById('telefono').value.trim(), document.getElementById('correo').value.trim()];
+    if(!camposVacios(campos) && comprobarTelefono(campos[2]) && comprobarCorreo(campos[3]))
     {  
         var pagina = window.document.title;
         if(pagina === 'Reservar')

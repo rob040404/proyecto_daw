@@ -7,13 +7,13 @@ class Reserva
     private $mesa;
     private $nombre;
     private $apellidos;
-    private $fecha_hora_reserva;
     private $telefono;
     private $correo;
+    private $fecha_hora_reserva;
     private $personas;
     private $nombre_empleado;
 
-    public function __construct($id_reserva = null, $id_usuario = null, $mesa = null, $nombre = null, $apellidos = null, $fecha_hora_reserva = null, $telefono = null, $correo = null, $personas = null, $nombre_empleado = null)
+    public function __construct($id_reserva = null, $id_usuario = null, $mesa = null, $nombre = null, $apellidos = null, $telefono = null, $correo = null, $fecha_hora_reserva = null, $personas = null, $nombre_empleado = null)
     {
         if(!is_null($id_reserva))
         {
@@ -35,10 +35,6 @@ class Reserva
         {
             $this -> apellidos = $apellidos;
         }
-        if(!is_null($fecha_hora_reserva))
-        {
-            $this -> fecha_hora_reserva = $fecha_hora_reserva;
-        }
         if(!is_null($telefono))
         {
             $this -> telefono = $telefono;
@@ -46,6 +42,10 @@ class Reserva
         if(!is_null($correo))
         {
             $this -> correo = $correo;
+        }
+        if(!is_null($fecha_hora_reserva))
+        {
+            $this -> fecha_hora_reserva = $fecha_hora_reserva;
         }
         if(!is_null($personas))
         {
@@ -107,16 +107,6 @@ class Reserva
         return $this -> apellidos;
     }
     
-    public function setFechaHoraReserva($fecha_hora_reserva): void
-    {
-        $this -> fecha_hora_reserva = $fecha_hora_reserva;
-    }
-
-    public function getFechaHoraReserva()
-    {
-        return $this -> fecha_hora_reserva;
-    }
-    
     public function setTelefono($telefono): void
     {
         $this -> telefono = $telefono;
@@ -135,6 +125,16 @@ class Reserva
     public function getCorreo()
     {
         return $this -> correo;
+    }
+    
+    public function setFechaHoraReserva($fecha_hora_reserva): void
+    {
+        $this -> fecha_hora_reserva = $fecha_hora_reserva;
+    }
+
+    public function getFechaHoraReserva()
+    {
+        return $this -> fecha_hora_reserva;
     }
     
     public function setPersonas($personas): void
