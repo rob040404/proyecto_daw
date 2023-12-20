@@ -26,28 +26,15 @@ VALUES
 (3, 'Tortita', '1', '100'),
 (4, 'Tomate', '5', '20');
 
-INSERT INTO platos(id_plato, nombre, precio)
-VALUES
-(1, 'Ensalada de pollo', 4.00),
-(2, 'Tortita de pollo', 5.50),
-(3, 'Ensalada clasica', 4.50);
-
-INSERT INTO restar(id_plato, id_producto, cantidad)
-VALUES
-(1, 1, 1),
-(1, 2, 0.5),
-(2, 2, 0.5),
-(2, 3, 1),
-(3, 1, 1),
-(3, 4, 1);
 
 
-INSERT INTO pedir(id_reserva, id_plato, unidades)
-VALUES
-(1, 1, 2),
-(1, 2, 1),
-(2, 3, 2),
-(2, 2, 2);
+
+--INSERT INTO pedir(id_reserva, id_plato, unidades)
+--VALUES
+--(1, 1, 2),
+--(1, 2, 1),
+--(2, 3, 2),
+--(2, 2, 2);
 
 
 

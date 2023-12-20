@@ -19,6 +19,9 @@ $cache= __DIR__.'/../cache';
 
 $blade= new BladeOne($views, $cache);
 
+$activarDesactivarOn=false;
+$respuesta=false;
+
 // Establece conexión a la base de datos PDO
 try {
     $host = $_ENV['DB_HOST'];
@@ -94,38 +97,26 @@ if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']) && 
     header('Content-type: application/json');
     echo json_encode($response);
     die;
+}else if(!empty($_POST) && isset($_POST['nombreActivar'])){
+    $nombre=trim(filter_input(INPUT_POST, 'nombreActivar', FILTER_UNSAFE_RAW));
+    
+    $error=false;
+    $plato1DAO= new PlatoDAO($bd);
+    
+    $registro= $plato1DAO->buscarPorNombre($nombre);
+    
+    if($registro===false){
+        $error=true;
+        $response= compact('error');
+        header('Content-type: application/json');
+        echo json_encode($response);
+        die;
+    }else{
+        $respuesta=$registro;
+        $activarDesactivarOn=true;
+        echo $blade->run('gestion_de_menus', compact('sesion_abierta', 'activarDesactivarOn', 'respuesta' ));
+    }
+}else{
+    echo $blade->run('gestion_de_menus', compact('sesion_abierta', 'activarDesactivarOn', 'respuesta'));
 }
-
-
-
-
-
-
-
-/*
-
-$antiguo_nom="Tacos al pastor";
-
-$modificacion= $plato1DAO->modificar($antiguo_nom, $plato1->getNombre(), $plato1->getIngredientes(), $plato1->getCategoria(), $plato1->getSubcategoria(), $plato1->getPrecio(), $plato1->getEstado());
-
-
-
-$insercion= $plato1DAO->insertarPlato($plato1->getNombre(), $plato1->getIngredientes(), $plato1->getCategoria(), $plato1->getSubcategoria(), $plato1->getPrecio(), $plato1->getEstado());
-
-$activacion=$plato1DAO->activar_desactivar("Taco al pastor", "activado");
-
-
-$registro=$plato1DAO->buscarPorNombre("Taco al pastor");
-$idPlato= $registro->id_plato;
-$nombrePlato= $registro->nombre;
-$precioPlato=$registro->precio;
-
-$platos=$plato1DAO->buscarPorCategoría("principal");
-$registro=$plato1DAO->buscarPorId("2");
-$borrado=$plato1DAO->borrarPorNombre("Taco al pastor");
-*/
-
-
-$nah=null;
-echo $blade->run('gestion_de_menus', compact('sesion_abierta'));
 

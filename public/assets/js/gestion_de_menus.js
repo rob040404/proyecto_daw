@@ -21,10 +21,14 @@ function form_activar_desactivar(){
         '<form id="formactivardesactivar" method="POST" name="formactivardesactivar" novalidate>'+
             '<div class="contenedor_borrar">'+
                 '<label for="nombre" class="texto-gm">Buscar por Nombre:</label><br>'+
-                '<input type="text" name="nombreBorrar" id="nombreBorrar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="guardar" id="buscar-por-nombre">Buscar</div>'+
+                '<input type="text" name="nombreActivar" id="nombreActivar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
+                '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta"></div><br>'+
+                '<button type="button" class="guardar-wrapper" name="buscar-por-nombre" id="buscar-por-nombre">'+
+                    '<div class="guardar" >Buscar</div>'+
                 '</button><br><br>'+
+                '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta"></div><br>'+
+                
+                
                 '<label for="nombre" class="texto-gm">Buscar por Categorías:</label><br>'+
                 '<select type="text" name="categoria-borrar" id="categoria-borrar" class="rectangulo-borrar categoria-borrar">'+
                     '<option value="todos">Todos</option>'+
@@ -39,7 +43,40 @@ function form_activar_desactivar(){
             '</div>'+
         '</form>';
     document.getElementById('contenedor_opciones').innerHTML=contenido;
+    document.getElementById('buscar-por-nombre').addEventListener('click', ajax_activar);
 }
+function ajax_activar(){
+    var nom= $('#nombreActivar').val();
+    var error=false;
+    nom=nom.toLowerCase();
+    
+   
+    if(!nom){
+        $('#intro-incorrecta').html('Introduce un nombre');
+        error=true;
+    }
+    
+    if(error===false){
+        $.ajax({
+            type: 'POST',
+            url: 'gestion_de_menus.php',
+            data: {nombreActivar:nom},
+            datatype: 'json',
+            success: function(response){
+                if(response.error){
+                     $('#intro-incorrecta').html('');
+                     $('#intro-incorrecta').html('No se ha encontrado ningún plato con ese nombre');
+                }
+            }
+            
+            
+        });
+    }
+    
+    
+    
+}
+
 function form_modificar(){
     limpiar_containers();
     var contenido='<p><br><br><br></p>'+
