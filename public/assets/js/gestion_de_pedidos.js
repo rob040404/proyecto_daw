@@ -81,6 +81,7 @@ function agregarQuitarPlato(checkbox)
         input.setAttribute('id', 'cantidad_plato_' + idPedido + '_' + indice);
         input.setAttribute('value', unidades_plato);
         input.setAttribute('min', '1');
+        input.addEventListener("keydown", onKeyDown);
         plato_container.appendChild(input);
     }
     else if(checkbox.checked === false)

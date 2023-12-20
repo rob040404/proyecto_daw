@@ -14,10 +14,10 @@ class PlatoDAO{
     function recuperarPlatos()
     {
         $sql = "select id_plato, nombre, precio from platos";
-        $stmtPlatos = $this -> bd -> prepare($sql);
-        $stmtPlatos -> execute();
-        $stmtPlatos -> setFetchMode(PDO::FETCH_ASSOC);
-        $platos = $stmtPlatos -> fetchAll() ?: null;
+        $stmRecuperarPlatos = $this -> bd -> prepare($sql);
+        $stmRecuperarPlatos -> execute();
+        $stmRecuperarPlatos -> setFetchMode(PDO::FETCH_ASSOC);
+        $platos = $stmRecuperarPlatos -> fetchAll() ?: null;
         return $platos;
     }
     

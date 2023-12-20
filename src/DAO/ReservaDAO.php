@@ -1,12 +1,11 @@
 <?php
-
 namespace App\DAO;
-
 use PDO;
 use DateTime;
+use App\modelo\Reserva;
+use App\modelo\Pedido;
 use App\DAO\EmpleadoDAO;
 use App\DAO\PedidoDAO;
-use App\modelo\Reserva;
 
 class ReservaDAO
 {
@@ -17,56 +16,31 @@ class ReservaDAO
     function __construct($bd)
     {
         $this -> bd = $bd;
-        $this -> mesas = 2;
+        $this -> mesas = 10;
     }
-
-    function formatearFecha($reserva)
+    
+    function encontrarFechaParaReservarMesa(string $mesa, string $fecha_hora_reserva) :bool
     {
-        $fecha = $reserva -> getFechaHoraReserva();
-        $fecha_separada = explode(" ", $fecha);
-        $ano_mes_dia = explode("-", $fecha_separada[0]);
-        $hora_minutos_segundos = explode(":", $fecha_separada[1]);
-        $fecha_correcta = $ano_mes_dia[2] . "/" . $ano_mes_dia[1] . "/" . $ano_mes_dia[0] . " "
-        . $hora_minutos_segundos[0] . ":" . $hora_minutos_segundos[1];
-        $reserva -> setFechaHoraReserva($fecha_correcta);
-        return $reserva;
+        $sql = 'select fecha_hora_reserva from reservas where mesa=:mesa and fecha_hora_reserva=:fecha_hora_reserva';
+        $stmEncontrarFechaParaReservarMesa = $this -> bd -> prepare($sql);
+        $stmEncontrarFechaParaReservarMesa -> execute([':mesa' => $mesa, ':fecha_hora_reserva' => $fecha_hora_reserva]);
+        $ocupada = !empty($stmEncontrarFechaParaReservarMesa -> fetch());
+        return $ocupada;
     }
-
-    function formatearFecha2($reserva)
+    
+    function recuperarHorarios(string $fecha) :?array
     {
-        $fecha_separada = explode(" ", $reserva["fecha_hora_reserva"]);
-        $ano_mes_dia = explode("-", $fecha_separada[0]);
-        $hora_minutos_segundos = explode(":", $fecha_separada[1]);
-        $fecha_correcta = $ano_mes_dia[2] . "/" . $ano_mes_dia[1] . "/" . $ano_mes_dia[0] . " "
-        . $hora_minutos_segundos[0] . ":" . $hora_minutos_segundos[1];
-        $reserva["fecha_hora_reserva"] = $fecha_correcta;
-        return $reserva;
-    }
-
-    function recuperarHorarios($fecha)
-    {
-        $format = 'Y-m-d H:i:s';
-        $fecha_inicial = DateTime::createFromFormat($format, $fecha . ' ' . '13:30:00');
-        $fecha_final = DateTime::createFromFormat($format, $fecha . ' ' . '23:00:00');
-        $horarios = [];
-        while($fecha_inicial != $fecha_final)
+        $fecha_apertura = DateTime::createFromFormat('Y-m-d H:i:s', $fecha . ' ' . '13:30:00');
+        $fecha_clausura = DateTime::createFromFormat('Y-m-d H:i:s', $fecha . ' ' . '23:00:00');
+        while($fecha_apertura != $fecha_clausura)
         {
-            $fecha_reserva = clone ($fecha_inicial -> modify('+30 minutes'));
+            $fecha_reserva = clone ($fecha_apertura -> modify('+30 minutes'));
             $horarios[] = $fecha_reserva -> format('Y-m-d H:i:s');
         }
         return $horarios;
     }
 
-    function buscarFechaReservasMesa($mesa, $fecha_reserva)
-    {
-        $sql = 'select fecha_hora_reserva from reservas where mesa=:mesa and fecha_hora_reserva=:fecha_reserva';
-        $stmBuscarFechaReservasMesa = $this -> bd -> prepare($sql);
-        $stmBuscarFechaReservasMesa -> execute([':mesa' => $mesa, ':fecha_reserva' => $fecha_reserva]);
-        $fechaRepetida = !empty($stmBuscarFechaReservasMesa -> fetch());
-        return $fechaRepetida;
-    }
-
-    function recuperarReservasDisponibles($fecha, $mesa, $fecha_editar)
+    function recuperarReservasDisponibles(string $fecha, $mesa, $fecha_editar) :?array
     {
         $horarios = $this -> recuperarHorarios($fecha);
         $indices = [];
@@ -81,7 +55,7 @@ class ReservaDAO
                 }
                 else
                 {
-                    $ocupada = $this -> buscarFechaReservasMesa($mesa, $horarios[$i]);
+                    $ocupada = $this -> encontrarFechaParaReservarMesa($mesa, $horarios[$i]);
                 }
                 if($ocupada)
                 {
@@ -93,7 +67,7 @@ class ReservaDAO
                 $mesas_ocup = 0;
                 for($mesas = 1; $mesas <= $this -> mesas; $mesas++)
                 {
-                    $ocupada = $this -> buscarFechaReservasMesa($mesas, $horarios[$i]);
+                    $ocupada = $this -> encontrarFechaParaReservarMesa($mesas, $horarios[$i]);
                     if($ocupada)
                     {
                         $mesas_ocup++;
@@ -118,20 +92,20 @@ class ReservaDAO
         return $horas_disponibles;
     }
 
-    function recuperarporIdUsuarioYFecha($id_usuario, $fecha)
+    function recuperarPorIdUsuarioYFecha(int $id_usuario, string $dia_actual) :?array
     {
-        $dt_dia_siguiente = new DateTime($fecha);
+        $dt_dia_siguiente = new DateTime($dia_actual);
         $dt_dia_siguiente -> modify('+1 day');
         $dia_siguiente = $dt_dia_siguiente -> format('Y-m-d');
         $sql = 'select * from reservas where id_usuario=:id_usuario and fecha_hora_reserva between :dia_actual and :dia_siguiente;';
-        $stmRecuperarporIdUsuarioYFecha = $this -> bd -> prepare($sql);
-        $stmRecuperarporIdUsuarioYFecha -> execute([':id_usuario' => $id_usuario, ':dia_actual' => $fecha, ':dia_siguiente' => $dia_siguiente]);
-        $stmRecuperarporIdUsuarioYFecha -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Reserva::class);
-        $reservas = ($stmRecuperarporIdUsuarioYFecha -> fetchAll()) ?: null;
+        $stmRecuperarPorIdUsuarioYFecha = $this -> bd -> prepare($sql);
+        $stmRecuperarPorIdUsuarioYFecha -> execute([':id_usuario' => $id_usuario, ':dia_actual' => $dia_actual, ':dia_siguiente' => $dia_siguiente]);
+        $stmRecuperarPorIdUsuarioYFecha -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Reserva::class);
+        $reservas = ($stmRecuperarPorIdUsuarioYFecha -> fetchAll()) ?: null;
         return $reservas;
     }
 
-    function seleccionarCamarero($fecha)
+    function seleccionarCamarero($fecha) :int
     {
         $usuarioDao = new EmpleadoDAO($this -> bd);
         $camareros = $usuarioDao -> recuperarUsuariosPorRol('camarero');
@@ -150,19 +124,8 @@ class ReservaDAO
         }
         return $id_camarero_mesa;
     }
-
-    function recuperarPorMesayFechaReserva($mesa, $fecha_hora)
-    {
-        $sql = 'select * from reservas where mesa=:mesa and fecha_hora_reserva=:fecha_hora;';
-        $stmRecuperarPorMesayFechaReserva = $this -> bd -> prepare($sql);
-        $fecha_hora = $fecha_hora[0] . " " . $fecha_hora[1] . ":00";
-        $stmRecuperarPorMesayFechaReserva -> execute([':mesa' => $mesa, ':fecha_hora' => $fecha_hora]);
-        $stmRecuperarPorMesayFechaReserva -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Reserva::class);
-        $reservas = ($stmRecuperarPorMesayFechaReserva -> fetch()) ?: null;
-        return $reservas;
-    }
-
-    function recuperarPorMesayFecha($mesa, $dia_actual)
+    
+    function recuperarPorMesayFecha($mesa, string $dia_actual) :?array
     {
         $dt_dia_siguiente = new DateTime($dia_actual);
         $dt_dia_siguiente -> modify('+1 day');
@@ -174,8 +137,19 @@ class ReservaDAO
         $reservas = ($stmRecuperarPorMesayFecha -> fetchAll()) ?: null;
         return $reservas;
     }
+    
+    function recuperarPorMesayFechaReserva($mesa, array $fecha_hora)
+    {
+        $sql = 'select * from reservas where mesa=:mesa and fecha_hora_reserva=:fecha_hora;';
+        $stmRecuperarPorMesayFechaReserva = $this -> bd -> prepare($sql);
+        $fecha_hora = $fecha_hora[0] . " " . $fecha_hora[1] . ":00";
+        $stmRecuperarPorMesayFechaReserva -> execute([':mesa' => $mesa, ':fecha_hora' => $fecha_hora]);
+        $stmRecuperarPorMesayFechaReserva -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Reserva::class);
+        $reservas = ($stmRecuperarPorMesayFechaReserva -> fetch()) ?: null;
+        return $reservas;
+    }
 
-    function seleccionarMesa($mesas, $dia_actual, $fecha_hora)
+    function seleccionarMesa(int $mesas, string $dia_actual, array $fecha_hora) :int
     {
         $mesas_disp = null;
         for($i = 1; $i < intval($mesas); $i++)
@@ -200,113 +174,120 @@ class ReservaDAO
         }
         return $mesa;
     }
-
-    function recuperarReservas()
+    
+    function formatearFecha($reserva, int $option)
     {
-        $sql = 'select reservas.id_reserva as id_reserva, reservas.id_usuario as id_usuario, reservas.mesa as mesa,'
-        . 'reservas.nombre as nombre, reservas.apellidos as apellidos, reservas.fecha_hora_reserva as fecha_hora_reserva,'
-        . 'reservas.telefono as telefono, reservas.correo as correo, reservas.personas as personas, usuarios.nombre as nombre_empleado '
-        . 'from reservas inner join usuarios ON reservas.id_usuario = usuarios.id_usuario order by reservas.fecha_hora_reserva desc;';
-        $stmRecuperarReservas = $this -> bd -> prepare($sql);
-        $stmRecuperarReservas -> execute();
-        $stmRecuperarReservas -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Reserva::class);
-        $reservas = $stmRecuperarReservas -> fetchAll() ?: null;
-        if($reservas != null)
-        {
-            for($i = 0; $i < count($reservas); $i++)
-            {
-                $reserva = $this -> formatearFecha($reservas[$i]);
-                $reservas[$i] = $reserva;
-            }
-        }
-        return $reservas;
-    }
-
-    function recuperarReservas2()
-    {
-        $sql = 'select reservas.id_reserva as id_reserva, usuarios.nombre as nombre_usuario, reservas.mesa as mesa,'
-        . 'reservas.fecha_hora_reserva as fecha_hora_reserva, concat(reservas.nombre, \' \', reservas.apellidos) as nombre_completo,'
-        . 'reservas.personas as personas, reservas.telefono as telefono, reservas.correo as correo from reservas '
-        . 'inner join usuarios on reservas.id_usuario = usuarios.id_usuario order by reservas.fecha_hora_reserva desc;';
-        $stmRecuperarReservas = $this -> bd -> prepare($sql);
-        $stmRecuperarReservas -> execute();
-        $stmRecuperarReservas -> setFetchMode(PDO::FETCH_ASSOC);
-        $reservas = $stmRecuperarReservas -> fetchAll() ?: null;
-        if($reservas != null)
-        {
-            for($i = 0; $i < count($reservas); $i++)
-            {
-                $reserva = $this -> formatearFecha2($reservas[$i]);
-                $reservas[$i] = $reserva;
-            }
-        }
-        return $reservas;
-    }
-
-    function recuperarReservaPorId($id)
-    {
-        $sql = 'select reservas.id_reserva as id_reserva, reservas.id_usuario as id_usuario, usuarios.nombre as nombre_usuario, reservas.mesa as mesa,'
-        . 'reservas.fecha_hora_reserva as fecha_hora_reserva, reservas.nombre as nombre, reservas.apellidos as apellidos,'
-        . 'reservas.telefono as telefono, reservas.correo as correo, reservas.personas as personas from reservas '
-        . 'inner join usuarios on reservas.id_usuario = usuarios.id_usuario where reservas.id_reserva=:id';
-        $stmRecuperarReservaPorId = $this -> bd -> prepare($sql);
-        $stmRecuperarReservaPorId -> execute([':id' => $id]);
-        $stmRecuperarReservaPorId -> setFetchMode(PDO::FETCH_ASSOC);
-        $reserva = $stmRecuperarReservaPorId -> fetch() ?: null;
+        $fecha_hora = explode(" ", $option == 1 ? $reserva -> getFechaHoraReserva() : $reserva["fecha_hora_reserva"]);
+        $fecha = explode("-", $fecha_hora[0]);
+        $hora = explode(":", $fecha_hora[1]);
+        $fecha_formateada = $fecha[2] . "/" . $fecha[1] . "/" . $fecha[0] . " " . $hora[0] . ":" . $hora[1];
+        $option == 1 ? $reserva -> setFechaHoraReserva($fecha_formateada) : $reserva["fecha_hora_reserva"] = $fecha_formateada;
         return $reserva;
     }
 
-    function nuevaReserva(Reserva $reserva)
+    function recuperarReservas(int $option) :?array
     {
-        $sql = 'insert into reservas (id_usuario, mesa, nombre, apellidos, fecha_hora_reserva, telefono, correo, personas) '
-        . 'values (:id_usuario, :mesa, :nombre, :apellidos, :fecha, :telefono, :correo, :personas)';
+        if($option == 1)
+        {
+             $sql = 'select reservas.id_reserva as id_reserva, reservas.id_usuario as id_usuario, reservas.mesa as mesa, '
+            . 'reservas.nombre as nombre, reservas.apellidos as apellidos, reservas.telefono as telefono, '
+            . 'reservas.correo as correo, reservas.fecha_hora_reserva as fecha_hora_reserva, reservas.personas as personas, '
+            . 'usuarios.nombre as nombre_empleado from reservas inner join usuarios on reservas.id_usuario = usuarios.id_usuario '
+            . 'order by reservas.fecha_hora_reserva desc;';
+        }
+        else
+        {
+            $sql = 'select reservas.id_reserva as id_reserva, usuarios.nombre as nombre_usuario, reservas.mesa as mesa,'
+            . 'reservas.fecha_hora_reserva as fecha_hora_reserva, concat(reservas.nombre, \' \', reservas.apellidos) as nombre_completo,'
+            . 'reservas.personas as personas, reservas.telefono as telefono, reservas.correo as correo from reservas '
+            . 'inner join usuarios on reservas.id_usuario = usuarios.id_usuario order by reservas.fecha_hora_reserva desc;';
+        }
+        $stmRecuperarReservas = $this -> bd -> prepare($sql);
+        $stmRecuperarReservas -> execute();
+        if($option == 1)
+        {
+            $stmRecuperarReservas -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Reserva::class);
+        }
+        else
+        {
+            $stmRecuperarReservas -> setFetchMode(PDO::FETCH_ASSOC);
+        }
+        $reservas = $stmRecuperarReservas -> fetchAll() ?: null;
+        if($reservas != null)
+        {
+            for($i = 0; $i < count($reservas); $i++)
+            {
+                $reserva = $this -> formatearFecha($reservas[$i], $option == 1 ? 1 : 2);
+                $reservas[$i] = $reserva;
+            }
+        }
+        return $reservas;
+    }
+
+    function recuperarReservaPorId(Reserva $reserva) :?array
+    {
+        $sql = 'select reservas.id_reserva as id_reserva, reservas.id_usuario as id_usuario, reservas.mesa as mesa, '
+        . 'reservas.nombre as nombre, reservas.apellidos as apellidos, reservas.telefono as telefono, reservas.correo as correo, '
+        . 'reservas.fecha_hora_reserva as fecha_hora_reserva, reservas.personas as personas, usuarios.nombre as nombre_usuario '
+        . 'from reservas inner join usuarios on reservas.id_usuario = usuarios.id_usuario where reservas.id_reserva=:id_reserva';
+        $stmRecuperarReservaPorId = $this -> bd -> prepare($sql);
+        $stmRecuperarReservaPorId -> execute([':id_reserva' => $reserva -> getIdReserva()]);
+        return $stmRecuperarReservaPorId -> fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
+    function nuevaReserva(Reserva $reserva) :bool
+    {
+        $sql = 'insert into reservas (id_usuario, mesa, nombre, apellidos, telefono, correo, fecha_hora_reserva, personas) '
+        . 'values (:id_usuario, :mesa, :nombre, :apellidos, :telefono, :correo, :fecha_hora_reserva, :personas)';
         $stmNuevaReserva = $this -> bd -> prepare($sql);
         $stmNuevaReserva -> execute([
         ':id_usuario' => $reserva -> getIdusuario(), ':mesa' => $reserva -> getMesa(),
-        ':nombre' => $reserva -> getNombre(), ':apellidos' => $reserva -> getApellidos(), ':fecha' => $reserva -> getFechaHoraReserva(),
-        ':telefono' => $reserva -> getTelefono(), ':correo' => $reserva -> getCorreo(), ':personas' => $reserva -> getPersonas()
+        ':nombre' => $reserva -> getNombre(), ':apellidos' => $reserva -> getApellidos(),
+        ':telefono' => $reserva -> getTelefono(), ':correo' => $reserva -> getCorreo(), 
+        ':fecha_hora_reserva' => $reserva -> getFechaHoraReserva(), ':personas' => $reserva -> getPersonas()
         ]);
         $nueva_reserva = boolval($stmNuevaReserva -> rowCount());
-        // Obtener el ID de la reserva recién insertada
-        $idReserva = $this -> bd -> lastInsertId();
-        $mesa = $reserva -> getMesa();
-        $fecha_pedido = $reserva -> getFechaHoraReserva();
-        $pedidoDAO = new PedidoDAO($this -> bd);
-        //Generar un pedido asociado a la reserva
-        $pedidoDAO -> generarPedido($idReserva, $mesa, $fecha_pedido);
-        return $nueva_reserva;
+        if($nueva_reserva)
+        {
+            //Generar un pedido asociado a la reserva
+            $pedido = new Pedido(null, $reserva -> getMesa(), 'Pendiente', $reserva -> getFechaHoraReserva(), $this -> bd -> lastInsertId());
+            $pedidoDAO = new PedidoDAO($this -> bd);
+            $nuevo_pedido = $pedidoDAO -> generarPedido($pedido);
+        }
+        return $nueva_reserva && isset($nuevo_pedido) && $nuevo_pedido;
     }
 
-    function actualizarReserva(Reserva $reserva)
+    function actualizarReserva(Reserva $reserva) :bool
     {
-        $sql = 'update reservas set id_usuario=:id_usuario, mesa=:mesa, nombre=:nombre, apellidos=:apellidos, fecha_hora_reserva=:fecha,'
-        . 'telefono=:telefono, correo=:correo, personas=:personas where id_reserva=:id_reserva';
+        $sql = 'update reservas set id_usuario=:id_usuario, mesa=:mesa, nombre=:nombre, apellidos=:apellidos, '
+        . 'telefono=:telefono, correo=:correo, fecha_hora_reserva=:fecha_hora_reserva, personas=:personas where id_reserva=:id_reserva';
         $stmActualizarReserva = $this -> bd -> prepare($sql);
         $stmActualizarReserva -> execute([
         'id_reserva' => $reserva -> getIdReserva(), 'id_usuario' => $reserva -> getIdUsuario(),
-        ':mesa' => $reserva -> getMesa(), ':fecha' => $reserva -> getFechaHoraReserva(), ':nombre' => $reserva -> getNombre(),
-        ':apellidos' => $reserva -> getApellidos(), ':telefono' => $reserva -> getTelefono(), ':correo' => $reserva -> getCorreo(),
+        ':mesa' => $reserva -> getMesa(), ':nombre' => $reserva -> getNombre(), 
+        ':apellidos' => $reserva -> getApellidos(), ':telefono' => $reserva -> getTelefono(), 
+        ':correo' => $reserva -> getCorreo(), ':fecha_hora_reserva' => $reserva -> getFechaHoraReserva(),
         ':personas' => $reserva -> getPersonas()
         ]);
-        $actualizar_reserva = boolval($stmActualizarReserva -> rowCount());
-        return $actualizar_reserva;
+        $reserva_actualizada = boolval($stmActualizarReserva -> rowCount());
+        return $reserva_actualizada;
     }
 
-    function eliminarReserva($id)
+    function eliminarReserva(Reserva $reserva) :bool
     {
-        $sql = 'delete from reservas where id_reserva=:id';
+        $sql = 'delete from reservas where id_reserva=:id_reserva';
         $stmEliminarReserva = $this -> bd -> prepare($sql);
-        $stmEliminarReserva -> execute([':id' => $id]);
-        $eliminada = boolval($stmEliminarReserva -> rowCount());
-        return $eliminada;
+        $stmEliminarReserva -> execute([':id_reserva' => $reserva -> getIdReserva()]);
+        $reserva_eliminada = boolval($stmEliminarReserva -> rowCount());
+        return $reserva_eliminada;
     }
 
-    function eliminarReservas()
+    function eliminarReservas() :bool
     {
         $sql = 'delete from reservas';
         $stmEliminarReservas = $this -> bd -> prepare($sql);
         $stmEliminarReservas -> execute();
-        $eliminadas = $stmEliminarReservas -> rowCount() != 0;
-        return $eliminadas;
+        $reservas_eliminadas = $stmEliminarReservas -> rowCount() != 0;
+        return $reservas_eliminadas;
     }
 }

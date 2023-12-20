@@ -22,8 +22,8 @@
                     <div class="reserva-container1">
                         <label class="titulo-label">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" {!!isset($reserva) ? 'readonly value="' . $reserva -> getNombre() . '"' : ''!!}>
-                        <label class="titulo-label">Correo electrónico:</label>
-                        <input type="text" id="correo" name="correo" {!!isset($reserva) ? 'readonly value="' . $reserva -> getCorreo() . '"' : ''!!}>
+                        <label class="titulo-label">Telefono:</label>
+                        <input type="tel" id="telefono" name="telefono" {!!isset($reserva) ? 'readonly value="' . $reserva -> getTelefono() . '"' : ''!!}>
                         <label class="titulo-label">Fecha:</label>
                         <input type="date" id="fecha" name="fecha" {!!isset($reserva) ? 'readonly value="' . $fecha_hora[0] . '"' : ''!!}>
                         <label class="titulo-label">Personas:</label>
@@ -40,8 +40,8 @@
                     <div class="reserva-container2">
                         <label class="titulo-label">Apellidos:</label>
                         <input type="text" id="apellidos" name="apellidos" {!!isset($reserva) ? 'readonly value="' . $reserva -> getApellidos() . '"' : ''!!}>
-                        <label class="titulo-label">Telefono:</label>
-                        <input type="text" id="telefono" name="telefono" {!!isset($reserva) ? 'readonly value="' . $reserva -> getTelefono() . '"' : ''!!}>
+                        <label class="titulo-label">Correo electrónico:</label>
+                        <input type="email" id="correo" name="correo" {!!isset($reserva) ? 'readonly value="' . $reserva -> getCorreo() . '"' : ''!!}>
                         <label class="titulo-label">Hora:</label>
                         @if(!isset($reserva))
                         <select id="hora" name="hora">

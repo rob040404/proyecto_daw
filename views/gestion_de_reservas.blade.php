@@ -11,7 +11,7 @@
 <div class="reservas-container">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
     <div class="reservas-contenido">
-        <a class="boton-volver" href="pagina_de_administracion.php"><- Volver</a>
+        <!--<a class="boton-volver" href="pagina_de_administracion.php"><- Volver</a>-->
         <h1 class="titulo-reservas">Gestión de reservas</h1>
         <form method="post">
             <div class="botones-reservas">
@@ -56,8 +56,8 @@
                             </select>
                             <label class="titulo-label">Nombre:</label>
                             <input type="text" id="nombre" name="nombre" value='{{isset($reserva_editar) ? $reserva_editar -> getNombre() : ''}}'>
-                            <label class="titulo-label">Correo electrónico:</label>
-                            <input type="text" id="correo" name="correo" value='{{isset($reserva_editar) ? $reserva_editar -> getCorreo() : ''}}'>
+                            <label class="titulo-label">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono" value='{{isset($reserva_editar) ? $reserva_editar -> getTelefono() : ''}}' maxlength="15">
                             <label class="titulo-label">Fecha:</label>
                             <input type="date" id="fecha" name="fecha" value='{{isset($fecha_hora) ? $fecha_hora[0] : ''}}'>
                             <label class="titulo-label">Personas:</label>
@@ -84,8 +84,8 @@
                             </select>
                             <label class="titulo-label">Apellidos:</label>
                             <input type="text" id="apellidos" name="apellidos" value='{{isset($reserva_editar) ? $reserva_editar -> getApellidos() : ''}}'>
-                            <label class="titulo-label">Telefono:</label>
-                            <input type="text" id="telefono" name="telefono" value='{{isset($reserva_editar) ? $reserva_editar -> getTelefono() : ''}}' maxlength="15">
+                            <label class="titulo-label">Correo electrónico:</label>
+                            <input type="email" id="correo" name="correo" value='{{isset($reserva_editar) ? $reserva_editar -> getCorreo() : ''}}'>
                             <label class="titulo-label">Horas Disponibles:</label>
                             <select id="hora" name="hora">
                             </select>
