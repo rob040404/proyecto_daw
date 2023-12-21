@@ -9,15 +9,7 @@ VALUES ('Sancho', 'Panza', '1234', 'admin', 'sancho@crunchy.com'),
         ('Beatriz', 'Fernandez', '1234', 'camarero', 'bea@crunchy.com'),
         ('Rocinante', 'Exposito', '1234', 'admin', 'rocinante@crunchy.com');
 
--- Creamos varios clientes para probar la gestión de las reservas
-INSERT INTO reservas(id_reserva, id_usuario, mesa, nombre, estado)
-VALUES
-(1, 1, 1, 'Ana', 'Aceptada'),
-(2, 1, 2, 'Bob', 'Aceptada');
-INSERT INTO reservas (id_usuario, mesa, nombre, apellidos, telefono, correo, fecha_hora_reserva, personas)
-VALUES (3, 3, 'Luis', 'Ballesteros', '673782981', 'luis1753@gmail.com', '2023-12-20 21:30:00', 4); 
-INSERT INTO reservas (id_usuario, mesa, nombre, apellidos, telefono, correo, fecha_hora_reserva, personas)
-VALUES (4, 4, 'Ana', 'Ruiz', '652738287', 'ana99@gmail.com', '2023-12-20 22:00:00', 2);
+
 
 INSERT INTO stock(id_producto, nombre_producto, precio, cantidad)
 VALUES 
@@ -28,13 +20,6 @@ VALUES
 
 
 
-
---INSERT INTO pedir(id_reserva, id_plato, unidades)
---VALUES
---(1, 1, 2),
---(1, 2, 1),
---(2, 3, 2),
---(2, 2, 2);
 
 
 

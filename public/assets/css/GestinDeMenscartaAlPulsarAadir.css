@@ -684,3 +684,39 @@ a{
 optgroup{
     color: gray;
 }
+
+.tabla {
+    align-self: stretch;
+    flex: 1;
+    background-color: var(--color-black);
+    position: relative;
+    border-radius: 16px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: var(--yellow);
+    font-size: 20px;
+}
+
+.personal {
+    background-color: var(--color-black);
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    font-family: var(--font-irish-grover);
+    padding-bottom: 200px;
+    background: url(../img/background_personal@2x.png) repeat fixed center / cover;
+    background-color: var(--color-black);
+}
+
+.th {
+    -webkit-text-stroke: 1px var(--pink);
+    font-size: 25px;
+}

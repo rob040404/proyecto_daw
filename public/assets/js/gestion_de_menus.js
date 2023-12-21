@@ -2,26 +2,39 @@ window.onload=iniciar;
 console.log("¡¡js destion_de_menus funciona!!");
 
 function iniciar(){
-    document.getElementById('desplegar-activar').addEventListener('click', form_activar_desactivar);
+    document.getElementById('desplegar-activar').addEventListener('click', operacion_activar);
     document.getElementById('desplegar-anadir').addEventListener('click', form_anadir);
     
-    document.getElementById('desplegar-borrar').addEventListener('click', form_borrar);
-    document.getElementById('desplegar-ver').addEventListener('click', form_ver);
-    document.getElementById('desplegar-modificar').addEventListener('click', form_modificar);
+    document.getElementById('desplegar-borrar').addEventListener('click', operacion_borrar);
+    document.getElementById('desplegar-ver').addEventListener('click', operacion_ver);
+    document.getElementById('desplegar-modificar').addEventListener('click', operacion_modificar);
 }
 
-
-function alerta(){
-    alert('Has pulsado el botón Activar');
+function operacion_activar(){
+    var titulo='Activar/desactivar plato';
+    form_buscar('activar', titulo);
 }
-function form_activar_desactivar(){
+function operacion_ver(){
+    var titulo='Ver plato/s';
+    form_buscar('ver', titulo);
+}
+function operacion_borrar(){
+    var titulo='Borrar plato/s';
+    form_buscar('borrar', titulo);
+}
+function operacion_modificar(){
+    var titulo='Modificar plato';
+    form_buscar('modificar', titulo);
+}
+
+function form_buscar(operacion, titulo){
     limpiar_containers();
     var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir">Activar/desactivar producto</div><br><br>'+
+            '<div class="aadir-nuevo-producto" id="encabezado-anadir">'+titulo+'</div><br><br>'+
         '<form id="formactivardesactivar" method="POST" name="formactivardesactivar" novalidate>'+
             '<div class="contenedor_borrar">'+
                 '<label for="nombre" class="texto-gm">Buscar por Nombre:</label><br>'+
-                '<input type="text" name="nombreActivar" id="nombreActivar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
+                '<input type="text" name="nombreBuscar" id="nombreBuscar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
                 '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta"></div><br>'+
                 '<button type="button" class="guardar-wrapper" name="buscar-por-nombre" id="buscar-por-nombre">'+
                     '<div class="guardar" >Buscar</div>'+
@@ -40,18 +53,20 @@ function form_activar_desactivar(){
                 '<button type="button" class="guardar-wrapper">'+
                     '<div class="guardar" name="buscar-por-categoria" id="buscar-por-categoria">Buscar</div>'+
                 '</button><br><br>'+
+                '<input type="hidden" id="operacion" name="operacion" value="'+operacion+'"/>'+
             '</div>'+
         '</form>';
     document.getElementById('contenedor_opciones').innerHTML=contenido;
-    document.getElementById('buscar-por-nombre').addEventListener('click', ajax_activar);
+    document.getElementById('buscar-por-nombre').addEventListener('click', ajax_buscar);
 }
-function ajax_activar(){
-    var nom= $('#nombreActivar').val();
+function ajax_buscar(){
+    var nom= $('#nombreBuscar').val();
+    var operacion= $('#operacion').val();
     var error=false;
     nom=nom.toLowerCase();
     
    
-    if(!nom){
+    if(!nom || !operacion){
         $('#intro-incorrecta').html('Introduce un nombre');
         error=true;
     }
@@ -60,12 +75,22 @@ function ajax_activar(){
         $.ajax({
             type: 'POST',
             url: 'gestion_de_menus.php',
-            data: {nombreActivar:nom},
+            data: {nombreBuscar:nom, operacion: operacion},
             datatype: 'json',
             success: function(response){
                 if(response.error){
                      $('#intro-incorrecta').html('');
                      $('#intro-incorrecta').html('No se ha encontrado ningún plato con ese nombre');
+                }else if(response.operacion==='activar'){
+                     $('#intro-correcta').html(response.fila);
+                     document.getElementById('cambiar-estado').addEventListener('click', ajax_cambiar_estado);
+                }else if(response.operacion==='ver'){
+                     $('#intro-correcta').html(response.fila);
+                }else if(response.operacion==='borrar'){
+                     $('#intro-correcta').html(response.fila);
+                     document.getElementById('borrar-plato').addEventListener('click', ajax_borrar_plato);
+                }else if(response.operacion==='modificar'){
+                     $('#intro-correcta').html(form_modificar());
                 }
             }
             
@@ -77,83 +102,163 @@ function ajax_activar(){
     
 }
 
+function ajax_modificar(){
+    
+}
+function ajax_borrar_plato(){
+    var nom=$('#nombre').html();
+    if(nom){
+        $.ajax({
+            type: 'POST',
+            url: 'gestion_de_menus.php',
+            data: {nombreBorrar:nom},
+            datatype: 'json',
+            success: function(response){
+                if(!response.error){
+                   $('#intro-correcta').html('Plato eliminado con éxito');
+                }
+            }
+        });
+    }
+}
+function ajax_cambiar_estado(){
+    var est= $('#estado').html();
+    var nom= $('#nombre').html();
+    if(est){
+        $.ajax({
+            type: 'POST',
+            url: 'gestion_de_menus.php',
+            data: {estadoCambiar: est, nombreCambiar:nom },
+            datatype: 'json',
+            success: function(response){
+                if(!response.error){
+                    $('#estado').html(response.estadoNuevo);
+                }
+            }
+        });
+    }
+}
+
+
 function form_modificar(){
-    limpiar_containers();
+    //limpiar_containers();
     var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-modificar">Buscar productos</div><br><br>'+
-        '<form id="formactivardesactivar" method="POST" name="formmodificar" novalidate>'+
-            '<div class="contenedor_borrar">'+
-                '<label for="nombre" class="texto-gm">Buscar por Nombre:</label><br>'+
-                '<input type="text" name="nombreBorrar" id="nombreBorrar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="guardar" id="buscar-por-nombre">Buscar</div>'+
-                '</button><br><br>'+
-                '<label for="nombre" class="texto-gm">Buscar por Categorías:</label><br>'+
-                '<select type="text" name="categoria-borrar" id="categoria-borrar" class="rectangulo-borrar categoria-borrar">'+
-                    '<option value="todos">Todos</option>'+
-                    '<option value="entrante">Entrante</option>'+
-                    '<option value="principal">Principal</option>'+
-                    '<option value="postre">Postre</option>'+
-                    '<option value="bebida">Bebida</option>'+
-                '</select><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="buscar-por-categoria" id="buscar-por-categoria">Buscar</div>'+
-                '</button><br><br>'+
-            '</div>'+
-        '</form>';
-    document.getElementById('contenedor_opciones').innerHTML=contenido;
-}
-function form_ver(){
-    limpiar_containers();
-    var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir">Buscar productos</div><br><br>'+
-        '<form id="formactivardesactivar" method="POST" name="formactivardesactivar" novalidate>'+
-            '<div class="contenedor_borrar">'+
-                '<label for="nombre" class="texto-gm">Buscar por Nombre:</label><br>'+
-                '<input type="text" name="nombreBorrar" id="nombreBorrar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="guardar" id="buscar-por-nombre">Buscar</div>'+
-                '</button><br><br>'+
-                '<label for="nombre" class="texto-gm">Buscar por Categorías:</label><br>'+
-                '<select type="text" name="categoria-borrar" id="categoria-borrar" class="rectangulo-borrar categoria-borrar">'+
-                    '<option value="todos">Todos</option>'+
-                    '<option value="entrante">Entrante</option>'+
-                    '<option value="principal">Principal</option>'+
-                    '<option value="postre">Postre</option>'+
-                    '<option value="bebida">Bebida</option>'+
-                '</select><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="buscar-por-categoria" id="buscar-por-categoria">Buscar</div>'+
-                '</button><br><br>'+
-            '</div>'+
-        '</form>';
-    document.getElementById('contenedor_opciones').innerHTML=contenido;
-}
-function form_borrar(){
-    limpiar_containers();
-    var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir">Borrar producto</div><br><br>'+
+            '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Añadir nuevo producto</p></div>'+
+            
         '<form id="formanadir" method="POST" name="formanadir" novalidate>'+
-            '<div class="contenedor_borrar">'+
-                '<label for="nombre" class="texto-gm">Buscar por Nombre:</label><br>'+
-                '<input type="text" name="nombreBorrar" id="nombreBorrar" class="rectangulo-input-centro" maxlength="30"><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="guardar" id="borrar-por-nombre">Borrar</div>'+
-                '</button><br><br>'+
-                '<label for="nombre" class="texto-gm">Buscar por Categorías:</label><br>'+
-                '<select type="text" name="categoria-borrar" id="categoria-borrar" class="rectangulo-borrar categoria-borrar">'+
-                    '<option value="todos">Todos</option>'+
-                    '<option value="entrante">Entrante</option>'+
-                    '<option value="principal">Principal</option>'+
-                    '<option value="postre">Postre</option>'+
-                    '<option value="bebida">Bebida</option>'+
-                '</select><br><br>'+
-                '<button type="button" class="guardar-wrapper">'+
-                    '<div class="guardar" name="buscar" id="buscar">Buscar</div>'+
-                '</button><br><br>'+
+            '<div class="contenedor-anadir">'+
+            
+               ' <div class="anadir-izq">'+
+                    
+                        '<label for="nombre" class="texto-gm etiqueta-izq">Nombre:</label><br>'+
+                        '<input type="text" name="nombre" id="nombre" class="rectangulo-input elemento-form-izq" maxlength="30">'+
+                        '<div class="error-form elemento-form-izq etiqueta-izq"id="error-nombre"></div><br>'+
+                        '<label for="descripcion" class="texto-gm etiqueta-izq">Descripción:</label><br>'+
+                        '<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea elemento-form-izq"></textarea>'+
+                        '<div class="error-form elemento-form-izq etiqueta-izq"id="error-descripcion"></div><br>'+
+                        
+                '</div>'+
+                '<div class="anadir-der">'+
+                    
+                        '<label for="categoria" class="texto-gm elemento-form-der" >Categoría:</label><br>'+
+                        //'<input type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der" maxlength="30"><br>+
+                        '<select type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der">'+
+                            '<option value="no" selected>Seleccionar una opción</option>'+
+                            '<option value="entrante">Entrante</option>'+
+                            '<option value="principal">Principal</option>'+
+                            '<option value="postre">Postre</option>'+
+                            '<option value="bebida">Bebida</option>'+
+                            '<option value="otro">Otro</option>'+
+                        '</select>'+
+                        '<div id="error-categoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>'+
+                        
+                        '<div id="sub-container">'+
+                            
+                        '</div>'+
+                        
+            //'<input type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der" maxlength="30">'+
+                        '<div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>'+
+                        '<div class="contenedor-precio-estado">'+
+                            '<div class="subcontenedor-precio">'+
+                                '<label for="precio" class="texto-gm etiqueta-izq elemento-form-der">Precio:</label><br>'+
+                                '<input type="text" name="precio" id="precio" class="rectangulo-pequeno elemento-form-der" maxlength="8">'+
+                                '<div id="error-precio" class="error-form etiqueta-der elemento-form-der"></div><br>'+
+                                
+                           ' </div>'+
+                            '<div class="subcontenedor-estado">'+
+                                '<label for="estado" class="texto-gm elemento-form-der">Estado:</label><br>'+
+                                '<select type="text" name="estado" id="estado" class="rectangulo-pequeno elemento-form-der">'+
+                                     '<option value="activado">Activado</option>'+
+                                     '<option value="desactivado">Desactivado</option>'+
+                                '</select>'+
+                                '<br><div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div>'+
+                                '<br><br>'+
+                                
+                            '</div>'+
+                       ' </div> '+
+               ' </div>'+
+               '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades</p></div><br>'+
+               
+                '<div class="conteiner-ingredientes">'+
+                
+                   ' <p>'+ 
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" id=lechuga name="lechuga" value="Lechuga" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Pollo: <input type="checkbox" id="pollo" name="pollo" value="Pollo" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Tortita: <input type="checkbox" id="tortita" name="tortita" value="Tortita" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '</p>'+
+                    '<p>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq check">Lechuga: <input type="checkbox" name="cb-autos" value="gusta" class="box">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label>'+
+                    '</p>'+
+                    
+                '</div>'+
+                '<div class="aadir-nuevo-producto incorrecto-form" id="ing-incorrectos"></div><br>'+
             '</div>'+
+            //'<div class="aadir-nuevo-producto">'+
+               
+                //'<label for="nombre" class="texto-gm "><h4>Otros:</h4></label><br>'+
+                //'<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea-otros"></textarea><br>'+
+                
+            //'</div>'+
+            '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta"></div><br>'+
+            '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta"></div><br>'+
+            '<div class="container-botones-form">'+
+                '<button type="button" href="#modificar" class="guardar-wrapper-anadir" name="modificar" id="modificar">'+
+                    '<div class="guardar" >Guardar</div>'+
+                '</button>'+
+                '<button type="button" class="guardar-wrapper-anadir" name="limpiar" id="limpiar">'+
+                    '<div class="guardar">Limpiar</div>'+
+                '</button>'+
+           ' </div>'+
         '</form>';
-    document.getElementById('contenedor_opciones').innerHTML=contenido;
+        
+        return contenido;
+        /*document.getElementById("contenedor_opciones2").innerHTML=contenido;
+        document.getElementById('guardar').addEventListener('click', ajax_anadir);
+        document.getElementById('limpiar').addEventListener('click', limpiar_campos_anadir);
+        document.getElementById('categoria').addEventListener('change', obtener_categoria);*/
+        
 }
 
 function form_anadir(){
@@ -260,7 +365,7 @@ function form_anadir(){
             '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta"></div><br>'+
             '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta"></div><br>'+
             '<div class="container-botones-form">'+
-                '<button type="button" href="#modificar" class="guardar-wrapper-anadir name="guardar" id="guardar"">'+
+                '<button type="button" href="#modificar" class="guardar-wrapper-anadir" name="guardar" id="guardar">'+
                     '<div class="guardar" >Guardar</div>'+
                 '</button>'+
                 '<button type="button" class="guardar-wrapper-anadir" name="limpiar" id="limpiar">'+

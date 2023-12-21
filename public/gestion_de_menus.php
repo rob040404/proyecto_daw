@@ -19,8 +19,7 @@ $cache= __DIR__.'/../cache';
 
 $blade= new BladeOne($views, $cache);
 
-$activarDesactivarOn=false;
-$respuesta=false;
+
 
 // Establece conexión a la base de datos PDO
 try {
@@ -44,6 +43,7 @@ if (isset($_SESSION['empleado'])) {
     exit;
 }
 
+//Insertar platos. Recibe los datos por ajax
 if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['precio']) && isset($_POST['estado'])){
     $nombre=trim(filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW));
     $descripcion=filter_input(INPUT_POST, 'descripcion', FILTER_UNSAFE_RAW);
@@ -97,9 +97,11 @@ if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']) && 
     header('Content-type: application/json');
     echo json_encode($response);
     die;
-}else if(!empty($_POST) && isset($_POST['nombreActivar'])){
-    $nombre=trim(filter_input(INPUT_POST, 'nombreActivar', FILTER_UNSAFE_RAW));
-    
+}
+//Para activar o desactivar un plato. Viene del ajax, donde se le pasa el nombre del plato
+else if(!empty($_POST) && isset($_POST['nombreBuscar']) && isset($_POST['operacion'])){
+    $nombre=trim(filter_input(INPUT_POST, 'nombreBuscar', FILTER_UNSAFE_RAW));
+    $operacion=trim(filter_input(INPUT_POST, 'operacion', FILTER_UNSAFE_RAW));
     $error=false;
     $plato1DAO= new PlatoDAO($bd);
     
@@ -107,16 +109,123 @@ if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']) && 
     
     if($registro===false){
         $error=true;
-        $response= compact('error');
+    } else if(!$operacion==='modificar'){
+        $fila= tabla($registro, $operacion);
+    }else{
+        $fila=false;
+    }
+    $response= compact('error', 'fila', 'operacion' );
+    header('Content-type: application/json');
+    echo json_encode($response);
+    die;
+}
+//
+else if(!empty ($_POST) && isset ($_POST['estadoCambiar']) && isset ($_POST['nombreCambiar'])){
+    $estadoActual= trim(filter_input(INPUT_POST, 'estadoCambiar', FILTER_UNSAFE_RAW));
+    $nombre=trim(filter_input(INPUT_POST, 'nombreCambiar', FILTER_UNSAFE_RAW));
+    $estadoNuevo=null;
+    $error=false;
+    if($estadoActual==='activado'){
+        $estadoNuevo='desactivado';
+    }else if($estadoActual==='desactivado'){
+        $estadoNuevo='activado';
+    }
+    
+    $plato1DAO= new PlatoDAO($bd);
+    
+    $resultadoActivar=$plato1DAO->activar_desactivar($nombre, $estadoNuevo);
+    
+    if(!$resultadoActivar){
+        $error=true;
+    }
+    $response= compact('error', 'estadoNuevo');
         header('Content-type: application/json');
         echo json_encode($response);
         die;
-    }else{
-        $respuesta=$registro;
-        $activarDesactivarOn=true;
-        echo $blade->run('gestion_de_menus', compact('sesion_abierta', 'activarDesactivarOn', 'respuesta' ));
+    
+}
+else if(!empty ($_POST) && isset ($_POST['nombreBorrar'])){
+    $nombre= trim(filter_input(INPUT_POST, 'nombreBorrar', FILTER_UNSAFE_RAW));
+    $plato1DAO= new PlatoDAO($bd);
+    $error=false;
+    
+    $resultado= $plato1DAO->borrarPorNombre($nombre);
+    
+    if($resultado===false || $resultado==='No existe'){
+        $error=true;
     }
-}else{
-    echo $blade->run('gestion_de_menus', compact('sesion_abierta', 'activarDesactivarOn', 'respuesta'));
+    $response= compact('error');
+        header('Content-type: application/json');
+        echo json_encode($response);
+        die;
+}
+else{
+    echo $blade->run('gestion_de_menus', compact('sesion_abierta'));
 }
 
+
+function tabla($registro, $operacion){
+    $contenido='<table class="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>';
+    
+    
+                    if($operacion==='ver'|| $operacion==='borrar'){
+    $contenido.=        '<th>Descripción</th>';
+                    }
+                    
+                    
+    $contenido.=    '<th>Categoría</th>
+                    <th>Subcategoría</th>
+                    <th>Precio</th>
+                    <th>Estado</th>';
+    
+                    if($operacion==='activar'){
+    $contenido.=   '<th>Cambiar estado<th>';                   
+                    }else if($operacion==='borrar'){
+    $contenido.=    '<th>Eliminar plato<th>';     
+                    }
+    
+    
+    $contenido.='</tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="nombre">'.$registro->nombre.'</td>';
+    
+    
+                    if($operacion==='ver'|| $operacion==='borrar'){
+    $contenido.=        '<td id="descripcion">'.$registro->ingredientes.'</td>';
+                    }
+                    
+                    
+                    
+    $contenido.=                '<td id="categoria">'.$registro->categoria.'</td>
+                    <td id="subcategoria">'.$registro->subcategoria.'</td>
+                    <td id="precio">'.$registro->precio.'</td>
+                    <td id="estado">'.$registro->estado.'</td>';
+    
+    
+                    if($operacion==='activar'){
+    $contenido.=        '<td>
+                            <button type="button" class="boton-tabla" name="cambiar-estado" id="cambiar-estado">
+                                <div class="guardar" >Cambiar</div>
+                            </button>
+                        </td>';
+                    }else if($operacion==='borrar'){
+    $contenido.=        '<td>
+                            <button type="button" class="boton-tabla" name="borrar-plato" id="borrar-plato">
+                                <div class="guardar" >Borrar</div>
+                            </button>
+                        </td>';
+                    }
+                    
+                    
+                    
+    $contenido.=       '</tr>
+                    </tbody>
+                </table>';
+    
+    return $contenido;
+}
