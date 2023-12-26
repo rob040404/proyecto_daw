@@ -78,4 +78,12 @@ class StockDAO
             return false;
         }
     }
+    
+    function obtener_nombres(){
+        $consulta="SELECT nombre_producto FROM stock ORDER BY nombre_producto";
+        $registros= $this->bd->query($consulta);
+        $resultados=$registros->fetchAll(PDO::FETCH_OBJ);
+        return $resultados;
+         
+    }
 }

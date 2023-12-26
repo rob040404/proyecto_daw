@@ -5,10 +5,9 @@
         <group>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/src/DAO/PlatoDAO.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/js/gestion_de_menus.js</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/src/BD/data.sql</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/gestion_de_menus.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/tablas_platos.php</file>
             <file>file:/C:/xampp/htdocs/proyecto_restaurante/public/assets/css/GestinDeMenscartaAlPulsarAadir.css</file>
-            <file>file:/C:/xampp/htdocs/proyecto_restaurante/views/gestion_de_menus.blade.php</file>
         </group>
     </open-files>
 </project-private>

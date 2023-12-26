@@ -268,6 +268,24 @@ label, input, textarea
   color: var(--pink);
   
 }
+
+.boton-tabla{
+  position: relative;
+  margin: 0;
+  border-radius: 5px;
+;
+  background-color: var(--yellow);
+  width: 100%;
+  font-family: var(--font-irish-grover);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  box-sizing: border-box;
+  opacity: 0.75;
+  color: var(--pink);
+}
 .guardar-wrapper-anadir{
   position: relative;
   margin: 0;
@@ -702,6 +720,8 @@ optgroup{
     justify-content: center;
     color: var(--yellow);
     font-size: 20px;
+    table-layout: fixed;
+    border: 3px solid purple;
 }
 
 .personal {
@@ -716,7 +736,19 @@ optgroup{
     background-color: var(--color-black);
 }
 
-.th {
+th {
     -webkit-text-stroke: 1px var(--pink);
     font-size: 25px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: sandybrown;
+}
+
+tbody tr:nth-child(even) {
+  background-color: burlywood;
+}
+
+table {
+  background-color: #ff33cc;
 }
