@@ -268,6 +268,24 @@ label, input, textarea
   color: var(--pink);
   
 }
+
+.boton-tabla{
+  position: relative;
+  margin: 0;
+  border-radius: 5px;
+;
+  background-color: var(--yellow);
+  width: 100%;
+  font-family: var(--font-irish-grover);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-3xs);
+  box-sizing: border-box;
+  opacity: 0.75;
+  color: var(--pink);
+}
 .guardar-wrapper-anadir{
   position: relative;
   margin: 0;
@@ -683,4 +701,54 @@ a{
 
 optgroup{
     color: gray;
+}
+
+.tabla {
+    align-self: stretch;
+    flex: 1;
+    background-color: var(--color-black);
+    position: relative;
+    border-radius: 16px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: var(--yellow);
+    font-size: 20px;
+    table-layout: fixed;
+    border: 3px solid purple;
+}
+
+.personal {
+    background-color: var(--color-black);
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    font-family: var(--font-irish-grover);
+    padding-bottom: 200px;
+    background: url(../img/background_personal@2x.png) repeat fixed center / cover;
+    background-color: var(--color-black);
+}
+
+th {
+    -webkit-text-stroke: 1px var(--pink);
+    font-size: 25px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: sandybrown;
+}
+
+tbody tr:nth-child(even) {
+  background-color: burlywood;
+}
+
+table {
+  background-color: #ff33cc;
 }

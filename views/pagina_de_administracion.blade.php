@@ -33,9 +33,11 @@
                 <div class="texto-botones">Administracion de personal</div>
             </div>
         </a>
-        <div class="boton-carta">
-            <div class="texto-botones">Gestión de carta</div>
-        </div>
+        <a href="gestion_de_menus.php">
+            <div class="boton-carta">
+                <div class="texto-botones">Gestión de carta</div>
+            </div>
+        </a>
     </div>
 </div>
 @endsection

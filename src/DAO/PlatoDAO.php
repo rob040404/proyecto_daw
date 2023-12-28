@@ -43,7 +43,7 @@ class PlatoDAO{
         $resultadoSelect= $stm->rowCount();
         
         if($resultadoSelect==0){
-            return "No existen platos con ese nombre";
+            return "inexistente";
         }if($resultadoSelect>0){
             $consultaMod="UPDATE platos SET estado= :e WHERE nombre= :n";
             $stm2= $this->bd->prepare($consultaMod);
@@ -122,6 +122,26 @@ class PlatoDAO{
         }
     }
     
+    public function modificar_por_id($id_plato, $nom, $ing, $cat, $sub, $pre, $es){
+        $consulta1="SELECT * FROM platos WHERE id_plato=:id";
+        $stm1=$this->bd->prepare($consulta1);
+        $stm1->execute([':id'=>$id_plato]);
+        $numFilas=$stm1->rowCount();
+        if($numFilas==0){
+            return 'No existe';
+        }
+        
+        $consulta="UPDATE platos SET nombre=:n, ingredientes=:i, categoria=:c, subcategoria=:s, precio=:p, estado=:e WHERE id_plato=:id";
+        $stm= $this->bd->prepare($consulta);
+        $resultado=$stm->execute([':n'=>$nom, ':i'=>$ing, ':c'=>$cat, ':s'=>$sub, ':p'=>$pre, ':e'=>$es, ':id'=>$id_plato]);
+        
+        if($resultado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public function obtener_id($nom){
         $consultaSelect= "SELECT id_plato FROM platos WHERE nombre=:n";
         $stm=$this->bd->prepare($consultaSelect);
@@ -134,6 +154,43 @@ class PlatoDAO{
             $registro=$stm->fetch(PDO::FETCH_OBJ);
             $id=$registro->id_plato;
             return $id;
+        }
+    }
+    
+    public function buscar_por_cat($categoria){
+        if($categoria==='todos'){
+            $consulta="SELECT * FROM platos ORDER BY categoria, subcategoria, nombre";
+            $stm=$this->bd->prepare($consulta);
+            $stm->execute();
+        } else{
+            $consulta="SELECT * FROM platos WHERE categoria= :c ORDER BY categoria, subcategoria, nombre";
+            $stm=$this->bd->prepare($consulta);
+            $stm->execute([':c'=>$categoria]);
+        }
+       
+        $resultados=$stm->fetchAll(PDO::FETCH_OBJ);
+        return $resultados;
+        
+    
+    }
+    
+    public function activar_desactivar_por_id($id, $es){
+        $consultaSelect= "SELECT * FROM platos WHERE id_plato=:i";
+        $stm=$this->bd->prepare($consultaSelect);
+        $stm->execute([':i'=>$id]);
+        $resultadoSelect= $stm->rowCount();
+        
+        if($resultadoSelect==0){
+            return "inexistente";
+        }if($resultadoSelect>0){
+            $consultaMod="UPDATE platos SET estado= :e WHERE id_plato= :i";
+            $stm2= $this->bd->prepare($consultaMod);
+            $resultadoMod=$stm2->execute([':e'=>$es, ':i'=>$id]);
+            if($resultadoMod){
+                return true;
+            }else{
+                return "No se ha podido modificar el plato";
+            }
         }
     }
 }
