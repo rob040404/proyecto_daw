@@ -17,6 +17,7 @@ $cache = __DIR__ . '/../cache';
 $blade = new BladeOne($views, $cache);
 
 set_exception_handler(function ($exception) use ($blade) {
+    error_log($exception);
     echo $blade->run('error', compact('exception'));
     exit;
 });
