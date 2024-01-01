@@ -47,7 +47,7 @@ create table if not exists pedidos(
     id_pedido INT auto_increment primary key,
     mesa INT,
     estado_pedido enum("Pendiente", "Confirmado", "Completado"),
-    fecha_pedido DATETIME,
+    fecha_hora_pedido DATETIME,
     id_reserva INT NOT NULL,
     FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva) ON DELETE CASCADE
 )
