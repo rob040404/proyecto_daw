@@ -29,15 +29,15 @@ VALUES
 
 INSERT INTO `platos` (`id_plato`, `nombre`, `ingredientes`, `categoria`, `subcategoria`, `precio`, `estado`) VALUES
 (43, 'enchiladas de pollo rojas', 'Tres flautas de maíz rellenas de pollo bañadas en ricas salsas cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'activado'),
-(44, 'enchiladas de pollo verdes', 'Tres flautas de maíz con pollo bañadas en rica salsa y cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'desactivad'),
+(44, 'enchiladas de pollo verdes', 'Tres flautas de maíz con pollo bañadas en rica salsa y cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'desactivado'),
 (47, 'enchiladas de pollo de mole', 'Tres flautas de maíz rellenas de pollo bañadas en rica salsa y cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'activado'),
 (48, 'nachos', 'Totopos de maíz, totopos refritos, delicioso queso fundido y pico de gallo', 'entrante', 'nachos', '7.90', 'activado'),
 (49, 'fajitas de pollo', 'Tiras de pollo adobadas con verduras a la plancha', 'principal', 'fajitas', '11.90', 'activado'),
 (50, 'tacos al pastor', 'Carne de cerdo adobada en trompo. Adobada con chile, especias, cilantro y piña', 'principal', 'tacos', '12.50', 'activado'),
-(51, 'tarta de limón', 'Deliciosa tarta de limón a base de galleta, con merengue', 'postre', 'nachos', '6.90', 'activado'),
+(51, 'tarta de limón', 'Deliciosa tarta de limón a base de galleta, con merengue', 'postre', 'tartas', '6.90', 'activado'),
 (52, 'sorbete de limón y tequila', 'Acaba con un refrescante y alegre sorbete', 'postre', 'sorbetes', '6.90', 'activado'),
 (53, 'margarita frozen', 'Tequila, triple seco, limón fresco. Jarra de 1L', 'bebida', 'margaritas', '23.95', 'activado'),
-(54, 'café con leche', '', 'bebida', 'cafe', '2.95', 'activado');
+(54, 'café con leche', '', 'bebida', 'cafes', '2.95', 'activado');
 
 
 --

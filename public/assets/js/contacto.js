@@ -3,6 +3,7 @@ console.log("¡¡js contacto funciona!!");
 
 function iniciar(){
     $('#enviar-contacto').click(comprobar);
+    puntero();
 }
 
 
@@ -87,4 +88,11 @@ function limpiarInputs(){
     document.getElementById('telefono').value=""; 
     document.getElementById('asunto').value="";
     document.getElementById('mensaje').value="";
+}
+function puntero(){
+    var bot=document.getElementsByClassName('bot');
+    for(let i=0; i<bot.length; i++){
+       bot[i].style.cursor='pointer';
+    }
+    
 }

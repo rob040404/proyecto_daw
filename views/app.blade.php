@@ -33,7 +33,7 @@
         </div>
         <div class="contacto">
           <img class="sign-3-icon" alt="" src="../public/assets/img/sign-3@2x.png" />
-          <div class="trabajo1 menu"><a href="trabaja_con_nosotros.php">TRABAJO</a></div>
+          <div class="trabajo1 menu"><a href="trabaja_con_nosotros.php">EMPLEO</a></div>
         </div>
       </div>
       <div class="botones-izq">

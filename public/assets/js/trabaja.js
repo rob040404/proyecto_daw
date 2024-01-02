@@ -3,6 +3,7 @@ $(document).ready(iniciar);
 
 function iniciar(){
     document.getElementById('form-trabaja').addEventListener('submit', comprobar);
+    puntero();
 }
 
 
@@ -95,4 +96,12 @@ function limpiarInputs(){
     document.getElementById('telefono').value=""; 
     
     document.getElementById('mensaje').value="";
+}
+
+function puntero(){
+    var bot=document.getElementsByClassName('bot');
+    for(let i=0; i<bot.length; i++){
+       bot[i].style.cursor='pointer';
+    }
+    
 }

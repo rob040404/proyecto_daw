@@ -39,18 +39,18 @@
                         <div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>
                         <label for="mensaje" class="texto-gm etiqueta-der elemento-form-der">Adjunta tu currículum: </label><br>
                         
-                        <input type="file" accept=".pdf" class="elemento-form-der guardar" name="archivo" id="archivo"/>
+                        <input type="file" accept=".pdf" class="elemento-form-der guardar bot" name="archivo" id="archivo"/>
                         <div id="error-fichero" class="error-form etiqueta-der elemento-form-der"></div>
                        <div class="contenedor-precio-estado">
                             <div class="subcontenedor-precio">
-                                <button type="reset" class="guardar-wrapper-trabaja elemento-form-der">
+                                <button type="reset" class="guardar-wrapper-trabaja elemento-form-der bot">
                                     <div class="guardar" name="reset" id="reset">Limpiar</div>
                                 </button>
                             </div>
                            
                             <div class="subcontenedor-estado">
                                 
-                                <button type="submit" class="guardar-wrapper-trabaja elemento-form-der" id="enviar-trabaja">
+                                <button type="submit" class="guardar-wrapper-trabaja elemento-form-der bot" id="enviar-trabaja">
                                     <div class="guardar" name="enviar-trabaja" id="enviar-trabaja">Enviar</div>
                                 </button>
                                 

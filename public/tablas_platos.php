@@ -109,19 +109,19 @@ function tabla_larga($registro, $operacion){
     
                     if($operacion==='activar'){
     $contenido.=        '<td id="accion'.$reg->id_plato.'">
-                            <button type="button" class="guardar-wrapper boton-tabla boton-cambiar" name="cambiar-estado" data-id="'.$reg->id_plato.'">
+                            <button type="button" class="guardar-wrapper boton-tabla boton-cambiar bot" name="cambiar-estado" data-id="'.$reg->id_plato.'">
                                 <div class="guardar" data-id="'.$reg->id_plato.'" >Cambiar</div>
                             </button>
                         </td>';
                     }else if($operacion==='borrar'){
     $contenido.=        '<td id="accion'.$reg->id_plato.'">
-                            <button type="button" class="guardar-wrapper boton-tabla boton-borrar1" name="cambiar-estado" data-id="'.$reg->id_plato.'">
+                            <button type="button" class="guardar-wrapper boton-tabla boton-borrar1 bot" name="cambiar-estado" data-id="'.$reg->id_plato.'">
                                 <div class="guardar" data-id="'.$reg->id_plato.'" >Borrar</div>
                             </button>
                         </td>';
                     }else if($operacion==='modificar'){
     $contenido.=        '<td id="accion'.$reg->id_plato.'">
-                            <button type="button" class="boton-tabla boton-modificar" name="mod-plato" data-id="'.$reg->id_plato.'">
+                            <button type="button" class="boton-tabla boton-modificar bot" name="mod-plato" data-id="'.$reg->id_plato.'">
                                 <div class="guardar" data-id="'.$reg->id_plato.'">Modificar</div>
                             </button>
                         </td>';

@@ -45,4 +45,28 @@ class RestarDAO
         }
         
     }
+    
+    function ingredientesDelPlato($id_plato){
+        $consulta="SELECT * FROM restar WHERE id_plato=:i";
+        $stm=$this->bd->prepare($consulta);
+        $stm->execute([':i'=>$id_plato]);
+        $numFilas=$stm->rowCount();
+        
+        if($numFilas===0){
+            return false;
+        }else{
+            $resultados= $stm->fetchAll(PDO::FETCH_OBJ);
+            return $resultados;
+        }
+        
+    }
+    
+    function borrar($id_plato){
+        $consulta= 'DELETE FROM restar WHERE id_plato= :id_plato';
+        $stm= $this->bd->prepare($consulta);
+        $resultado= $stm->execute([':id_plato'=>$id_plato]);
+        
+        return $resultado;
+        
+    }
 }
