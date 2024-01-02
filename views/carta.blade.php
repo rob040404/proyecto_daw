@@ -10,49 +10,94 @@
     <div class="contenido-carta">
         <div class="descripcion-carta">
             <h1>NUESTRA CARTA</h1>
-            ¡Nuestro restaurante mexicano es como un viaje express a México, sin
-            necesidad de pasaporte ni maletas! Te servimos tacos que hacen vibrar
-            tus papilas gustativas y margaritas que hacen vibrar tu felicidad. ¡Ven
-            a disfrutar de una fiesta de sabor con mariachis en tu plato!"
+            ¡Bienvenidos al auténtico sabor de México! En nuestro restaurante, te invitamos a deleitar tu paladar con una exquisita 
+            selección de platos tradicionales mexicanos, elaborados con ingredientes frescos y sabores vibrantes que te transportarán 
+            directamente a las calles de México. Desde los clásicos tacos y enchiladas hasta nuestros famosos guacamoles y margaritas, 
+            cada bocado es una experiencia única llena de autenticidad y pasión por la cocina mexicana. ¡Disfruta de una aventura culinaria 
+            que celebra la riqueza y diversidad de la gastronomía de México en cada plato!
+
          </div>
 
         <div class="borde-amarillo-carta">
             <h1 class="encabezado-entrantes">ENTRANTES</h1>
-            <h3 class="encabezado-entrantes">ENCHILADAS</h3>
+            
             @php
+                $enchiladasExiste=false;
                 foreach($entrantes as $entrante){
                     if($entrante->subcategoria==='enchiladas' && $entrante->estado==='activado'){
-                        echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
-                            '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        $enchiladasExiste=true;       
                     }
                 }
+                if($enchiladasExiste===true){
+                    echo '<h3 class="encabezado-entrantes">ENCHILADAS</h3>';
+                    foreach($entrantes as $entrante){
+                        if($entrante->subcategoria==='enchiladas' && $entrante->estado==='activado'){
+                            echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
+                                '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        }
+                    }
+                }
+                
             @endphp
-            <h3 class="encabezado-entrantes">FLAUTAS</h3>
+            
             @php
+                $flautasExiste=false;
                 foreach($entrantes as $entrante){
                     if($entrante->subcategoria==='flautas' && $entrante->estado==='activado'){
-                        echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
-                            '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        $flautasExiste=true;       
                     }
                 }
+                
+                if($flautasExiste===true){
+                    echo '<h3 class="encabezado-entrantes">FLAUTAS</h3>';
+                    foreach($entrantes as $entrante){
+                        if($entrante->subcategoria==='flautas' && $entrante->estado==='activado'){
+                            echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
+                                '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        }
+                    }
+                }
+                
             @endphp
-            <h3 class="encabezado-entrantes">NACHOS</h3>
+            
             @php
+                $nachosExiste=false;
                 foreach($entrantes as $entrante){
                     if($entrante->subcategoria==='nachos' && $entrante->estado==='activado'){
-                        echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
-                            '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        $nachosExiste=true;       
                     }
                 }
+                
+                if($nachosExiste===true){
+                    echo '<h3 class="encabezado-entrantes">NACHOS</h3>';
+                    foreach($entrantes as $entrante){
+                        if($entrante->subcategoria==='nachos' && $entrante->estado==='activado'){
+                            echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
+                                '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        }
+                    }
+                }
+                
             @endphp
-            <h3 class="encabezado-entrantes">QUESOS</h3>
+            
             @php
+                $quesosExiste=false;
                 foreach($entrantes as $entrante){
                     if($entrante->subcategoria==='quesos' && $entrante->estado==='activado'){
-                        echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
-                            '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        $quesosExiste=true;       
                     }
                 }
+                
+                if($quesosExiste===true){
+                echo '<h3 class="encabezado-entrantes">QUESOS FUNDIDOS</h3><p><u>SE ACOMPAÑAS DE PICO DE GALLO Y TRES TORTITAS DE TRIGO O MAÍZ</u></p>';
+                    foreach($entrantes as $entrante){
+                        if($entrante->subcategoria==='quesos' && $entrante->estado==='activado'){
+                            echo '<p><h4 class="nombre-entrante">'.strtoupper($entrante->nombre).
+                                '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
+                        }
+                    }
+                }
+                
             @endphp
             
             @php
@@ -79,57 +124,116 @@
         </div>
         <div class="borde-rojo-carta">
             <h1 class="encabezado-principales">PRINCIPALES</h1>
-            <h3 class="encabezado-principales">TACOS</h3>
+            
             @php
+                $tacosExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='tacos' && $principal->estado==='activado'){
-                        echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
-                            '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        $tacosExiste=true;       
+                    }
+                }
+                
+                if($tacosExiste===true){
+                    echo '<h3 class="encabezado-principales">TACOS</h3>';
+                    foreach($principales as $principal){
+                        if($principal->subcategoria==='tacos' && $principal->estado==='activado'){
+                            echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
+                                '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-principales">FAJITAS</h3>
+            
             @php
+                $fajitasExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='fajitas' && $principal->estado==='activado'){
-                        echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
-                            '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        $fajitasExiste=true;       
+                    }
+                }
+                
+                if($fajitasExiste===true){
+                    echo '<h3 class="encabezado-principales">FAJITAS</h3>';
+                    foreach($principales as $principal){
+                        if($principal->subcategoria==='fajitas' && $principal->estado==='activado'){
+                            echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
+                                '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-principales">ENSALADAS</h3>
+            
             @php
+                $ensaladasExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='ensaladas' && $principal->estado==='activado'){
-                        echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
-                            '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        $ensaladasExiste=true;       
+                    }
+                }
+                
+                if($ensaladasExiste===true){
+                    echo '<h3 class="encabezado-principales">ENSALADAS</h3>';
+                    foreach($principales as $principal){
+                        if($principal->subcategoria==='ensaladas' && $principal->estado==='activado'){
+                            echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
+                                '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-principales">QUESADILLAS</h3>
+            
             @php
+                $quesadillasExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='quesadillas' && $principal->estado==='activado'){
-                        echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
-                            '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        $quesadillasExiste=true;       
+                    }
+                }
+                
+                if($quesadillasExiste===true){
+                echo '<h3 class="encabezado-principales">QUESADILLAS</h3><p><u>UNA TORTITA RELLENA DE QUESO FUNDIDO Y...</u></p>';
+                    foreach($principales as $principal){
+                        if($principal->subcategoria==='quesadillas' && $principal->estado==='activado'){
+                            echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
+                                '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-principales">GRINGAS</h3>
+            
             @php
+                $gringasExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='gringas' && $principal->estado==='activado'){
-                        echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
-                            '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        $gringasExiste=true;       
+                    }
+                }
+                if($gringasExiste===true){
+                    echo '<h3 class="encabezado-principales">GRINGAS</h3>';
+                    foreach($principales as $principal){
+                        if($principal->subcategoria==='gringas' && $principal->estado==='activado'){
+                            echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
+                                '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-principales">DE CUCHARA</h3>
+            
             @php
+                $cucharaExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='cuchara' && $principal->estado==='activado'){
-                        echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
-                            '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        $cucharaExiste=true;       
+                    }
+                }
+                
+                if($cucharaExiste===true){
+                    echo '<h3 class="encabezado-principales">DE CUCHARA</h3>';
+                    foreach($principales as $principal){
+                        if($principal->subcategoria==='cuchara' && $principal->estado==='activado'){
+                            echo '<p><h4 class="nombre-principales">'.strtoupper($principal->nombre).
+                                '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
@@ -157,30 +261,61 @@
         </div>
         <div class="borde-azul-carta">
             <h1 class="encabezado-postres">POSTRES</h1>
-            <h3 class="encabezado-postres">TARTAS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($postres as $postre){
                     if($postre->subcategoria==='tartas' && $postre->estado==='activado'){
-                        echo '<p><h4 class="nombre-postres">'.strtoupper($postre->nombre).
-                            '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-postres">TARTAS</h3>';
+                    foreach($postres as $postre){
+                        if($postre->subcategoria==='tartas' && $postre->estado==='activado'){
+                            echo '<p><h4 class="nombre-postres">'.strtoupper($postre->nombre).
+                                '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-postres">SORBETES</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($postres as $postre){
                     if($postre->subcategoria==='sorbetes' && $postre->estado==='activado'){
-                        echo '<p><h4 class="nombre-postres">'.strtoupper($postre->nombre).
-                            '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-postres">SORBETES</h3>';
+                    foreach($postres as $postre){
+                        if($postre->subcategoria==='sorbetes' && $postre->estado==='activado'){
+                            echo '<p><h4 class="nombre-postres">'.strtoupper($postre->nombre).
+                                '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-postres">HELADOS</h3>
+            
             @php
+            
+                $platoExiste=false;
                 foreach($postres as $postre){
                     if($postre->subcategoria==='helados' && $postre->estado==='activado'){
-                        echo '<p><h4 class="nombre-postres">'.strtoupper($postre->nombre).
-                            '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-postres">HELADOS</h3>';
+                    foreach($postres as $postre){
+                        if($postre->subcategoria==='helados' && $postre->estado==='activado'){
+                            echo '<p><h4 class="nombre-postres">'.strtoupper($postre->nombre).
+                                '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
+                        }
                     }
                 }
             @endphp
@@ -207,120 +342,250 @@
         </div>
         <div class="borde-verde-carta">
             <h1 class="encabezado-bebidas">BEBIDAS</h1>
-            <h3 class="encabezado-bebidas">REFRESCOS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='refrescos' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">REFRESCOS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='refrescos' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">ZUMOS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='zumos' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">ZUMOS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='zumos' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">LIMONADAS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='limonadas' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">LIMONADAS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='limonadas' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">CAFÉS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='cafes' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">CAFES</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='cafes' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">CERVEZAS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='cervezas' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">CERVEZAS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='cervezas' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">VINOS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='vinos' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">VINOS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='vinos' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">TEQUILAS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='tequilas' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">ZUMOS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='tequilas' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">GINEBRA</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='ginebra' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
                     }
                 }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">GINEBRA</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='ginebra' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
+                    }
+                }    
             @endphp
-            <h3 class="encabezado-bebidas">RON</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='ron' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
                     }
                 }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">RON</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='ron' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
+                    }
+                }    
             @endphp
-            <h3 class="encabezado-bebidas">WHISKY</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='whisky' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
                     }
                 }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">WHISKY</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='whisky' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
+                    }
+                }    
             @endphp
-            <h3 class="encabezado-bebidas">MARGARITAS</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='margaritas' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">MARGARITAS</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='margaritas' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">MEZCALES</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='mezcales' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">MEZCALES</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='mezcales' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
-            <h3 class="encabezado-bebidas">COCTELES</h3>
+            
             @php
+                $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='cocteles' && $bebida->estado==='activado'){
-                        echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
-                            '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        $platoExiste=true;       
+                    }
+                }
+                
+                if($platoExiste===true){
+                    echo '<h3 class="encabezado-bebidas">COCTELES</h3>';
+                    foreach($bebidas as $bebida){
+                        if($bebida->subcategoria==='cocteles' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
+                        }
                     }
                 }
             @endphp
@@ -334,9 +599,9 @@
                 if($otroExiste===true){
                     echo '<h3 class="encabezado-bebidas">OTROS</h3>';
                     foreach($bebidas as $bebida){
-                        if($bebidas->subcategoria==='otro' && $bebida->estado==='activado'){
-                            echo '<p><h4 class="nombre-postres">'.strtoupper($bebida->nombre).
-                                '</h4>'.$bebida->ingredientes.'<br>'.$bebida->precio.'€<br>';           
+                        if($bebida->subcategoria==='otro' && $bebida->estado==='activado'){
+                            echo '<p><h4 class="nombre-bebidas">'.strtoupper($bebida->nombre).
+                                '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
                         }
                     }
                 }

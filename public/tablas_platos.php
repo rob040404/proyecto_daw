@@ -87,6 +87,8 @@ function tabla_larga($registro, $operacion){
     $contenido.=   '<th>Cambiar estado</th>';                   
                     }else if($operacion==='borrar'){
     $contenido.=    '<th>Eliminar plato</th>';     
+                    }else if($operacion==='modificar'){
+    $contenido.=    '<th>Acción</th>';     
                     }
                     
     $contenido.='</tr>

@@ -40,7 +40,7 @@ function busqueda_nombre(){
     ajax_buscar(categoria);
 }
 
-//Función para buscar plato/s a través del mismo formulario, pero teniendo en cuenta para qué: modificar, borra, cambiara estado, ver
+//Función para buscar plato/s a través del mismo formulario, pero teniendo en cuenta para qué: modificar, borrar, cambiar estado, ver platos
 function form_buscar(operacion, titulo){
     limpiar_containers();
     var contenido='<p><br><br><br></p>'+
@@ -80,7 +80,12 @@ function form_buscar(operacion, titulo){
     
 }
 
-//Función para pasar los datos del formulario al servidor. Para que el sevidor busque en la BD el plato correspondiente y dvuelva sus valores
+/*
+ * Función para pasar los datos del formulario al servidor. Para que el sevidor busque en la BD el plato correspondiente y dvuelva sus valores
+
+ * @param {type} por_categoria, sel le pasa si se está buscando el plato por nombre o por categoría
+ * 
+ */
 function ajax_buscar(por_categoria){
     var nom= $('#nombreBuscar').val();
     var operacion= $('#operacion').val();
@@ -105,23 +110,24 @@ function ajax_buscar(por_categoria){
                      $('#intro-correcta').html('');
                      $('#intro-incorrecta').html('');
                      $('#intro-incorrecta').html('No se ha encontrado ningún plato con ese nombre');
-                }else if(response.operacion==='activar'){ //Sin error, y la operación es activar
+                }else if(response.operacion==='activar'){ //la operación es activar/desactivar plato
                      $('#intro-incorrecta').html('');
-                     $('#intro-correcta').html(response.fila); //Imprimimos tabla de una fila con los datos del platos, con botón cambiar-estado
+                     $('#intro-correcta').html(response.fila); //Imprimimos tabla de una fila o varias con los datos del platos, con botón cambiar-estado
                      puntero();
                      //En esa fila, al pulsar 'cambiar-estado', vamos a ejecutar el ajax siguiente
                      document.getElementById('cambiar-estado').addEventListener('click', ajax_cambiar_estado);
                      $('.boton-cambiar').click(ajax_cambiar_por_tabla);
-                }else if(response.operacion==='ver'){ //Sin error y la operación es ver
+                }else if(response.operacion==='ver'){ //operación es ver platos
                      $('#intro-incorrecta').html('');
-                     $('#intro-correcta').html(response.fila); //Imprimimos tabla de una fila con los datos del plato, sin ningún botón
+                     $('#intro-correcta').html(response.fila); //Imprimimos tabla de una fila o varia con los datos del plato, sin ningún botón
                      
-                }else if(response.operacion==='borrar'){ //Sin error y la operación es borrar
+                }else if(response.operacion==='borrar'){ //la operación es borrar
                      $('#intro-incorrecta').html('');
-                     $('#intro-correcta').html(response.fila);//Imprimimos tabla de una fila con los datos del plato, con botón borrar
+                     $('#intro-correcta').html(response.fila);//Imprimimos tabla de una fila o varias con los datos del plato, con botón borrar
                      puntero();
-                     //Al pulsar el botón 'borrar-plato' activamos el ajax siguiente
+                     //Al pulsar el botón 'borrar-plato' activamos el ajax siguiente, solo en caso de que se haya buscado por nombre (una fila)
                      document.getElementById('borrar-plato').addEventListener('click', ajax_borrar_plato);
+                     //En caso de que se haya buscado por categoría (se ha impreso tabla de varias filas
                      $('.boton-borrar1').click(ajax_borrar_por_tabla);
                 }else if(response.operacion==='modificar' && !response.fila){//Sin error y la operación es modificar y busqueda por nombre
                      $('#intro-incorrecta').html('');
@@ -130,8 +136,8 @@ function ajax_buscar(por_categoria){
                       * Llamamos la función form_modificar para imprimir el formulario para la modificación con los campos rellenos con los datos
                       * de los platos que en ese momento constan en la BD
                       */
-                     $('#contenedor_opciones2').html(form_modificar(response.id_plato, response.nom, response.des, response.pre, response.ingredientes));
-                     
+                    var form= form_modificar(response.id_plato, response.nom, response.des, response.pre, response.ingredientes)
+                    document.getElementById('contenedor_opciones').innerHTML=form;
                      //Controlamos que las opciones 'selected' sean las que están en la BD actualmente, en Categoría y en Estado
                      if(response.cat==='entrante'){
                             document.getElementById('entrante').setAttribute('selected', 'selected');
@@ -161,10 +167,11 @@ function ajax_buscar(por_categoria){
                          }
                      }
                     
+                    //En caso de que el plato tenga asociados ingredientes en la tabla restar
                     if(response.arrayCantidadesIng && response.arrayNombresIng){
                         var boxes=document.getElementsByClassName('box');
                         var uds=document.getElementsByClassName('rectangulo-unidades');
-
+                        //Buscamos qué ingredientes del plato coinciden en la lista de todos los ingredientes, para dejarlos seleccionado en el form
                         for(let i=0; i<boxes.length; i++){
                             for(let j=0; j<response.arrayNombresIng.length; j++){
                                 if(boxes[i].id===response.arrayNombresIng[j]){
@@ -176,7 +183,7 @@ function ajax_buscar(por_categoria){
                     }
                     
                     
-                    document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones2').html('');});
+                    document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones').html('');});
                     
                     /**
                      * Una vez bien impreso el formulario de modificación, al dar al botón 'mod', activamos el ajax para modificar el plato 
@@ -185,7 +192,7 @@ function ajax_buscar(por_categoria){
                     document.getElementById('mod').addEventListener('click', ajax_modificar);
                     document.getElementById('categoria').addEventListener('change', obtener_categoria); //Al cambiar de categoría, cambia las subcategorías
                     puntero();
-                }else if(response.operacion==='modificar' && response.fila){
+                }else if(response.operacion==='modificar' && response.fila){ //operación modificar y se ha seleccionado el plato por la tabla
                     $('#intro-correcta').html(response.fila);
                     puntero();
                     
@@ -206,8 +213,8 @@ function ajax_buscar(por_categoria){
                             datatype: 'json',
                             success: function(response){
                                 if(response.ingredientes){
-                                    $('#contenedor_opciones2').html(form_modificar(idModPorTabla, nombre, descripcion, precio, response.ingredientes));
-                                
+                                    var form= form_modificar(idModPorTabla, nombre, descripcion, precio, response.ingredientes);
+                                    document.getElementById('contenedor_opciones').innerHTML=form;
                                     //Controlamos que las opciones 'selected' sean las que están en la BD actualmente, en Categoría y en Estado
                                     if(categoria==='entrante'){
                                            document.getElementById('entrante').setAttribute('selected', 'selected');
@@ -252,7 +259,7 @@ function ajax_buscar(por_categoria){
                                    }
                                    
 
-                                    document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones2').html('');});
+                                    document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones').html('');});
 
                                     /**
                                      * Una vez bien impreso el formulario de modificación, al dar al botón 'mod', activamos el ajax para modificar el plato 
@@ -356,19 +363,19 @@ function ajax_modificar(){
                 
                 if(response.inexistente){//Si el plato puesto no existe, aunque en teoría no debe darse ese caso
                     //$('#ing-incorrectos').html('');
-                    $('#contenedor_opciones2').html('');
+                    $('#contenedor_opciones').html('');
                     $('#intro-incorrecta').html('');
                     $('#intro-correcta').html('');
                     $('#intro-incorrecta').html('Este plato no existe');
                 }else if(response.errores){//Si no se ha hecho la inserción
                     //$('#ing-incorrectos').html('');
-                    $('#contenedor_opciones2').html('');
+                    $('#contenedor_opciones').html('');
                     $('#intro-incorrecta').html('');
                     $('#intro-correcta').html('');
                     $('#intro-incorrecta').html('No se ha podido modificar el plato');
                 }else{
                     //$('#ing-incorrectos').html('');
-                    $('#contenedor_opciones2').html('');
+                    $('#contenedor_opciones').html(form_buscar('modificar', 'Modificar plato'));
                     $('#intro-incorrecta').html('');
                     $('#intro-correcta').html('Plato actualizado con éxito');
                     limpiar_campos_anadir();
@@ -401,6 +408,11 @@ function ajax_borrar_plato(){
         });
     }
 }
+/*
+ * Función para borrar un plato de la BD, cuando se ha buscado por tabla
+ * @param {type} e, recoge el elemento causante del evento
+ * 
+ */
 function ajax_borrar_por_tabla(e){
     const idBorrarPorTabla= e.target.dataset.id;
     //const estado=$(`#estado${idBorrarPorTabla}`).html(); 
@@ -423,7 +435,7 @@ function ajax_borrar_por_tabla(e){
     });
 }
 
-//Función de ajax para cambiar el estado de un plato
+//Función de ajax para cambiar el estado de un plato (activado/desactivado)
 function ajax_cambiar_estado(){
     var est= $('#estado').html();
     var nom= $('#nombre').html();
@@ -441,6 +453,11 @@ function ajax_cambiar_estado(){
         });
     }
 }
+/*
+ * Función para cambiar el estado de un plato, cuando se ha buscado por tabla
+ * @param {type} e, recoge el elemento causante del evento
+ * 
+ */
 function ajax_cambiar_por_tabla(e){
     const idCambiarPorTabla= e.target.dataset.id;
     const estado=$(`#estado${idCambiarPorTabla}`).html(); 
@@ -527,7 +544,7 @@ function form_modificar(id_plato, nom, des, pre, ingredientes){
                
                 '<div class="conteiner-ingredientes">';
                 for(let i=0; i<ingredientes.length; i++){
-                    if(i===0 || i===6 || i===12 || i===18|| i===24 || i===30){
+                    if(i===0 || i===15 || i===30 || i===45|| i===60 || i===75){
                         contenido+=' <p>';
                     }
                     contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
@@ -623,7 +640,7 @@ function form_anadir(ingredientes){
                 '<div class="conteiner-ingredientes">';
         
         for(let i=0; i<ingredientes.length; i++){
-            if(i===0 || i===6 || i===12 || i===18|| i===24 || i===30){
+            if(i===0 || i===15 || i===30 || i===45|| i===60 || i===75){
                 contenido+=' <p>';
             }
             contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
@@ -674,7 +691,7 @@ function obtener_stock(){
     });
 }
 
-//Función para obtener los ingredientes seleccionado para el plato a añadir, y sus cantidades en unidades
+//Función para obtener los ingredientes seleccionados para el plato a añadir, y sus cantidades en unidades
 function obtener_ingredientes(){
     var arrayIngredientes= new Array();
     var errorUds=false;
@@ -841,7 +858,7 @@ function obtener_categoria(){
     var sub_postre= '<label for="subcategoria" class="texto-gm elemento-form-der">Sub-categoría:</label><br>'+
                             '<select type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der bot">'+
                                 '<option value="no" class="bot" selected>Seleccionar una opción</option>'+
-                                '<option value="tarta" class="bot">Tartas</option>'+
+                                '<option value="tartas" class="bot">Tartas</option>'+
                                 '<option value="sorbetes" class="bot">Sorbetes</option>'+
                                 '<option value="helados" class="bot">Helados</option>'+
                                 '<option value="otro" class="bot">Otro</option>'+
@@ -889,7 +906,7 @@ function obtener_categoria(){
     puntero();
     
 }
-
+//Función para que se ponga el cursor de la manita a las hora de ponerlo sobre un elemento.
 function puntero(){
     var bot=document.getElementsByClassName('bot');
     for(let i=0; i<bot.length; i++){

@@ -18,7 +18,7 @@
         <a href="#modificar"><button class="boton-activar bot" type="button" name="desplegar-activar" id="desplegar-activar">
           <div class="texto-gm">
             <p class="activardesactivar">Activar/desactivar</p>
-            <p class="activardesactivar">producto</p>
+            <p class="activardesactivar">plato</p>
           </div>
             </button></a>
         <a href="#modificar"><button class="boton-borrar bot" type="button" name="desplegar-borrar" id="desplegar-borrar">

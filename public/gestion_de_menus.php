@@ -45,7 +45,10 @@ if (isset($_SESSION['empleado'])) {
     exit;
 }
 
-//Recibe la señal por ajax para obtener todos los ingredientes de stock para luego pasarlos al cliente e imprimirlos en el formulario añadir y puedan ser seleccionados
+/*
+ * Recibe la señal por ajax para obtener todos los ingredientes de stock para luego pasarlos al cliente e 
+ * imprimirlos en el formulario añadir y puedan ser seleccionados
+ */
 if(!empty($_POST) && isset($_POST['obtenerStock'])){
     $rescepcion=trim(filter_input(INPUT_POST, 'obtenerStock', FILTER_UNSAFE_RAW));
     $ingredientes= array();
@@ -120,7 +123,10 @@ else if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']
     echo json_encode($response);
     die;
 }
-//Recibe detos por ajax para buscar un plato por nombre. Viene del ajax, donde se le pasa el nombre del plato
+/*
+ * Recibe detos por ajax para buscar un plato por nombre. Viene del ajax, donde se le pasa el nombre del plato y 
+ * qué clase de operación se quiere realizar
+ */
 else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_categoria'])){
     $nombre=trim(filter_input(INPUT_POST, 'nombreBuscar', FILTER_UNSAFE_RAW));
     $operacion=trim(filter_input(INPUT_POST, 'operacion', FILTER_UNSAFE_RAW));
@@ -151,7 +157,7 @@ else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_catego
     
     if($registro===false){
         $error=true;
-    } else if(!$por_categoria){
+    } else if(!$por_categoria){             //Si la petición viene de búsqueda por nombre
         $id_plato=$registro->id_plato;
         $nom=$registro->nombre;
         $des=$registro->ingredientes;
@@ -190,7 +196,7 @@ else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_catego
             }
             
         }
-    }else if($por_categoria===true){
+    }else if($por_categoria===true){                //Si la petición viene de la tabla de elección por categoría
         $fila= tabla_larga($registro, $operacion);
     }
     
@@ -199,6 +205,10 @@ else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_catego
     echo json_encode($response);
     die;
 }
+/*
+ * Petición ajax para obtener los ingredientes de un plato concreto y mandarlos al cliente, además de toda la lista de ingrediente,
+ * para poder imprimirlos en el formulario del cliente
+ */
 else if(!empty ($_POST) && isset ($_POST['obtenerIngredientes']) && isset ($_POST['id_plato'])){
     $id_plato= trim(filter_input(INPUT_POST, 'id_plato', FILTER_UNSAFE_RAW));
     $ingredientes=array();
@@ -235,7 +245,7 @@ else if(!empty ($_POST) && isset ($_POST['obtenerIngredientes']) && isset ($_POS
     die;
     
 }
-//Recibe datos del ajax para modificar
+//Recibe datos del ajax para modificar un plato
 else if(!empty($_POST) && isset($_POST['id_platoMod']) && isset($_POST['nombreMod']) && isset($_POST['descripcionMod']) && isset($_POST['categoriaMod']) && isset($_POST['precioMod']) && isset($_POST['estadoMod'])){
     $id_plato=trim(filter_input(INPUT_POST, 'id_platoMod', FILTER_UNSAFE_RAW));
     $nombre=trim(filter_input(INPUT_POST, 'nombreMod', FILTER_UNSAFE_RAW));
@@ -270,6 +280,7 @@ else if(!empty($_POST) && isset($_POST['id_platoMod']) && isset($_POST['nombreMo
     }else if($resultado===false){
         $errores=true;
     }else if($ingredientes!==false){
+        //actualizamos los datos de la tabla restar eliminando las filas que tiene ese plato e insertando las seleccionadas actualmente
         $resultadoBorrar=$restar1DAO->borrar($id_plato);
         $id_plato=$plato1DAO->obtener_id($plato1->getNombre());
         if($ingredientes!=='vacio'){
@@ -297,7 +308,7 @@ else if(!empty($_POST) && isset($_POST['id_platoMod']) && isset($_POST['nombreMo
     
     
 }
-//Recibe datos del ajax para cambiar de estado de los platos
+//Recibe datos del ajax para cambiar de estado de los platos (activado/desactivado). De eso depende si se mostrará en la carta o no
 else if(!empty ($_POST) && isset ($_POST['estadoCambiar']) && isset ($_POST['nombreCambiar'])){
     $estadoActual= trim(filter_input(INPUT_POST, 'estadoCambiar', FILTER_UNSAFE_RAW));
     $nombre=trim(filter_input(INPUT_POST, 'nombreCambiar', FILTER_UNSAFE_RAW));
@@ -322,6 +333,9 @@ else if(!empty ($_POST) && isset ($_POST['estadoCambiar']) && isset ($_POST['nom
         die;
     
 }
+/*
+ * Recibe petición ajax para activar7desactivar un plato, pero la recepción viene de búsqueda por tabla del cliente
+ */
 else if(!empty ($_POST) && isset ($_POST['idCambiarPorTabla'])){
     $id=trim(filter_input(INPUT_POST, 'idCambiarPorTabla', FILTER_UNSAFE_RAW));
     $plato1DAO= new PlatoDAO($bd);
@@ -366,6 +380,7 @@ else if(!empty ($_POST) && isset ($_POST['nombreBorrar'])){
         echo json_encode($response);
         die;
 }
+//Recibe petición ajax para borrar un plato de la BD, pero la recibe por búsqueda por tabla del cliente
 else if(!empty ($_POST) && isset ($_POST['idBorrarPorTabla'])){
     $id= trim(filter_input(INPUT_POST, 'idBorrarPorTabla', FILTER_UNSAFE_RAW));
     $plato1DAO= new PlatoDAO($bd);
