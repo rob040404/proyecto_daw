@@ -18,7 +18,8 @@ $dotenv->load();
 header('Content-type: application/json');
 
 set_exception_handler(function ($exception) {
-    echo json_encode(["resultado" => false, "mensaje" => "Error: " . $exception->getMessage()]);
+    error_log($exception);
+    echo json_encode(["resultado" => false, "mensaje" => "Error: " . $exception->getCode()]);
     exit;
 });
 

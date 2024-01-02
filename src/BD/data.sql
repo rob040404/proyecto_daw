@@ -19,14 +19,14 @@ VALUES
 (4, 'Tomate', '5', '20');
 
 
-
-
-
-
 --
 -- Volcado de datos para la tabla `platos`
 --
-
+INSERT INTO platos(id_plato, nombre, precio)
+VALUES
+(1, 'Ensalada de pollo', 4.00),
+(2, 'Tortita de pollo', 5.50),
+(3, 'Ensalada clasica', 4.50);
 INSERT INTO `platos` (`id_plato`, `nombre`, `ingredientes`, `categoria`, `subcategoria`, `precio`, `estado`) VALUES
 (43, 'enchiladas de pollo rojas', 'Tres flautas de maíz rellenas de pollo bañadas en ricas salsas cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'activado'),
 (44, 'enchiladas de pollo verdes', 'Tres flautas de maíz con pollo bañadas en rica salsa y cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'desactivado'),
@@ -40,6 +40,31 @@ INSERT INTO `platos` (`id_plato`, `nombre`, `ingredientes`, `categoria`, `subcat
 (54, 'café con leche', '', 'bebida', 'cafes', '2.95', 'activado');
 
 
+INSERT INTO reservas(id_reserva, id_usuario, mesa, nombre)
+VALUES
+(1, 1, 1, 'Ana'),
+(2, 1, 2, 'Bob');
+
+INSERT INTO pedidos(id_pedido, id_reserva, mesa, estado_pedido, fecha_hora_pedido)
+VALUES
+(1, 1, 1, 'Pendiente', CURRENT_TIMESTAMP),
+(2, 2, 2, 'Pendiente', CURRENT_TIMESTAMP);
+
+INSERT INTO detalle_pedido(id_pedido, id_plato, unidades)
+VALUES
+(1, 1, 2),
+(1, 2, 1),
+(2, 3, 2),
+(2, 2, 2);
+
+INSERT INTO restar(id_plato, id_producto, cantidad)
+VALUES
+(1, 1, 1),
+(1, 2, 0.5),
+(2, 2, 0.5),
+(2, 3, 1),
+(3, 1, 1),
+(3, 4, 1);
 --
 -- Volcado de datos para la tabla `restar`
 --

@@ -14,25 +14,25 @@
     <div class="tabla-pedidos">
         <table class="tabla">
             <tr class="th">
-                <td scope="col">Código de reserva</td>
+                <td scope="col">Código de pedido</td>
                 <td scope="col">Número de mesa</td>
                 <td scope="col">Estado</td>
                 <td scope="col">
                     <img class="botonlapiz" src="assets/img/cook.png" alt="" width="35" height="35">
                 </td>
             </tr>
-            @foreach($reservas as $reserva)
-            <form name="reservas" method="POST" action="pedidos_pendientes.php">
-                <input type="hidden" name="id_reserva" value="{{$reserva -> getId_reserva()}}" />
+            @foreach($pedidos as $pedido)
+            <form name="pedidos" method="POST" action="pedidos_pendientes.php">
+                <input type="hidden" name="id_pedido" value="{{$pedido -> getIdPedido()}}" />
                 <tr>
-                    <td>{{$reserva -> getId_reserva()}}</td>
-                    <td>{{$reserva -> getMesa()}}</td>
-                    <td>{{$reserva -> getEstado()}}</td>
+                    <td>{{$pedido -> getIdPedido()}}</td>
+                    <td>{{$pedido -> getMesa()}}</td>
+                    <td>{{$pedido -> getEstadoPedido()}}</td>
                     <td>
-                        @if ('Aceptada'==$reserva -> getEstado())
+                        @if ('Pendiente'==$pedido -> getEstadoPedido())
                         <button name="cocinar">Cocinar</button>
-                        @elseif ('en_preparacion'==$reserva -> getEstado())
-                        <button>Servir</button>
+                        @elseif ('Confirmado'==$pedido -> getEstadoPedido())
+                        <button name="servir">Servir</button>
                         @endif
                     </td>
                 </tr>
