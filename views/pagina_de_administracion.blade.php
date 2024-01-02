@@ -13,7 +13,7 @@
         <div class="logout" id="logoutText">Logout</div>
     </div>
     <div class="botones">
-        <a href="gestion_de_pedidos.php">
+        <a href="pedidos_pendientes.php">
             <div class="boton-pedidos">
                 <div class="texto-botones">Gestión de pedidos</div>
             </div>

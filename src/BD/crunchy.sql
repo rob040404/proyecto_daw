@@ -4,8 +4,9 @@ create database if not exists crunchydb DEFAULT CHARACTER SET utf8mb4 COLLATE ut
 use crunchydb;
 drop table if exists restar;
 drop table if exists stock;
-drop table if exists pedir;
+drop table if exists detalle_pedido;
 drop table if exists platos;
+drop table if exists pedidos;
 drop table if exists reservas;
 drop table if exists usuarios;
 -- 2.- Creamos las tablas

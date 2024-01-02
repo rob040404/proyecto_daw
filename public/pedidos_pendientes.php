@@ -4,8 +4,8 @@ require_once '../vendor/autoload.php';
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
-use App\DAO\ReservaDAO;
-use App\modelo\Reserva;
+use App\DAO\PedidoDAO;
+use App\modelo\Pedido;
 use App\DAO\RestarDAO;
 use App\modelo\Restar;
 use App\DAO\StockDAO;
@@ -48,12 +48,13 @@ if (isset($_SESSION['empleado'])) {
     header('Location: index.php');
     exit;
 }
+$pedidoDAO = new PedidoDAO($bd);
 
 if (isset($_POST['cocinar'])) {
-    $id_reserva = $_POST['id_reserva'];
+    $id_pedido = $_POST['id_pedido'];
     $restarDAO = new RestarDAO($bd);
     $stockDAO = new StockDAO($bd);
-    $restar = $restarDAO->obtenerIngredientes($id_reserva);
+    $restar = $restarDAO->obtenerIngredientes($id_pedido);
     error_log(print_r($restar, true));
     foreach ($restar as $item) {
         $stockDAO->update(
@@ -61,13 +62,21 @@ if (isset($_POST['cocinar'])) {
             (-1) * $item->getCantidad()
         );
     }
+    $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Confirmado"));
     header('Location: pedidos_pendientes.php?ok=1');
+    exit;
+} elseif (isset($_POST['servir'])) {
+    $id_pedido = $_POST['id_pedido'];
+    $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Completado"));
+    header('Location: pedidos_pendientes.php?ok=2');
     exit;
 }
 
-$reservasDAO = new ReservaDAO($bd);
-$reservas = $reservasDAO->recuperarReservas();
+$dt_actual = new DateTime();
+$fecha_pedido = $dt_actual->format('Y-m-d');
+//$reservasDAO = new ReservaDAO($bd);
+//$reservas = $reservasDAO->recuperarReservas();
+$pedidos = $pedidoDAO->recuperarPedidosPorFecha($fecha_pedido);
+error_log(print_r($pedidos, true));
 
-error_log(print_r($reservas, true));
-
-echo $blade->run('pedidos_pendientes', compact('sesion_abierta', 'reservas'));
+echo $blade->run('pedidos_pendientes', compact('sesion_abierta', 'pedidos'));
