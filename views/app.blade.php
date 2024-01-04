@@ -22,7 +22,7 @@
         <a href="index.php" class="user-icon"> <img src="assets/img/user-icon.png" alt="" width="35" height="35"> </a>
         <div class="login1" id="loginText"><a href="index.php?logout=1">Logout</a></div>
         @else
-        <div class="login1" id="loginText"><a href="login.php">Login</a></div>
+        <div class="login1" id="loginText"><a href="login.php">Empleados</a></div>
         @endif
         @endif
       </div>
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div class="mapa">
-              <div class="crunchy-rancho"><a href="reservar.php">Reservar</a></div>
+            <div class="crunchy-rancho"><a href="reservar.php">Reservar</a></div>
             <div class="crunchy-rancho"><a href="carta.php">Carta</a></div>
             <div class="crunchy-rancho"><a href="contacto.php">Contacto</a></div>
             <div class="crunchy-rancho"><a href="trabaja_con_nosotros.php">Trabaja con nosotros</a></div>
