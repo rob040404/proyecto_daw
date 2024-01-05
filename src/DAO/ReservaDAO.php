@@ -32,6 +32,7 @@ class ReservaDAO
     {
         $fecha_apertura = DateTime::createFromFormat('Y-m-d H:i:s', $fecha . ' ' . '13:30:00');
         $fecha_clausura = DateTime::createFromFormat('Y-m-d H:i:s', $fecha . ' ' . '23:00:00');
+        $horarios = [];
         while($fecha_apertura != $fecha_clausura)
         {
             $fecha_reserva = clone ($fecha_apertura -> modify('+30 minutes'));
