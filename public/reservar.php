@@ -29,6 +29,7 @@ catch (PDOException $error)
     echo $blade -> run("errorbd", compact('error'));
     exit();
 }
+$sesion_abierta = isset($_SESSION['empleado']); 
 $reservasDAO = new ReservaDAO($bd);
 const MESAS_RESTAURANTE = 10;
 if(filter_input_array(INPUT_POST))
@@ -55,10 +56,10 @@ if(filter_input_array(INPUT_POST))
         $mesa = $reservasDAO -> seleccionarMesa(MESAS_RESTAURANTE, filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), $fecha_hora);
         $reserva = new Reserva(null, $id_usuario, $mesa, $values['nombre'], $values['apellidos'], $values['telefono'], $values['correo'], implode(' ', $fecha_hora), $values['personas'], null);
         $reservasDAO -> nuevaReserva($reserva);
-        echo $blade -> run('reservar', compact('reserva', 'fecha_hora'));
+        echo $blade -> run('reservar', compact('sesion_abierta', 'reserva', 'fecha_hora'));
     }
 }
 else
 {
-    echo $blade -> run('reservar');
+    echo $blade -> run('reservar', compact('sesion_abierta'));
 }

@@ -1,71 +1,62 @@
 .reservas-container 
 {
-  position: relative;
-  background-color: var(--color-black);
-  height: 1939px;
-  font-family: var(--font-irish-grover);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-irish-grover);
 }
 .reservas-contenido 
 {
-  position: absolute;
-  top: 4%;
-  width: 100%;
-  color: var(--yellow);
+    margin-top: 6%;
+    margin-bottom: 2%;
 }
-.boton-volver
+
+.titulo-reservas, .titulo-confirmacion-reserva
 {
-    margin-left: 200px;
-    font-size: 20px;
-    text-decoration: none;
-    color: greenyellow;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
 }
 .titulo-reservas
 {
-    text-align: center;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
     color: var(--blue);
-    -webkit-text-stroke: 0.5px #b519a6;
-}
-.titulo-reserva
-{
-    text-align: center;
-    color: var(--blue);
-    -webkit-text-stroke: 0.5px #b519a6;
-    margin-top: 20px;
 }
 .titulo-confirmacion-reserva
 {
-    text-align: center;
+    color: var(--yellow);
+}
+.titulo-confirmacion-reserva
+{
     font-size: 30px;
 }
 .botones-reservas 
 {
-  display: flex;
-  justify-content: center;
-  font-size: var(--font-size-xl);
-  column-gap: 70px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    column-gap: 70px;
 }
 .boton-eliminar,
 .boton-modificar,
 .boton-nueva-reserva
 {
-  border-radius: var(--br-base);
-  background-color: var(--color-black);
-  box-sizing: border-box;
-  width: 251px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-family: var(--font-irish-grover);
-  font-size: 20px;
-  :any-link, :link, :visited
-  {
-    text-decoration: none;
+    position: relative;
+    border-radius: var(--br-base);
+    background-color: var(--color-black);
+    box-sizing: border-box;
+    width: 251px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-  }
+    font-family: var(--font-irish-grover);
+    font-size: 20px;
+    :any-link, :link, :visited
+    {
+      text-decoration: none;
+      color: white;
+    }
 }
 .boton-invisible
 {
@@ -121,12 +112,19 @@
 }
 .titulo-label
 {
+    position: relative;
     margin-top: 20px;
 }
 label, input
 {
     width: 99%;
     display: block;
+    color: var(--yellow);
+}
+label
+{
+    position: relative;
+    margin-bottom: 10px;
 }
 input, select
 {
@@ -160,12 +158,12 @@ input[type="time"]::-webkit-calendar-picker-indicator
 }
 .boton-finalizar
 {
+    position: relative;
     margin-top: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-sizing: border-box;
     background-color: var(--yellow);
-    color: var(--blue);
-    -webkit-text-stroke: 0.8px #b519a6;
+    color: var(--pink);
     font-size: 25px;
     font-family: var(--font-irish-grover);
 }
@@ -178,12 +176,12 @@ input[type="time"]::-webkit-calendar-picker-indicator
 }
 .boton-eliminar-reserva
 {
-    margin-top: 20px;
+    margin-top: 30px;
     width: 100%;
     height: 40.2px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: var(--yellow);
-    color: var(--blue);
+    color: var(--pink);
     -webkit-text-stroke: 0.8px #b519a6;
     font-size: 25px;
     font-family: var(--font-irish-grover);
@@ -205,6 +203,7 @@ input[type="time"]::-webkit-calendar-picker-indicator
 }
 .listado-de-reservas-container
 {
+    position: relative;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -214,10 +213,7 @@ input[type="time"]::-webkit-calendar-picker-indicator
 .listado-de-reservas 
 {
   text-align: center;
-  margin-block-start: 1.5em;
-  margin-block-end: 0.2em;
   color: var(--blue);
-  -webkit-text-stroke: 0.5px #b519a6;
 }
 .paginacion
 {
@@ -255,13 +251,10 @@ input[type="time"]::-webkit-calendar-picker-indicator
 }
 table
 {
+    border-radius: 16px;
     width: 100%;
     background-color: var(--color-black);
-}
-table, th, td
-{
-    border: 2px solid white;
-    border-collapse: collapse;
+    color: var(--yellow);
 }
 th, td
 {
