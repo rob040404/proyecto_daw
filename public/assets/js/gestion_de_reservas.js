@@ -17,8 +17,8 @@ function cargarFechaActual(fecha)
     var fecha_min = new Date();
     var fecha_max = new Date();
     fecha_max.setMonth(fecha_max.getMonth() + 2);
-    var fecha_min_value = fecha_min.getFullYear().toString() + "-" + (fecha_min.getMonth() + 1)  + "-" + comprobarDobleDigito(fecha_min.getDate().toString());
-    var fecha_max_value = fecha_max.getFullYear().toString() + "-" + comprobarDobleDigito((fecha_max.getMonth() + 1).toString())  + "-" + fecha_max.getDate().toString();;
+    var fecha_min_value = fecha_min.getFullYear().toString() + "-" + comprobarDobleDigito((fecha_min.getMonth() + 1).toString())  + "-" + comprobarDobleDigito(fecha_min.getDate().toString());
+    var fecha_max_value = fecha_max.getFullYear().toString() + "-" + comprobarDobleDigito((fecha_max.getMonth() + 1).toString())  + "-" + comprobarDobleDigito(fecha_max.getDate().toString());
     fecha.value =  fecha_min_value;
     fecha.setAttribute('min', fecha_min_value);
     fecha.setAttribute('max', fecha_max_value);

@@ -11,7 +11,6 @@
 <div class="reservas-container">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
     <div class="reservas-contenido">
-        <!--<a class="boton-volver" href="pagina_de_administracion.php"><- Volver</a>-->
         <h1 class="titulo-reservas">Gestión de reservas</h1>
         <form method="post">
             <div class="botones-reservas">
@@ -106,7 +105,7 @@
                         <div class="reserva-containers">
                             <div class="reserva-container1">
                                 <label>Código de la reserva:</label>
-                                <select id="id_reserva" name="id_reserva">
+                                <select class="codigo-borrado" id="id_reserva" name="id_reserva">
                                 @foreach($reservas as $reserva)
                                     <option value="{{$reserva -> getIdReserva()}}">{{$reserva -> getIdReserva()}}</option>
                                 @endforeach

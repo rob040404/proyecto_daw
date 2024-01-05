@@ -16,7 +16,7 @@
                 @if(isset($reserva))
                     <h1 class="titulo-confirmacion-reserva">¡SU RESERVA SE HA REALIZADO CON ÉXITO!</h1>
                 @else
-                    <h1 class="titulo-reserva">HAZ TU RESERVA</h1>
+                    <h1 class="titulo-reservas">HAZ TU RESERVA</h1>
                 @endif
                 <div class="reserva-containers">
                     <div class="reserva-container1">

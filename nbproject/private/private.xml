@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/reservar.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/reservar.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/src/DAO/ReservaDAO.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/gestion_de_reservas.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/views/gestion_de_reservas.blade.php</file>
+            <file>file:/C:/xampp/htdocs/proyecto_daw/public/assets/css/gestion_de_reservas.css</file>
+        </group>
+    </open-files>
+</project-private>
