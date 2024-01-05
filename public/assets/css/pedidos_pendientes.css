@@ -41,7 +41,7 @@
     font-size: inherit;
     font-weight: 400;
     font-family: inherit;
-    color: var(--orange);
+    color: var(--pink);
     font-size: 35px;
     text-align: center;
 }
@@ -49,4 +49,8 @@
 .th {
     -webkit-text-stroke: 1px var(--orange);
     font-size: 25px;
+}
+
+.mensaje {
+    color: var(--pink);
 }

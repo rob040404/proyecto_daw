@@ -56,15 +56,20 @@ if (isset($_POST['cocinar'])) {
     $stockDAO = new StockDAO($bd);
     $restar = $restarDAO->obtenerIngredientes($id_pedido);
     error_log(print_r($restar, true));
-    foreach ($restar as $item) {
-        $stockDAO->update(
-            $item->getId_producto(),
-            (-1) * $item->getCantidad()
-        );
+    if ($restarDAO->hayStock($restar)) {
+        foreach ($restar as $item) {
+            $stockDAO->update(
+                $item->getId_producto(),
+                (-1) * $item->getCantidad()
+            );
+        }
+        $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Confirmado"));
+        header('Location: pedidos_pendientes.php?ok=1');
+        exit;
+    } else {
+        header('Location: pedidos_pendientes.php?ok=faltaStock');
+        exit;
     }
-    $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Confirmado"));
-    header('Location: pedidos_pendientes.php?ok=1');
-    exit;
 } elseif (isset($_POST['servir'])) {
     $id_pedido = $_POST['id_pedido'];
     $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Completado"));
@@ -72,6 +77,11 @@ if (isset($_POST['cocinar'])) {
     exit;
 }
 
+if (isset($_GET['ok'])) {
+    $ok = $_GET['ok'];
+} else {
+    $ok = 0;
+}
 $dt_actual = new DateTime();
 $fecha_pedido = $dt_actual->format('Y-m-d');
 //$reservasDAO = new ReservaDAO($bd);
@@ -79,4 +89,4 @@ $fecha_pedido = $dt_actual->format('Y-m-d');
 $pedidos = $pedidoDAO->recuperarPedidosPorFecha($fecha_pedido);
 error_log(print_r($pedidos, true));
 
-echo $blade->run('pedidos_pendientes', compact('sesion_abierta', 'pedidos'));
+echo $blade->run('pedidos_pendientes', compact('sesion_abierta', 'pedidos', 'ok'));

@@ -77,7 +77,7 @@
             </div>
           </div>
           <div class="mapa">
-              <div class="crunchy-rancho"><a href="reservar.php">Reservar</a></div>
+            <div class="crunchy-rancho"><a href="reservar.php">Reservar</a></div>
             <div class="crunchy-rancho"><a href="carta.php">Carta</a></div>
             <div class="crunchy-rancho"><a href="contacto.php">Contacto</a></div>
             <div class="crunchy-rancho"><a href="trabaja_con_nosotros.php">Trabaja con nosotros</a></div>

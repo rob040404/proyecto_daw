@@ -22,16 +22,11 @@ VALUES
 (1, 1, 1, 'Pendiente', CURRENT_TIMESTAMP),
 (2, 2, 2, 'Pendiente', CURRENT_TIMESTAMP);
 
-INSERT INTO detalle_pedido(id_pedido, id_plato, unidades)
-VALUES
-(1, 1, 2),
-(1, 2, 1),
-(2, 3, 2),
-(2, 2, 2);
 
 
 
---¡¡PARA LA CARTA !!
+
+-- ¡¡PARA LA CARTA !!
 
 -- 1. BORRAR TABLAS 'PLATOS', 'STOCK', Y SI SE PUEDE 'RESTAR'. AUNQUE HABIENDO BORRADO LAS ANTERIORES ESA NO DEBE DAR PROBLEMA
 
@@ -421,3 +416,4 @@ INSERT INTO `restar` (`id_plato`, `id_producto`, `cantidad`) VALUES
 (144, 28, '2.00'),
 (145, 28, '2.00'),
 (131, 37, '1.00');
+
