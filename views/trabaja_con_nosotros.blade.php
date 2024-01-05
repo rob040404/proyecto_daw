@@ -7,7 +7,7 @@
 @section('titulo', 'Trabaja con nosotros')
 @section('content')
 <div class="gestin-de-menscarta-al-puls">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
+    
     <div class="contenedor_form_trabaja" id="contenedor_form_trabaja">
         <div class="aadir-nuevo-producto" id="encabezado-anadir">Envíanos tu información</div>
         <div class="aadir-nuevo-producto correcto-form" id="correo-correcto"></div>

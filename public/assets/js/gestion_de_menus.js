@@ -63,6 +63,7 @@ function form_buscar(operacion, titulo){
                     '<option value="principal">Principal</option>'+
                     '<option value="postre">Postre</option>'+
                     '<option value="bebida">Bebida</option>'+
+                    '<option value="otro">Otro</option>'+
                 '</select><br><br>'+
                 '<button type="button" class="guardar-wrapper  bot" name="buscar-por-categoria" id="buscar-por-categoria">'+
                     '<div class="guardar" >Buscar</div>'+
