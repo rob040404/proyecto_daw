@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../public/assets/js/trabaja.js"></script>
 @endsection
-@section('titulo', 'Trabaja con nosotros')
+@section('titulo', 'Empleo')
 @section('content')
 <div class="gestin-de-menscarta-al-puls">
     

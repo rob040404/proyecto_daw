@@ -541,11 +541,11 @@ function form_modificar(id_plato, nom, des, pre, ingredientes){
                             '</div>'+
                        ' </div> '+
                ' </div>'+
-               //'<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades</p></div><br>'+
+               '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades</p></div><br>'+
                
                 '<div class="conteiner-ingredientes">';
                 for(let i=0; i<ingredientes.length; i++){
-                    if(i===0 || i===15 || i===30 || i===45|| i===60 || i===75){
+                    if(i===0 || i===25 || i===50 || i===75|| i===100 || i===125){
                         contenido+=' <p>';
                     }
                     contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
@@ -636,12 +636,12 @@ function form_anadir(ingredientes){
                             '</div>'+
                        ' </div> '+
                ' </div>'+
-               '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades</p></div><br>'+
+               '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades:</p></div><br>'+
                
                 '<div class="conteiner-ingredientes">';
         
         for(let i=0; i<ingredientes.length; i++){
-            if(i===0 || i===15 || i===30 || i===45|| i===60 || i===75){
+            if(i===0 || i===25 || i===50 || i===75|| i===100 || i===125){
                 contenido+=' <p>';
             }
             contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';

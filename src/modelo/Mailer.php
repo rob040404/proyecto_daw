@@ -122,7 +122,7 @@ class Mailer{
             if($this->asunto){
                 $mail->Subject = 'Contacto: '.$this->asunto;
             } else {
-                $mail->Subject = 'Empleo: '.$this->nombre.' '.$this->apellidos;
+                $mail->Subject = 'Empleo';
             }    
             $mail->Body    = $cuerpo_correo;
             
