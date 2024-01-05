@@ -12,23 +12,23 @@
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
       
       <div class="botones">
-          <a href="#modificar"><button class="boton-anadir" type="button" name="desplegar-anadir" id="desplegar-anadir" >
-            <div class="texto-gm">Añadir nuevo producto</div>
+          <a href="#modificar"><button class="boton-anadir bot" type="button" name="desplegar-anadir" id="desplegar-anadir" >
+            <div class="texto-gm">Añadir nuevo plato</div>
           </button></a>
-        <a href="#modificar"><button class="boton-activar" type="button" name="desplegar-activar" id="desplegar-activar">
+        <a href="#modificar"><button class="boton-activar bot" type="button" name="desplegar-activar" id="desplegar-activar">
           <div class="texto-gm">
             <p class="activardesactivar">Activar/desactivar</p>
-            <p class="activardesactivar">producto</p>
+            <p class="activardesactivar">plato</p>
           </div>
             </button></a>
-        <a href="#modificar"><button class="boton-borrar" type="button" name="desplegar-borrar" id="desplegar-borrar">
-          <div class="texto-gm">Borrar producto</div>
+        <a href="#modificar"><button class="boton-borrar bot" type="button" name="desplegar-borrar" id="desplegar-borrar">
+          <div class="texto-gm">Borrar plato</div>
             </button></a>
-        <a href="#modificar"><button class="boton-buscar" type="button" name="desplegar-modificar" id="desplegar-modificar">
-          <div class="texto-gm" id="modificar">Modificar producto</div>
+        <a href="#modificar"><button class="boton-buscar bot" type="button" name="desplegar-modificar" id="desplegar-modificar">
+          <div class="texto-gm" id="modificar">Modificar plato</div>
             </button></a>
-        <a href="#modificar"><button class="boton-ver" type="button" name="desplegar-ver" id="desplegar-ver">
-            <div class="texto-gm" id="ver">Ver producto/s</div>
+        <a href="#modificar"><button class="boton-ver bot" type="button" name="desplegar-ver" id="desplegar-ver">
+            <div class="texto-gm" id="ver">Ver platos</div>
             </button></a>
       </div>
     

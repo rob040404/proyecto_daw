@@ -45,14 +45,14 @@
                         
                        <div class="contenedor-precio-estado">
                             <div class="subcontenedor-precio">
-                                <button type="reset" class="guardar-wrapper-contacto elemento-form-der">
+                                <button type="reset" class="guardar-wrapper-contacto elemento-form-der bot">
                                     <div class="guardar" name="reset" id="reset">Limpiar</div>
                                 </button>
                             </div>
                            
                             <div class="subcontenedor-estado">
                                 
-                                <button type="button" id="enviar-contacto" class="guardar-wrapper-contacto elemento-form-der">
+                                <button type="button" id="enviar-contacto" class="guardar-wrapper-contacto elemento-form-der bot">
                                     <div class="guardar" name="enviar-contacto" >Enviar</div>
                                 </button>
                             </div>

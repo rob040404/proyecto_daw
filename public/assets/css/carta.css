@@ -1,0 +1,187 @@
+
+body {
+
+/* Ubicación de la imagen */
+
+background-image: url('../img/background@2x.png');
+
+/* Para dejar la imagen de fondo centrada, vertical y
+
+horizontalmente */
+
+background-position: center center;
+
+/* Para que la imagen de fondo no se repita */
+
+background-repeat: no-repeat;
+
+/* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+
+background-attachment: fixed;
+
+/* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+
+background-size: cover;
+
+/* Se muestra un color de fondo mientras se está cargando la imagen
+
+de fondo o si hay problemas para cargarla */
+
+background-color: #66999;
+
+}
+.descripcion-carta{
+  
+  position: relative;
+  margin: 10% auto;
+  width: 80%;
+  -webkit-text-stroke: 0.5px #b519a6;
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+  font-size: var(--font-size-4xl);
+  text-align: center;
+}
+
+.borde-verde-carta{
+  
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px #4cb24c;
+  border: 2px solid var(--green);
+  box-sizing: border-box;
+  margin: 10% auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60%;
+  background-color:#000;
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+
+.encabezado-bebidas{
+    box-shadow: 0 4px 8px 8px #4cb24c;
+    border: 2px solid #4cb24c;
+    -webkit-text-stroke: 0.5px #4cb24c;
+}
+.nombre-bebidas{
+    color: #4cb24c;
+    -webkit-text-stroke: 0.5px #ffffff;;
+}
+
+
+.borde-rosa-carta{
+  
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px rgba(235, 20, 239, 0.65);
+  border: 2px solid var(--pink);
+  box-sizing: border-box;
+  margin: 10% auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60%;
+  background-color:#000;
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+.encabezado-otros{
+    box-shadow: 0 4px 8px 8px var(--pink);
+    border: 2px solid var(--pink);
+    -webkit-text-stroke: 0.5px var(--pink);
+}
+.nombre-otros{
+    color: var(--pink);
+    -webkit-text-stroke: 0.5px #ffffff;;
+}
+
+.borde-azul-carta{
+  
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px #3ed7e5;
+  border: 2px solid var(--blue);
+  box-sizing: border-box;
+  margin: 10% auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60%;
+  background-color:#000;
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+.encabezado-postres{
+    box-shadow: 0 4px 8px 8px #3ed7e5;
+    border: 2px solid #3ed7e5;
+    -webkit-text-stroke: 0.5px #3ed7e5;
+}
+.nombre-postres{
+    color: #3ed7e5;
+    -webkit-text-stroke: 0.5px #ffffff;;
+}
+
+.borde-amarillo-carta{
+  
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px #f5f94a;
+  border: 2px solid #f5f94a;
+  box-sizing: border-box;
+  margin: 10% auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60%;
+  background-color:#000;
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+.encabezado-entrantes{
+    box-shadow: 0 4px 8px 8px #f5f94a;
+    border: 2px solid #f5f94a;
+    -webkit-text-stroke: 0.5px #f5f94a;
+}
+.nombre-entrante{
+    color: #f5f94a;
+    -webkit-text-stroke: 0.5px #ffffff;;
+}
+
+.borde-rojo-carta{
+  
+  border-radius: var(--br-base);
+  background-color: var(--color-gainsboro);
+  box-shadow: 0 4px 8px 8px var(--color-firebrick);
+  border: 2px solid var(--color-firebrick);
+  box-sizing: border-box;
+  margin: 10% auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60%;
+  background-color: #000;
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  color: var(--yellow);
+  font-family: var(--font-irish-grover);
+}
+
+.encabezado-principales{
+    box-shadow: 0 4px 8px 8px var(--color-firebrick);
+    border: 2px solid var(--color-firebrick);
+    -webkit-text-stroke: 0.5px var(--color-firebrick);
+}
+.nombre-principales{
+    color: var(--color-firebrick);
+    
+    -webkit-text-stroke: 0.5px #ffffff;
+}

@@ -86,4 +86,17 @@ class StockDAO
         return $resultados;
          
     }
+    
+    function obtener_porId($id){
+        $consulta="SELECT nombre_producto FROM stock WHERE id_producto=:i";
+        $stm= $this->bd->prepare($consulta);
+        $registro=$stm->execute([':i'=>$id]);
+        if($registro){
+            $registro=$stm->fetch(PDO::FETCH_OBJ);
+            $nombre=$registro->nombre_producto;
+            return $nombre;
+        }else{
+            return false;
+        }
+    }
 }

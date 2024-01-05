@@ -7,33 +7,35 @@ use \PDO as PDO;
 
 class Restar
 {
-    private $id_reserva;
+    private $id_pedido;
     private $id_producto;
     private $cantidad;
+    private $ok;
 
-    public function __construct($id_reserva=null, $id_producto=null, $cantidad=null)
+    public function __construct($id_pedido = null, $id_producto = null, $cantidad = null, $ok = null)
     {
-        $this->id_reserva=$id_reserva;
-        $this->id_producto=$id_producto;
-        $this->cantidad=$cantidad;
+        $this->id_pedido = $id_pedido;
+        $this->id_producto = $id_producto;
+        $this->cantidad = $cantidad;
+        $this->ok = $ok;
     }
 
     /**
-     * Get the value of id_reserva
+     * Get the value of id_pedido
      */
-    public function getId_reserva()
+    public function getId_pedido()
     {
-        return $this->id_reserva;
+        return $this->id_pedido;
     }
 
     /**
-     * Set the value of id_reserva
+     * Set the value of id_pedido
      *
      * @return  self
      */
-    public function setId_reserva($id_reserva)
+    public function setId_pedido($id_pedido)
     {
-        $this->id_reserva = $id_reserva;
+        $this->id_pedido = $id_pedido;
 
         return $this;
     }
@@ -74,6 +76,18 @@ class Restar
     public function setCantidad($cantidad)
     {
         $this->cantidad = $cantidad;
+
+        return $this;
+    }
+
+    public function getOk()
+    {
+        return $this->ok;
+    }
+
+    public function setOk($ok)
+    {
+        $this->ok = $ok;
 
         return $this;
     }

@@ -9,8 +9,8 @@
 <div class="error">
     <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
     <div class="mensaje">
-        <h3>No se ha podido conectar a la base de datos.</h3>
-        <h4>{{ $error->getMessage() }}</h4>
+        <h3 class="h3">Se ha producido un error al procesar la solicitud. Por favor, contacta con nuestro servicio de soporte e indica el siguiente código de error: </h3>
+        <h4 class="h4">{{ $exception->getCode() }}</h4>
     </div>
 </div>
 @endsection
