@@ -10,11 +10,11 @@
 
 <div class="pedidos">
     @if($ok=='Confirmado')
-    <h1 class="mensaje">Pedido confirmado!</h1>
+    <h2 class="mensaje">Pedido confirmado!</h2>
     @elseif ($ok=='Completado')
-    <h1 class="mensaje">Pedido completado!</h1>
+    <h2 class="mensaje">Pedido completado!</h2>
     @elseif ($ok=='faltaStock')
-    <h1 class="mensaje">Faltan ingredientes: {{$faltan}}</h1>
+    <h2 class="mensaje">Faltan ingredientes: {{$faltan}}</h2>
     @endif
     <h1 class="h1">Pedidos pendientes</h1>
     <div class="tabla-pedidos">
@@ -22,11 +22,11 @@
             <tr class="th">
                 <td scope="col">Código de pedido</td>
                 <td scope="col">Número de mesa</td>
+                <td scope="col">Fecha y hora</td>
+                <td scope="col">Atendido por</td>
                 <td scope="col">Estado</td>
                 <td scope="col">
                     <img class="botonlapiz" src="assets/img/cook.png" alt="" width="35" height="35">
-                    <img class="botonlapiz" src="assets/img/serve.png" alt="" width="40" height="35">
-
                 </td>
             </tr>
             @foreach($pedidos as $pedido)
@@ -35,12 +35,14 @@
                 <tr>
                     <td>{{$pedido -> getIdPedido()}}</td>
                     <td>{{$pedido -> getMesa()}}</td>
+                    <td>{{$pedido -> getFechaHoraPedido()}}</td>
+                    <td>{{$pedido -> getNombreEmpleado()}}</td>
                     <td>{{$pedido -> getEstadoPedido()}}</td>
                     <td>
                         @if ('Pendiente'==$pedido -> getEstadoPedido())
-                        <button name="cocinar">Cocinar</button>
+                        <button class="boton-cocinar" name="cocinar">Cocinar</button>
                         @elseif ('Confirmado'==$pedido -> getEstadoPedido())
-                        <button name="servir">Servir</button>
+                        <button class="boton-servir" name="servir">Servir</button>
                         @endif
                     </td>
                 </tr>

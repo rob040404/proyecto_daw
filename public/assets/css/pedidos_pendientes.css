@@ -14,7 +14,7 @@
     top: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 931px;
+    width: 1100px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -41,16 +41,52 @@
     font-size: inherit;
     font-weight: 400;
     font-family: inherit;
-    color: var(--pink);
+    color: var(--blue);
     font-size: 35px;
     text-align: center;
 }
 
 .th {
-    -webkit-text-stroke: 1px var(--orange);
+    -webkit-text-stroke: 1px var(--blue);
     font-size: 25px;
 }
 
 .mensaje {
-    color: var(--pink);
+    color: var(--color-firebrick);
+    position: relative;
+    top: 100px;
+}
+
+.boton-cocinar {
+    border-radius: 8px;
+    background-color: var(--color-black);
+    box-sizing: border-box; 
+    font-family: var(--font-irish-grover);
+    width: 85px;
+    height: 30px;
+    font-size: medium;
+    border-color: var(--blue);
+    color: var(--yellow);
+    cursor: pointer;
+}
+
+.boton-cocinar:hover{
+    box-shadow: 0 4px 4px var(--blue);
+}
+
+.boton-servir {
+    border-radius: 8px;
+    background-color: var(--color-black);
+    box-sizing: border-box;
+    color: var(--yellow);
+    font-family: var(--font-irish-grover);
+    width: 85px;
+    height: 30px;
+    font-size: medium;
+    border-color: var(--green);
+    cursor: pointer;
+}
+
+.boton-servir:hover {
+    box-shadow: 0 4px 4px var(--green);
 }
