@@ -9,12 +9,12 @@
 @section('content')
 
 <div class="pedidos">
-    @if($ok==1)
+    @if($ok=='Confirmado')
     <h1 class="mensaje">Pedido confirmado!</h1>
-    @elseif ($ok==2)
+    @elseif ($ok=='Completado')
     <h1 class="mensaje">Pedido completado!</h1>
     @elseif ($ok=='faltaStock')
-    <h1 class="mensaje">Faltan ingredientes ...</h1>
+    <h1 class="mensaje">Faltan ingredientes: {{$faltan}}</h1>
     @endif
     <h1 class="h1">Pedidos pendientes</h1>
     <div class="tabla-pedidos">
@@ -25,6 +25,8 @@
                 <td scope="col">Estado</td>
                 <td scope="col">
                     <img class="botonlapiz" src="assets/img/cook.png" alt="" width="35" height="35">
+                    <img class="botonlapiz" src="assets/img/serve.png" alt="" width="40" height="35">
+
                 </td>
             </tr>
             @foreach($pedidos as $pedido)

@@ -49,8 +49,17 @@ if (isset($_SESSION['empleado'])) {
     exit;
 }
 $pedidoDAO = new PedidoDAO($bd);
+$faltan = "";
+$stock = [];
 
 if (isset($_POST['cocinar'])) {
+    $id_pedido = $_POST['id_pedido'];
+    $pedidoDAO->actualizarEstadoPedido(
+        new Pedido($id_pedido, null, 'Confirmado')
+    );
+    header('Location: pedidos_pendientes.php?ok=confirmado');
+    exit;
+} elseif (isset($_POST['servir'])) {
     $id_pedido = $_POST['id_pedido'];
     $restarDAO = new RestarDAO($bd);
     $stockDAO = new StockDAO($bd);
@@ -63,30 +72,42 @@ if (isset($_POST['cocinar'])) {
                 (-1) * $item->getCantidad()
             );
         }
-        $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Confirmado"));
-        header('Location: pedidos_pendientes.php?ok=1');
+        $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Completado"));
+        header('Location: pedidos_pendientes.php?ok=completado');
         exit;
     } else {
-        header('Location: pedidos_pendientes.php?ok=faltaStock');
+        error_log('no hay stock');
+        $pedidoDAO->actualizarEstadoPedido(
+            new Pedido($id_pedido, null, 'Pendiente')
+        );
+        $restar = $restarDAO->obtenerIngredientesSinStock($id_pedido);
+        foreach ($restar as $item) {
+            $stock[] = $stockDAO->selectid($item->getId_producto())->getNombre_producto();
+        }
+        //con el implode el array se convierte en un string separado por comas
+        header('Location: pedidos_pendientes.php?ok=faltaStock&faltan=' . implode(",", $stock));
         exit;
     }
-} elseif (isset($_POST['servir'])) {
-    $id_pedido = $_POST['id_pedido'];
-    $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Completado"));
-    header('Location: pedidos_pendientes.php?ok=2');
-    exit;
 }
 
 if (isset($_GET['ok'])) {
     $ok = $_GET['ok'];
+    if (isset($_GET['faltan'])) {
+        $faltan = $_GET['faltan'];
+    }
 } else {
-    $ok = 0;
+    $ok = null;
 }
+
+
 $dt_actual = new DateTime();
 $fecha_pedido = $dt_actual->format('Y-m-d');
 //$reservasDAO = new ReservaDAO($bd);
 //$reservas = $reservasDAO->recuperarReservas();
 $pedidos = $pedidoDAO->recuperarPedidosPorFecha($fecha_pedido);
+if (null == $pedidos) {
+    $pedidos = array();
+}
 error_log(print_r($pedidos, true));
 
-echo $blade->run('pedidos_pendientes', compact('sesion_abierta', 'pedidos', 'ok'));
+echo $blade->run('pedidos_pendientes', compact('sesion_abierta', 'pedidos', 'ok', 'faltan'));
