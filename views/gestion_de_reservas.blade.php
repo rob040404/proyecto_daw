@@ -9,7 +9,6 @@
 @section('titulo', 'Gestión de reservas')
 @section('content')
 <div class="reservas-container">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
     <div class="reservas-contenido">
         <h1 class="titulo-reservas">Gestión de reservas</h1>
         <form method="post">
