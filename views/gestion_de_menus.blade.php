@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="gestin-de-menscarta-al-puls">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
+    <!--img class="background-icon" alt="" src="../public/assets/img/background@2x.png" /-->
       
       <div class="botones">
           <a href="#modificar"><button class="boton-anadir bot" type="button" name="desplegar-anadir" id="desplegar-anadir" >

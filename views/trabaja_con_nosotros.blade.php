@@ -4,10 +4,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="../public/assets/js/trabaja.js"></script>
 @endsection
-@section('titulo', 'Trabaja con nosotros')
+@section('titulo', 'Empleo')
 @section('content')
 <div class="gestin-de-menscarta-al-puls">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
+    
     <div class="contenedor_form_trabaja" id="contenedor_form_trabaja">
         <div class="aadir-nuevo-producto" id="encabezado-anadir">Envíanos tu información</div>
         <div class="aadir-nuevo-producto correcto-form" id="correo-correcto"></div>

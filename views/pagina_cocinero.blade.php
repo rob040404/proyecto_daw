@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="gestin-de-menscarta-al-puls">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png" />
+    
     <div class="contenedor-bot-coc">
         
         <div class="container-botones-izq">

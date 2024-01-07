@@ -15,7 +15,7 @@ function comprobar(){
     var asunto= $('#asunto').val();
     var mensaje= $('#mensaje').val();
     mensaje= mensaje.replace(/\r?\n/g, "<br>");
-    
+    asunto=eliminar_acentos(asunto);
     var error_validacion=false;
     var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
     
@@ -95,4 +95,23 @@ function puntero(){
        bot[i].style.cursor='pointer';
     }
     
+}
+function eliminar_acentos(cadena){
+
+	var chars={
+
+		"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u",
+
+		"à":"a", "è":"e", "ì":"i", "ò":"o", "ù":"u", "ñ":"n",
+
+		"Á":"A", "É":"E", "Í":"I", "Ó":"O", "Ú":"U",
+
+		"À":"A", "È":"E", "Ì":"I", "Ò":"O", "Ù":"U", "Ñ":"N"};
+
+	var expr=/[áàéèíìóòúùñ]/ig;
+
+	var res=cadena.replace(expr,function(e){return chars[e];});
+
+	return res;
+
 }

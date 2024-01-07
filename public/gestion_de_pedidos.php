@@ -36,8 +36,7 @@ try {
     exit();
 }
 session_start();
-if(!isset($_SESSION['empleado']))
-{
+if (!isset($_SESSION['empleado'])) {
     header('Location: login.php');
     exit;
 }
@@ -73,19 +72,35 @@ if (filter_input(INPUT_POST, 'btn_retroceder') || filter_input(INPUT_POST, 'btn_
             } else {
                 $estado_pedido = 'Confirmado';
             }
-        } /*elseif ($estado_pedido == 'Completado') {
             $restarDAO = new RestarDAO($bd);
             $stockDAO = new StockDAO($bd);
             $restar = $restarDAO->obtenerIngredientes($id_pedido);
-            error_log(print_r($restar, true));
-            foreach ($restar as $item) {
-                $stockDAO->update(
-                    $item->getId_producto(),
-                    (-1) * $item->getCantidad()
+            error_log('Restando desde camarero...');
+            if ($restarDAO->hayStock($restar)) {
+                error_log('hay stock');
+                foreach ($restar as $item) {
+                    $stockDAO->update(
+                        $item->getId_producto(),
+                        (-1) * $item->getCantidad()
+                    );
+                }
+                $pedidoDAO->actualizarEstadoPedido(
+                    new Pedido($id_pedido, null, 'Completado')
                 );
+            } else {
+                error_log('no hay stock');
+                $pedidoDAO->actualizarEstadoPedido(
+                    new Pedido($id_pedido, null, 'Pendiente')
+                );
+                /*
+                    $restar = $restarDAO->obtenerIngredientesSinStock($id_pedido);
+                    foreach ($restar as $item) {
+                        $stock[] = $stockDAO->selectid($item->getId_producto())->getNombre_producto();
+                    }
+                    */
+                $estado_pedido = 'Pendiente';
             }
-            $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Confirmado"));
-        }*/ else {
+        } else {
             $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, $estado_pedido));
         }
     }
@@ -121,21 +136,6 @@ if (filter_input(INPUT_POST, 'btn_retroceder') || filter_input(INPUT_POST, 'btn_
             $detalle_pedido = new DetallePedido($id_pedido, $pedido_data[$i]['id_plato'], $pedido_data[$i]['unidades']);
             $detallePedidoDAO->insertarDetallePedido($detalle_pedido);
             $platos_seleccionados = $detallePedidoDAO->recuperarPlatosSeleccionadosPorIdPedidoYPlato($detalle_pedido, $platos_seleccionados);
-        }
-        $restarDAO = new RestarDAO($bd);
-        $stockDAO = new StockDAO($bd);
-        $restar = $restarDAO->obtenerIngredientes($id_pedido);
-        error_log(print_r($restar, true));
-        if ($restarDAO->hayStock($restar)) {
-            foreach ($restar as $item) {
-                $stockDAO->update(
-                    $item->getId_producto(),
-                    (-1) * $item->getCantidad()
-                );
-            }
-            $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Confirmado"));
-        } else {
-            $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Pendiente"));
         }
     }
     $response = compact('platos_seleccionados');

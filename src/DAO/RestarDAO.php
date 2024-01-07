@@ -20,7 +20,7 @@ class RestarDAO
         $sql = 'select pe.id_pedido as id_pedido,
 	            re.id_producto as id_producto,
 	            sum(re.cantidad*d.unidades) as cantidad,
-	                s.cantidad-sum(re.cantidad*d.unidades)>0 as ok
+	                s.cantidad-sum(re.cantidad*d.unidades)>=0 as ok
                 from pedidos pe, platos pl, detalle_pedido d, restar re, stock s
                 where pe.id_pedido=d.id_pedido and
                     d.id_plato=pl.id_plato and
@@ -89,5 +89,32 @@ class RestarDAO
         $resultado = $stm->execute([':id_plato' => $id_plato]);
 
         return $resultado;
+    }
+
+    function obtenerIngredientesSinStock($id_pedido)
+    {
+        $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
+        $sql = 'select id_pedido, id_producto,
+            cantidad-disponible as cantidad, ok
+            from (
+                select pe.id_pedido as id_pedido,
+                re.id_producto as id_producto,
+                sum(re.cantidad*d.unidades) as cantidad,
+                s.cantidad-sum(re.cantidad*d.unidades)>=0 as ok,
+                s.cantidad as disponible
+                from pedidos pe, platos pl, detalle_pedido d, restar re, stock s
+                where
+                    pe.id_pedido=d.id_pedido and
+                    d.id_plato=pl.id_plato and
+                    re.id_plato=pl.id_plato and
+                    re.id_producto=s.id_producto and
+                    pe.id_pedido=:id_pedido
+                group by re.id_producto) s1
+			where ok=0';
+        $sth = $this->bd->prepare($sql);
+        $sth->execute([':id_pedido' => $id_pedido]);
+        $sth->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Restar::class);
+        $restar = ($sth->fetchAll()) ?: null;
+        return $restar;
     }
 }
