@@ -3,8 +3,8 @@ body
     background-image: url('../img/background@2x.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .pedidos-container
