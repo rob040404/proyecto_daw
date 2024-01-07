@@ -29,8 +29,24 @@ function guardarOrden(e)
             if(platos.length !== 0)
             {
                 var precio_total = 0;
+                var categoria = '';
                 for(var i = 0; i < platos.length; i++)
                 {
+                    if(platos[i].categoria_plato !== categoria)
+                    {
+                        var p = document.createElement('p');
+                        if(platos[i].categoria_plato === 'principal')
+                        {
+                            p.innerHTML = platos[i].categoria_plato.toUpperCase() + 'ES';
+                        }
+                        else
+                        {
+                            p.innerHTML = platos[i].categoria_plato.toUpperCase() + 'S';
+                        }
+                        p.classList.add('categoria-platos');
+                        categoria = platos[i].categoria_plato;
+                        listado_platos_pedido.appendChild(p);
+                    }
                     var li = document.createElement('li');
                     li.innerHTML = platos[i].nombre_plato + ' - ' + platos[i].precio_plato + ' €'  + ' x ' + platos[i].unidades + 
                     '... ' + (platos[i].unidades * platos[i].precio_plato).toFixed(2) + ' €';
@@ -72,7 +88,7 @@ function agregarQuitarPlato(checkbox)
 {
     var idPedido = checkbox.id.split('_')[1];
     var indice = checkbox.id.split('_')[2];
-    var unidades_plato = checkbox.value.split('-')[2];
+    var unidades_plato = checkbox.value.split('_')[2];
     var plato_container = document.getElementById('plato_container_' + idPedido + '_' + indice);
     if(checkbox.checked === true)
     {
@@ -114,6 +130,7 @@ function cargarPlatos(idPedido)
             var platos_seleccionados = response.platos_seleccionados;
             var platos_nombre = [];
             var platos_unidades = [];
+            var categoria = '';
             for(var i = 0; i < platos_seleccionados.length; i++)
             {
                 platos_nombre[i] = platos_seleccionados[i].nombre_plato;
@@ -125,15 +142,30 @@ function cargarPlatos(idPedido)
                 var div = document.createElement('div');
                 div.setAttribute('class', 'plato-container');
                 div.setAttribute('id', 'plato_container_' + idPedido + '_' + i);
+                if(platos[i].categoria !== categoria)
+                {
+                    var p = document.createElement('p');
+                    if(platos[i].categoria === 'principal')
+                    {
+                        p.innerHTML = platos[i].categoria.toUpperCase() + 'ES';
+                    }
+                    else
+                    {
+                        p.innerHTML = platos[i].categoria.toUpperCase() + 'S';
+                    }
+                    p.classList.add('categoria-platos');
+                    categoria = platos[i].categoria;
+                    div_platos_container.appendChild(p);
+                }
                 var checkbox = document.createElement('input');
                 checkbox.setAttribute('type', 'checkbox');
                 checkbox.setAttribute('id', 'checkbox_' + idPedido + '_' + i);
-                checkbox.setAttribute('value', platos[i].id_plato + '-' + platos[i].nombre + '-1');
+                checkbox.setAttribute('value', platos[i].id_plato + '_' + platos[i].nombre + '_1');
                 checkbox.addEventListener('change', agregarQuitarPlatoListener);
                 if(platos_nombre.includes(platos[i].nombre))
                 {
                     checkbox.setAttribute('checked', 'true');
-                    checkbox.setAttribute('value', platos[i].id_plato + '-' + platos[i].nombre + '-' + platos_unidades[platos[i].nombre]);
+                    checkbox.setAttribute('value', platos[i].id_plato + '_' + platos[i].nombre + '_' + platos_unidades[platos[i].nombre]);
                 }
                 var p = document.createElement('p');
                 p.setAttribute('class', 'checkbox-text');
@@ -253,6 +285,8 @@ function moverEstado(e)
                 document.getElementById("anadir_plato_container_" + pedido.id_pedido).classList.add('invisible');
                 document.getElementById("btn_avanzar_container_" + pedido.id_pedido).classList.remove('btn-avanzar');
                 document.getElementById("btn_avanzar_container_" + pedido.id_pedido).classList.add('invisible');
+                document.getElementById("botones_container_" + pedido.id_pedido).classList.remove('botones-container');
+                document.getElementById("botones_container_" + pedido.id_pedido).classList.add('invisible');
             }
             if(document.getElementById('listado_platos_pedido_' + pedido.id_pedido).childElementCount === 0)
             {
@@ -330,11 +364,11 @@ function aplicarEstiloPedidos(pedido)
     else
     {
         pedido.style.border= '2px solid var(--green)';
-        btn_retroceder.value = 'Confirmado';
+        /*btn_retroceder.value = 'Confirmado';
         btn_retroceder.style.border = '2px solid var(--color-yellow)';
         btn_retroceder.addEventListener("mouseenter", incluirSombra);
         btn_retroceder.addEventListener("mouseleave", borrarSombra);
-        btn_retroceder.addEventListener("click", moverEstado);
+        btn_retroceder.addEventListener("click", moverEstado);*/
     }
 }
 
@@ -358,8 +392,8 @@ function cargarFechaActual(fecha)
     var fecha_min = new Date();
     var fecha_max = new Date();
     fecha_max.setMonth(fecha_max.getMonth() + 2);
-    var fecha_min_value = fecha_min.getFullYear().toString() + "-" + (fecha_min.getMonth() + 1)  + "-" + comprobarDobleDigito(fecha_min.getDate().toString());
-    var fecha_max_value = fecha_max.getFullYear().toString() + "-" + comprobarDobleDigito((fecha_max.getMonth() + 1).toString())  + "-" + fecha_max.getDate().toString();
+    var fecha_min_value = fecha_min.getFullYear().toString() + "-" + comprobarDobleDigito((fecha_min.getMonth() + 1).toString())  + "-" + comprobarDobleDigito(fecha_min.getDate().toString());
+    var fecha_max_value = fecha_max.getFullYear().toString() + "-" + comprobarDobleDigito((fecha_max.getMonth() + 1).toString())  + "-" + comprobarDobleDigito(fecha_max.getDate().toString());
     fecha.setAttribute('min', fecha_min_value);
     fecha.setAttribute('max', fecha_max_value);
 }

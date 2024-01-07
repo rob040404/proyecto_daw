@@ -23,9 +23,6 @@ VALUES
 (2, 2, 2, 'Pendiente', CURRENT_TIMESTAMP);
 
 
-
-
-
 -- ¡¡PARA LA CARTA !!
 
 -- 1. BORRAR TABLAS 'PLATOS', 'STOCK', Y SI SE PUEDE 'RESTAR'. AUNQUE HABIENDO BORRADO LAS ANTERIORES ESA NO DEBE DAR PROBLEMA
@@ -37,7 +34,6 @@ VALUES
 -- 4. INSERTAR VALORES EN TABLA 'RESTAR'
 
 -- INSERCIÓN EN 'STOCK'
-
 INSERT INTO `stock` (`id_producto`, `nombre_producto`, `precio`, `cantidad`) VALUES
 (1, 'Lechuga', '0.50', '20.00'),
 (2, 'Pollo', '6.00', '9.50'),
@@ -117,8 +113,6 @@ INSERT INTO `stock` (`id_producto`, `nombre_producto`, `precio`, `cantidad`) VAL
 
 
 -- INSERCIÓN EN 'PLATOS'
-
-
 INSERT INTO `platos` (`id_plato`, `nombre`, `ingredientes`, `categoria`, `subcategoria`, `precio`, `estado`) VALUES
 (43, 'enchiladas de pollo rojas', 'Tres flautas de maíz rellenas de pollo bañadas en ricas salsas cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'activado'),
 (44, 'enchiladas de pollo verdes', 'Tres flautas de maíz con pollo bañadas en rica salsa y cubiertas de queso', 'entrante', 'enchiladas', '14.90', 'activado'),
@@ -212,10 +206,7 @@ INSERT INTO `platos` (`id_plato`, `nombre`, `ingredientes`, `categoria`, `subcat
 (144, 'sorbete de limón', 'Delicioso postre para acabar con alegría', 'postre', 'sorbetes', '6.60', 'activado'),
 (145, 'sorbete de mango', 'Delicioso sorbete con sabor a mango para terminar', 'postre', 'sorbetes', '5.60', 'activado');
 
-
 -- INSERCIÓN EN 'RESTAR'
-
-
 INSERT INTO `restar` (`id_plato`, `id_producto`, `cantidad`) VALUES
 (50, 1, '0.40'),
 (50, 2, '0.40'),
@@ -416,4 +407,3 @@ INSERT INTO `restar` (`id_plato`, `id_producto`, `cantidad`) VALUES
 (144, 28, '2.00'),
 (145, 28, '2.00'),
 (131, 37, '1.00');
-

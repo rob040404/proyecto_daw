@@ -13,8 +13,8 @@ class DetallePedidoDAO
     function recuperarDetallesPedidoPorId(string $id_pedido) :?array
     {
         $sql = 'select detalle_pedido.id_pedido as id_pedido, detalle_pedido.id_plato as id_plato, detalle_pedido.unidades as unidades, '
-        . 'platos.nombre as nombre_plato, platos.precio as precio_plato from detalle_pedido inner join platos on '
-        . 'detalle_pedido.id_plato = platos.id_plato where detalle_pedido.id_pedido=:id_pedido';
+        . 'platos.nombre as nombre_plato, platos.categoria as categoria_plato, platos.precio as precio_plato from detalle_pedido '
+        . 'inner join platos on detalle_pedido.id_plato = platos.id_plato where detalle_pedido.id_pedido=:id_pedido';
         $stmRecuperarDetallesPedidoPorId = $this -> bd -> prepare($sql);
         $stmRecuperarDetallesPedidoPorId -> execute([':id_pedido' => $id_pedido]);
         $stmRecuperarDetallesPedidoPorId -> setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, DetallePedido::class);
@@ -25,8 +25,9 @@ class DetallePedidoDAO
     function recuperarPlatosSeleccionadosPorIdPedidoYPlato(DetallePedido $detalle_pedido, array $platos_seleccionados) :?array
     {
         $sql = 'select detalle_pedido.id_pedido as id_pedido, detalle_pedido.id_plato as id_plato, detalle_pedido.unidades as unidades, '
-        . 'platos.nombre as nombre_plato, platos.precio as precio_plato from detalle_pedido inner join platos on '
-        . 'detalle_pedido.id_plato = platos.id_plato where detalle_pedido.id_pedido=:id_pedido and detalle_pedido.id_plato=:id_plato';
+        . 'platos.nombre as nombre_plato, platos.categoria as categoria_plato, platos.precio as precio_plato from detalle_pedido '
+        . 'inner join platos on detalle_pedido.id_plato = platos.id_plato where detalle_pedido.id_pedido=:id_pedido and '
+        . 'detalle_pedido.id_plato=:id_plato';
         $stmRecuperarPlatosSeleccionadosPorIdPedidoYPlato = $this -> bd -> prepare($sql);
         $stmRecuperarPlatosSeleccionadosPorIdPedidoYPlato -> execute([':id_pedido' => $detalle_pedido -> getIdPedido(), ':id_plato' => $detalle_pedido -> getIdPlato()]);
         $plato = $stmRecuperarPlatosSeleccionadosPorIdPedidoYPlato -> fetch(PDO::FETCH_ASSOC);

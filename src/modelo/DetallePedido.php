@@ -6,9 +6,10 @@ class DetallePedido
     private $id_plato;
     private $unidades;
     private $nombre_plato;
+    private $categoria_plato;
     private $precio_plato;
     
-    public function __construct($id_pedido = null, $id_plato = null, $unidades = null, $nombre_plato = null, $precio_plato = null)
+    public function __construct($id_pedido = null, $id_plato = null, $unidades = null, $nombre_plato = null, $categoria_plato = null, $precio_plato = null)
     {
         if(!is_null($id_pedido))
         {
@@ -25,6 +26,10 @@ class DetallePedido
         if(!is_null($nombre_plato))
         {
             $this -> nombre_plato = $nombre_plato;
+        }
+        if(!is_null($categoria_plato))
+        {
+            $this -> categoria_plato = $categoria_plato;
         }
         if(!is_null($precio_plato))
         {
@@ -72,9 +77,19 @@ class DetallePedido
         return $this -> nombre_plato;
     }
     
-    public function setPrecioPlato($precio_plato): void
+     public function setPrecioPlato($precio_plato): void
     {
         $this -> precio_plato = $precio_plato;
+    }
+    
+    public function getCategoriaPlato()
+    {
+        return $this -> categoria_plato;
+    }
+    
+    public function setCategoriaPlato($categoria_plato): void
+    {
+        $this -> categoria_plato = $categoria_plato;
     }
     
     public function getPrecioPlato()
