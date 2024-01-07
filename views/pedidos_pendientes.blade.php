@@ -15,6 +15,8 @@
     <h2 class="mensaje">Pedido completado!</h2>
     @elseif ($ok=='faltaStock')
     <h2 class="mensaje">Faltan ingredientes: {{$faltan}}</h2>
+    @elseif($ok=="NoHayPlatosPedidos")
+    <h2 class="mensaje">El pedido no tiene platos asociados</h2>
     @endif
     <h1 class="h1">Pedidos pendientes</h1>
     <div class="tabla-pedidos">

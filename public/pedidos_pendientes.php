@@ -65,28 +65,33 @@ if (isset($_POST['cocinar'])) {
     $stockDAO = new StockDAO($bd);
     $restar = $restarDAO->obtenerIngredientes($id_pedido);
     error_log(print_r($restar, true));
-    if ($restarDAO->hayStock($restar)) {
-        foreach ($restar as $item) {
-            $stockDAO->update(
-                $item->getId_producto(),
-                (-1) * $item->getCantidad()
-            );
-        }
-        $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Completado"));
-        header('Location: pedidos_pendientes.php?ok=completado');
+    if (null == $restar) {
+        header('Location: pedidos_pendientes.php?ok=NoHayPlatosPedidos');
         exit;
     } else {
-        error_log('no hay stock');
-        $pedidoDAO->actualizarEstadoPedido(
-            new Pedido($id_pedido, null, 'Pendiente')
-        );
-        $restar = $restarDAO->obtenerIngredientesSinStock($id_pedido);
-        foreach ($restar as $item) {
-            $stock[] = $stockDAO->selectid($item->getId_producto())->getNombre_producto();
+        if ($restarDAO->hayStock($restar)) {
+            foreach ($restar as $item) {
+                $stockDAO->update(
+                    $item->getId_producto(),
+                    (-1) * $item->getCantidad()
+                );
+            }
+            $pedidoDAO->actualizarEstadoPedido(new Pedido($id_pedido, null, "Completado"));
+            header('Location: pedidos_pendientes.php?ok=completado');
+            exit;
+        } else {
+            error_log('no hay stock');
+            $pedidoDAO->actualizarEstadoPedido(
+                new Pedido($id_pedido, null, 'Pendiente')
+            );
+            $restar = $restarDAO->obtenerIngredientesSinStock($id_pedido);
+            foreach ($restar as $item) {
+                $stock[] = $stockDAO->selectid($item->getId_producto())->getNombre_producto();
+            }
+            //con el implode el array se convierte en un string separado por comas
+            header('Location: pedidos_pendientes.php?ok=faltaStock&faltan=' . implode(",", $stock));
+            exit;
         }
-        //con el implode el array se convierte en un string separado por comas
-        header('Location: pedidos_pendientes.php?ok=faltaStock&faltan=' . implode(",", $stock));
-        exit;
     }
 }
 
