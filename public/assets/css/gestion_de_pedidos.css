@@ -1,10 +1,20 @@
-.contenido-pagina
+body 
+{
+    background-image: url('../img/background@2x.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #66999;
+}
+
+.pedidos-container
 {
     position: relative;
     overflow: hidden;
     font-family: var(--font-irish-grover);
 }
-.pedidos-container
+.pedidos-contenido
 {
     margin-top: 6%;
     margin-bottom: 2%;

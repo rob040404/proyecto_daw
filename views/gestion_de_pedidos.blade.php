@@ -8,9 +8,8 @@
 @endsection
 @section('titulo', 'Gestión de pedidos')
 @section('content')
-<div class="contenido-pagina">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
-    <div class="pedidos-container">
+<div class="pedidos-container">
+    <div class="pedidos-contenido">
         <h1 class="titulo-pedidos">Gestión de pedidos</h1>
         <div class="fecha-pedido">
             <input type="date" id="fecha_pedido" value="{{$fecha_pedido}}">
