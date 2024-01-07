@@ -145,6 +145,9 @@ if (filter_input(INPUT_POST, 'btn_retroceder') || filter_input(INPUT_POST, 'btn_
 } else {
     if (!is_null($pedidos)) {
         for ($i = 0; $i < sizeof($pedidos); $i++) {
+            if($pedidos[$i]->getEstadoPedido() == 'Pendiente'){
+                $borrado = $detallePedidoDAO->borrarDetallePedido($pedidos[$i]->getIdPedido());
+            }
             $detalles_pedido = $detallePedidoDAO->recuperarDetallesPedidoPorId($pedidos[$i]->getIdPedido());
             if (!is_null($detalles_pedido)) {
                 $pedidos[$i]->setDetallesPedido($detalles_pedido);

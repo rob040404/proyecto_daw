@@ -13,11 +13,19 @@ class PlatoDAO{
     
     function recuperarPlatos()
     {
-        $sql = "select id_plato, nombre, precio from platos";
-        $stmRecuperarPlatos = $this -> bd -> prepare($sql);
-        $stmRecuperarPlatos -> execute();
-        $stmRecuperarPlatos -> setFetchMode(PDO::FETCH_ASSOC);
-        $platos = $stmRecuperarPlatos -> fetchAll() ?: null;
+        $categorias = ['bebida', 'entrante', 'principal', 'postre', 'otro'];
+        $sql = "select id_plato, nombre, precio, categoria from platos where categoria=:categoria order by nombre";
+        $platos = [];
+        for($i = 0; $i < sizeof($categorias); $i++)
+        {
+            $stmRecuperarPlatos = $this -> bd -> prepare($sql);
+            $stmRecuperarPlatos -> execute([':categoria' => $categorias[$i]]);
+            $platos_categoria = array_values($stmRecuperarPlatos -> fetchAll(PDO::FETCH_ASSOC));
+            for($j = 0; $j < sizeof($platos_categoria); $j++)
+            {
+                $platos[] = $platos_categoria[$j];
+            }
+        }
         return $platos;
     }
     
