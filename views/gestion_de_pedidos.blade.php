@@ -38,11 +38,11 @@
                         <p>{{$pedido -> getNombreEmpleado()}}</p>
                     </div>
                     <div class="cabecera-pedido-item">
-                        <img src="assets/img/icons8-mesa-48.png" width="35" height="35">
+                        <img src="assets/img/table-icon.png" width="35" height="35">
                         <p>{{$pedido -> getMesa()}}</p>
                     </div>
                     <div class="cabecera-pedido-item">
-                        <img src="assets/img/icons8-reloj-30.png" width="35" height="35">
+                        <img src="assets/img/clock-icon.png" width="35" height="35">
                         <p>{{substr(explode(' ', $pedido -> getFechaHoraPedido())[1],0,5)}}</p>
                     </div>
                 </div>
