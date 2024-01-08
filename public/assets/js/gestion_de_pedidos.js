@@ -7,8 +7,8 @@ function guardarOrden(e)
     {
         if(platos_container.childNodes[i].childNodes[0].checked)
         {
-            pedido_data.push({id_plato: platos_container.childNodes[i].childNodes[0].value.split('-')[0],
-            nombre_plato: platos_container.childNodes[i].childNodes[0].value.split('-')[1],   
+            pedido_data.push({id_plato: platos_container.childNodes[i].childNodes[0].value.split('_')[0],
+            nombre_plato: platos_container.childNodes[i].childNodes[0].value.split('_')[1],   
             unidades: platos_container.childNodes[i].childNodes[2].value});
         }
     }
