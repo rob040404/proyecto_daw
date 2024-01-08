@@ -11,9 +11,7 @@ use App\DAO\DetallePedidoDAO;
 use App\DAO\EmpleadoDAO;
 use App\DAO\PlatoDAO;
 use App\DAO\RestarDAO;
-use App\modelo\Restar;
 use App\DAO\StockDAO;
-use App\modelo\Stock;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
