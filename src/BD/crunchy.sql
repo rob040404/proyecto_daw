@@ -1,6 +1,6 @@
 -- 1.- Creamos la Base de Datos
 create database if not exists crunchydb DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- Seleccionamos la base de datos "crunchydb"
+-- 1.1- Seleccionamos la base de datos "crunchydb"
 use crunchydb;
 drop table if exists restar;
 drop table if exists stock;
@@ -9,8 +9,9 @@ drop table if exists platos;
 drop table if exists pedidos;
 drop table if exists reservas;
 drop table if exists usuarios;
+
 -- 2.- Creamos las tablas
--- 2.1.1.- Tabla usuarios
+-- 2.1- Tabla usuarios
 create table if not exists usuarios(
     id_usuario int auto_increment primary key,
     nombre varchar(100) not null,
@@ -20,41 +21,34 @@ create table if not exists usuarios(
     email varchar (50) not null unique
 )
 ENGINE InnoDB;
--- 2.1.2.- Tabla mesas
--- create table if not exists mesas(
---    id_mesa int auto_increment primary key,
---     -- poner el resto de las columnas
---     comensales int default 2
--- )
--- ENGINE InnoDB; 
 
--- Tabla reservas
+-- 2.2- Tabla reservas
 create table if not exists reservas(
     id_reserva int auto_increment primary key,
     id_usuario int,
     foreign key(id_usuario) references usuarios(id_usuario) on update cascade on delete set null,
     mesa int,
-    nombre VARCHAR(255),
-    apellidos VARCHAR(255),
-    fecha_hora_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
-    telefono VARCHAR(20),
-    correo VARCHAR(255),
-    personas INT
+    nombre varchar(255),
+    apellidos varchar(255),
+    fecha_hora_reserva datetime,
+    telefono varchar(20),
+    correo varchar(255),
+    personas int
 )
 ENGINE InnoDB;
 
--- Tabla pedidos
+-- 2.3- Tabla pedidos
 create table if not exists pedidos(
-    id_pedido INT auto_increment primary key,
-    mesa INT,
+    id_pedido int auto_increment primary key,
+    mesa int,
     estado_pedido enum("Pendiente", "Confirmado", "Completado"),
-    fecha_hora_pedido DATETIME,
-    id_reserva INT NOT NULL,
-    FOREIGN KEY (id_reserva) REFERENCES Reservas(id_reserva) ON DELETE CASCADE
+    fecha_hora_pedido datetime,
+    id_reserva int not null,
+    foreign key (id_reserva) references reservas(id_reserva) on delete cascade
 )
 ENGINE InnoDB;
 
--- 2.1.4 .- Tabla platos
+-- 2.4- Tabla platos
 create table if not exists platos(
     id_plato int auto_increment primary key,
     nombre varchar(30),
@@ -66,10 +60,10 @@ create table if not exists platos(
 )
 ENGINE InnoDB;
 
--- Tabla detalle_pedido
+-- 2.5- Tabla detalle_pedido
 create table if not exists detalle_pedido(
     id_pedido int,
-    foreign key (id_pedido) references pedidos(id_pedido) on update cascade on delete set null,
+    foreign key (id_pedido) references pedidos(id_pedido) on update cascade on delete cascade,
     id_plato int,
     foreign key (id_plato) references platos(id_plato) on update cascade on delete set null,
     constraint unique (id_plato, id_pedido),
@@ -77,7 +71,7 @@ create table if not exists detalle_pedido(
     )
 ENGINE InnoDB;
 
--- 2.1.6 .- Tabla stock
+-- 2.6- Tabla stock
 create table if not exists stock(
     id_producto int auto_increment primary key,
     nombre_producto text unique not null,
@@ -87,7 +81,8 @@ create table if not exists stock(
     constraint `precio siempre mayor que cero` check (precio>=0.0)
     )
 ENGINE InnoDB;
--- 2.1.7 .- Tabla restar
+
+-- 2.7- Tabla restar
 create table if not exists restar(
     id_plato int,
     foreign key (id_plato) references platos (id_plato) on update cascade on delete set null,
@@ -99,5 +94,6 @@ ENGINE InnoDB;
 
 -- 3.- Creamos un usuario  
 create user if not exists crunchy@'localhost' identified by "1234";
+
 -- 4.- Le damos permiso en la base de datos "crunchy"
 grant all on crunchydb.* to crunchy@'localhost';
