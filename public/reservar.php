@@ -29,6 +29,7 @@ catch (PDOException $error)
     echo $blade -> run("errorbd", compact('error'));
     exit();
 }
+session_start();
 $sesion_abierta = isset($_SESSION['empleado']); 
 $reservasDAO = new ReservaDAO($bd);
 const MESAS_RESTAURANTE = 10;

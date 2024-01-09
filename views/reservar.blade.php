@@ -9,7 +9,6 @@
 @section('titulo', 'Reservar')
 @section('content')
 <div class="reservas-container">
-    <img class="background-icon" alt="" src="../public/assets/img/background@2x.png"/>
     <div class="reservas-contenido">
         <form method="post" id="form_reserva" novalidate>
             <div class="reserva-container">

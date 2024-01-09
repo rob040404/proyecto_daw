@@ -1,6 +1,6 @@
 use crunchydb;
 
--- Creamos un usuario del restaurante.
+-- INSERCIÓN EN 'USUARIOS'
 INSERT INTO usuarios (nombre, apellidos, contrasena, rol, email) 
 VALUES ('Sancho', 'Panza', '1234', 'admin', 'sancho@crunchy.com'),
         ('Alonso', 'Quijano', '1234', 'cocinero', 'quijote@quijote.com'),
@@ -9,28 +9,10 @@ VALUES ('Sancho', 'Panza', '1234', 'admin', 'sancho@crunchy.com'),
         ('Beatriz', 'Fernandez', '1234', 'camarero', 'bea@crunchy.com'),
         ('Rocinante', 'Exposito', '1234', 'admin', 'rocinante@crunchy.com');
 
-
-
-
-INSERT INTO reservas(id_reserva, id_usuario, mesa, nombre)
-VALUES
-(1, 1, 1, 'Ana'),
-(2, 1, 2, 'Bob');
-
-INSERT INTO pedidos(id_pedido, id_reserva, mesa, estado_pedido, fecha_hora_pedido)
-VALUES
-(1, 1, 1, 'Pendiente', CURRENT_TIMESTAMP),
-(2, 2, 2, 'Pendiente', CURRENT_TIMESTAMP);
-
-
 -- ¡¡PARA LA CARTA !!
-
 -- 1. BORRAR TABLAS 'PLATOS', 'STOCK', Y SI SE PUEDE 'RESTAR'. AUNQUE HABIENDO BORRADO LAS ANTERIORES ESA NO DEBE DAR PROBLEMA
-
 -- 2. INSERTAR INGREDIENTES EN TABLA 'STOCK'
-
 -- 3. INSERTAR PLATOS EN TABLA 'PLATOS'
-
 -- 4. INSERTAR VALORES EN TABLA 'RESTAR'
 
 -- INSERCIÓN EN 'STOCK'
@@ -110,7 +92,6 @@ INSERT INTO `stock` (`id_producto`, `nombre_producto`, `precio`, `cantidad`) VAL
 (73, 'tequila cristalino', '60.00', '20.00'),
 (74, 'tequila herradura', '60.00', '20.00'),
 (75, 'tequila jose cuervo', '50.00', '20.00');
-
 
 -- INSERCIÓN EN 'PLATOS'
 INSERT INTO `platos` (`id_plato`, `nombre`, `ingredientes`, `categoria`, `subcategoria`, `precio`, `estado`) VALUES
