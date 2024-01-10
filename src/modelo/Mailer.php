@@ -15,6 +15,9 @@ class Mailer{
     private $mensaje= null;
     private $archivoNombre= null;
     private $archivotmp=null;
+    private $fecha=null;
+    private $hora=null;
+    private $personas=null;
 
 
     public function __construct() {
@@ -52,8 +55,30 @@ class Mailer{
     public function getArchivotmp() {
         return $this->archivotmp;
     }
-    
-    public function setNombre($nombre): void {
+    public function getFecha() {
+        return $this->fecha;
+    }
+
+    public function getHora() {
+        return $this->hora;
+    }
+    public function getPersonas() {
+        return $this->comensales;
+    }
+
+    public function setPersonas($comensales): void {
+        $this->comensales = $comensales;
+    }
+
+        public function setFecha($fecha): void {
+        $this->fecha = $fecha;
+    }
+
+    public function setHora($hora): void {
+        $this->hora = $hora;
+    }
+
+        public function setNombre($nombre): void {
         $this->nombre = $nombre;
     }
 
@@ -143,7 +168,58 @@ class Mailer{
         }
     }
 
-    
+    public function enviarReserva(){
+        $cuerpo_correo="&iexcl;Bienvenido/a ".$this->getNombre()."! Queremos confirmarle que la reserva en <b>Crunchy Rancho</b> se ha realizado correctamente, 
+            aqu&iacute; le dejamos los detalles de la misma:<br><br><b>Nombre: </b>".$this->getNombre()."<br><b>Apellidos: </b>".$this->getApellidos()."<br>"
+                . "<b>Fecha: </b>".$this->getFecha()."<br><b>Hora: </b>".$this->getHora()."<br><b>Para: </b>".$this->getPersonas()." personas";
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug =0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'crunchy.restaurante@gmail.com';                     //SMTP username
+            $mail->Password   = 'vyrf pgcx vbdf ardo ';                               //SMTP password
+            $mail->SMTPSecure = 'ssl';//PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom('crunchy.restaurante@gmail.com', 'Crunchy Rancho');
+            $mail->addAddress($this->getCorreo(), $this->getNombre());     //Add a recipient
+            //$mail->addAddress('ellen@example.com');               //Name is optional
+            $mail->addReplyTo($this->getCorreo());
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            
+            //$mail->addAttachment($this->archivotmp, $this->archivoNombre);         //Add attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Reserva en Crunchy Rancho';    
+            $mail->Body    = $cuerpo_correo;
+            
+            
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $resultado=$mail->send();
+            
+            if($resultado){
+                return true;
+            }else{
+                return false;
+            }
+            //echo 'Message has been sent';
+        } catch (Exception $e) {
+            return false;
+            //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
 }
 
 
