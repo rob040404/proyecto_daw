@@ -54,13 +54,13 @@
                             </select>
                             <label class="titulo-label">Nombre:</label>
                             <input type="text" id="nombre" name="nombre" value='{{isset($reserva_editar) ? $reserva_editar -> getNombre() : ''}}'>
-                            <label class="titulo-label">Teléfono:</label>
+                            <label class="titulo-label">Tel&eacute;fono:</label>
                             <input type="tel" id="telefono" name="telefono" value='{{isset($reserva_editar) ? $reserva_editar -> getTelefono() : ''}}' maxlength="15">
                             <label class="titulo-label">Fecha:</label>
                             <input type="date" id="fecha" name="fecha" value='{{isset($fecha_hora) ? $fecha_hora[0] : ''}}'>
                             <label class="titulo-label">Personas:</label>
                             <select id="personas" name="personas">
-                            @for($i = 1; $i < 6; $i++)
+                            @for($i = 1; $i <= 6; $i++)
                                 @if(isset($reserva_editar) && $reserva_editar -> getPersonas() == $i)
                                 <option selected value="{{$i}}">{{$i}}</option>
                                 @else
@@ -69,10 +69,10 @@
                             @endfor
                             </select>
                         </div>
-                        <div class="reserva-container2">
+                        <div id="reserva_container2" class="reserva-container2">
                             <label>Mesa:</label>
                             <select id="mesa" name="mesa">
-                            @for($i = 1; $i < 11; $i++)
+                            @for($i = 1; $i <= 10; $i++)
                                 @if(isset($reserva_editar) && $i == $reserva_editar -> getMesa())
                                 <option selected value="{{$i}}">{{$i}}</option>
                                 @else
@@ -82,9 +82,9 @@
                             </select>
                             <label class="titulo-label">Apellidos:</label>
                             <input type="text" id="apellidos" name="apellidos" value='{{isset($reserva_editar) ? $reserva_editar -> getApellidos() : ''}}'>
-                            <label class="titulo-label">Correo electrónico:</label>
+                            <label class="titulo-label">Correo electr&oacute;nico:</label>
                             <input type="email" id="correo" name="correo" value='{{isset($reserva_editar) ? $reserva_editar -> getCorreo() : ''}}'>
-                            <label class="titulo-label">Horas Disponibles:</label>
+                            <label id="titulo_hora" class="titulo-label">Hora:</label>
                             <select id="hora" name="hora">
                             </select>
                         </div>
@@ -93,7 +93,7 @@
                         @endif
                     </div>
                     <div class="finalizar-container">
-                        <button type="submit" class="boton-finalizar" id="btn_reserva" name="btn_reserva">Confirmar reserva</button>
+                        <button type="submit" class="boton-finalizar" id="btn_reservar" name="btn_reserva">Confirmar reserva</button>
                     </div>
                 </div>
             </form>
@@ -126,19 +126,6 @@
         @endif
         <div class="notification-container" id="containerNotification"></div>
         <div class="listado-de-reservas-container" id="div_reservas">
-            <!--<form method="post">
-                <div class="paginacion">
-                    <div class="pagina_anterior">
-                        <button class="link_paginacion" type="submit"><- Page 1</button>
-                    </div>
-                    <div class="pagina_actual">
-                        <p>Page 1</p>
-                    </div>
-                    <div class="pagina_siguiente">
-                        <button class="link_paginacion" type="submit">Page 3 -></button>
-                    </div>
-                </div>
-            </form>-->
             @if($reservas)
             <h1 class="listado-de-reservas">Listado de reservas</h1>
             <table>

@@ -21,14 +21,14 @@
                     <div class="reserva-container1">
                         <label class="titulo-label">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" {!!isset($reserva) ? 'readonly value="' . $reserva -> getNombre() . '"' : ''!!}>
-                        <label class="titulo-label">Telefono:</label>
+                        <label class="titulo-label">Tel&eacute;fono:</label>
                         <input type="tel" id="telefono" name="telefono" {!!isset($reserva) ? 'readonly value="' . $reserva -> getTelefono() . '"' : ''!!}>
                         <label class="titulo-label">Fecha:</label>
                         <input type="date" id="fecha" name="fecha" {!!isset($reserva) ? 'readonly value="' . $fecha_hora[0] . '"' : ''!!}>
                         <label class="titulo-label">Personas:</label>
                         @if(!isset($reserva))
                         <select name="personas">
-                        @for($i = 1; $i < 7; $i++)
+                        @for($i = 1; $i <= 6; $i++)
                             <option value="{{$i}}">{{$i}}</option>
                         @endfor
                         </select>
@@ -36,12 +36,12 @@
                         <input type="text" name="personas" readonly value="{{$reserva -> getPersonas()}}">
                         @endif
                     </div>
-                    <div class="reserva-container2">
+                    <div id="reserva_container2" class="reserva-container2">
                         <label class="titulo-label">Apellidos:</label>
                         <input type="text" id="apellidos" name="apellidos" {!!isset($reserva) ? 'readonly value="' . $reserva -> getApellidos() . '"' : ''!!}>
-                        <label class="titulo-label">Correo electrónico:</label>
+                        <label class="titulo-label">Correo electr&oacute;nico:</label>
                         <input type="email" id="correo" name="correo" {!!isset($reserva) ? 'readonly value="' . $reserva -> getCorreo() . '"' : ''!!}>
-                        <label class="titulo-label">Hora:</label>
+                        <label id="titulo_hora" class="titulo-label">Hora:</label>
                         @if(!isset($reserva))
                         <select id="hora" name="hora">
                         </select>

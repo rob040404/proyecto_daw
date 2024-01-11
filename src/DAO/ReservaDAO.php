@@ -153,12 +153,12 @@ class ReservaDAO
     function seleccionarMesa(int $mesas, string $dia_actual, array $fecha_hora) :int
     {
         $mesas_disp = null;
-        for($i = 1; $i < intval($mesas); $i++)
+        for($i = 0; $i < intval($mesas); $i++)
         {
-            $reserva = $this -> recuperarPorMesayFechaReserva($i, $fecha_hora);
+            $reserva = $this -> recuperarPorMesayFechaReserva($i + 1, $fecha_hora);
             if($reserva == null)
             {
-                $mesas_disp[] = $i;
+                $mesas_disp[] = $i + 1;
             }
         }
         $min_reservas_mesa = null;
