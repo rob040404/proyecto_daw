@@ -1,6 +1,7 @@
 <?php
 require_once '../vendor/autoload.php';
 use Dotenv\Dotenv;
+use App\modelo\Mailer;
 use App\modelo\Reserva;
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
@@ -57,6 +58,15 @@ if(filter_input_array(INPUT_POST))
         $mesa = $reservasDAO -> seleccionarMesa(MESAS_RESTAURANTE, filter_input(INPUT_POST, 'fecha', FILTER_UNSAFE_RAW), $fecha_hora);
         $reserva = new Reserva(null, $id_usuario, $mesa, $values['nombre'], $values['apellidos'], $values['telefono'], $values['correo'], implode(' ', $fecha_hora), $values['personas'], null);
         $reservasDAO -> nuevaReserva($reserva);
+        $mail = new Mailer();
+        $mail -> setCorreo($values['correo']);
+        $mail -> setNombre(htmlentities($values['nombre']));
+        $mail -> setApellidos(htmlentities($values['apellidos']));
+        $fecha_hora_formateada = $reservasDAO -> formatearFecha(["fecha_hora_reserva" => implode(' ', $fecha_hora)], 2);
+        $mail -> setFecha(explode(' ', $fecha_hora_formateada["fecha_hora_reserva"])[0]);
+        $mail -> setHora(explode(' ', $fecha_hora_formateada["fecha_hora_reserva"])[1]);
+        $mail -> setPersonas($values['personas']);
+        //$enviado = $mail -> enviarReserva();
         echo $blade -> run('reservar', compact('sesion_abierta', 'reserva', 'fecha_hora'));
     }
 }

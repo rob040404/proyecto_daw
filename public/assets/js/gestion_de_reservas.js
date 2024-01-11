@@ -35,25 +35,51 @@ function cargarHorario(input_data)
         success: function (response)
         {
             var horas_disponibles = response.horas_disponibles;
-            var select = document.getElementById('hora');
-            select.innerHTML = '';
-            for(var i = 0; i < horas_disponibles.length; i++)
+            if(horas_disponibles.length === 0 && document.getElementById('sin_hora') === null)
             {
-                var option = document.createElement('option');
-                if(input_data.fecha_editar !== null)
+                document.getElementById('titulo_hora').classList.remove('titulo-label');
+                document.getElementById('titulo_hora').classList.add('invisible');
+                document.getElementById('hora').classList.add('invisible');
+                var reserva_container2 = document.getElementById('reserva_container2');
+                var p = document.createElement('p');
+                p.innerHTML = 'TODAS LAS MESAS OCUPADAS';
+                p.setAttribute('id', 'sin_hora');
+                p.classList.add('sin-hora');
+                reserva_container2.appendChild(p);
+                document.getElementById('btn_reservar').classList.remove('boton-finalizar');
+                document.getElementById('btn_reservar').classList.add('invisible');
+            }
+            else if(horas_disponibles.length >= 1)
+            {
+                if(document.getElementById('sin_hora') !== null)
                 {
-                    if(input_data.fecha === input_data.fecha_editar.split(' ')[0] && horas_disponibles[i] === input_data.fecha_editar.split(' ')[1].slice(10, 16))
-                    {
-                        option.setAttribute('selected', true);
-                    }
-                    else if(horas_disponibles[i] === input_data.fecha_editar.split(' ')[1].substring(-4, 5))
-                    {
-                        option.setAttribute('selected', true);
-                    }
+                    document.getElementById('sin_hora').remove();
                 }
-                option.setAttribute('value', horas_disponibles[i]);
-                option.innerHTML = horas_disponibles[i];
-                select.appendChild(option);
+                document.getElementById('titulo_hora').classList.remove('invisible');
+                document.getElementById('titulo_hora').classList.add('titulo-label');
+                document.getElementById('hora').classList.remove('invisible');
+                document.getElementById('btn_reservar').classList.remove('invisible');
+                document.getElementById('btn_reservar').classList.add('boton-finalizar');
+                var select = document.getElementById('hora');
+                select.innerHTML = '';
+                for(var i = 0; i < horas_disponibles.length; i++)
+                {
+                    var option = document.createElement('option');
+                    if(input_data.fecha_editar !== null)
+                    {
+                        if(input_data.fecha === input_data.fecha_editar.split(' ')[0] && horas_disponibles[i] === input_data.fecha_editar.split(' ')[1].slice(10, 16))
+                        {
+                            option.setAttribute('selected', true);
+                        }
+                        else if(horas_disponibles[i] === input_data.fecha_editar.split(' ')[1].substring(-4, 5))
+                        {
+                            option.setAttribute('selected', true);
+                        }
+                    }
+                    option.setAttribute('value', horas_disponibles[i]);
+                    option.innerHTML = horas_disponibles[i];
+                    select.appendChild(option);
+                }
             }
         },
         error: function (xhr, ajaxOptions, thrownError) 
@@ -71,6 +97,7 @@ function actualizarCampos()
     document.getElementById("apellidos").value = '';
     document.getElementById("correo").value = ''; 
     document.getElementById("telefono").value = '';
+    document.getElementById("personas").value = '1'; 
     cargarFechaActual(document.getElementById("fecha"));
     var input_data = {"cargar_horarios": true, "fecha": document.getElementById("fecha").value, "mesa": document.getElementById("mesa").value,
     "fecha_editar": document.getElementById("opcion").innerHTML === 'Nueva reserva' ? null : document.getElementById('fecha_editar').value};
@@ -162,14 +189,14 @@ function camposVacios(campos)
 
 function comprobarTelefono(telefono)
 {
-    var patron = /^[0-9]+$/;
+    var patron = /^[0-9]{6,15}$/;
     if(patron.test(telefono.toString())) 
     {
         return true;
     }
     else
     {
-        document.getElementById('telefono').setCustomValidity('Formato de telefono no válido');
+        document.getElementById('telefono').setCustomValidity('El teléfono debe constar de 6 a 15 dígitos');
         document.getElementById('telefono').reportValidity();
         return false;
     }
