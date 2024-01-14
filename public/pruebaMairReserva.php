@@ -2,8 +2,8 @@
 require_once '../vendor/autoload.php';
 
 use App\modelo\Mailer;
-$correo='robert704@outlook.com';
-$nombre= 'Robert';
+$correo='robert.gr704@gmail.com';
+$nombre= 'José';
 $apellidos= 'Green';
 $fecha= '20/02/2024';
 $hora= '21:00';
