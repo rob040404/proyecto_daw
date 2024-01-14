@@ -8,7 +8,7 @@
 @endsection
 @section('titulo', 'Gestión de pedidos')
 @section('content')
-<div class="pedidos-container">
+<div id="pedidos_container" class="pedidos-container @php if(is_null($pedidos)){echo 'margen';} @endphp">
     <div class="pedidos-contenido">
         <h1 class="titulo-pedidos">Gestión de pedidos</h1>
         <div class="fecha-pedido">

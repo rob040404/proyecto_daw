@@ -12,6 +12,9 @@ body
     position: relative;
     overflow: hidden;
     font-family: var(--font-irish-grover);
+}
+.margen
+{
     margin-bottom: 8%;
 }
 .pedidos-contenido
