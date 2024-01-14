@@ -270,3 +270,14 @@ th, td
 {
     font-size: 100%;
 }
+.sin-hora
+{
+    text-align: center;
+    color: var(--yellow);
+    margin-top: 60px;
+    font-size: 21px;
+}
+.invisible
+{
+    display: none;
+}
