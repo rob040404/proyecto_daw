@@ -382,6 +382,7 @@ document.addEventListener("DOMContentLoaded", function ()
     }
     else if(pagina === 'Gestión de reservas')
     {
+        var reservas_container = document.getElementById('reservas_container');
         if(document.getElementById("opcion") !== null)
         {
             var opcion = document.getElementById("opcion").innerHTML;
@@ -439,7 +440,22 @@ document.addEventListener("DOMContentLoaded", function ()
         }
         else if(document.getElementById("reservas_eliminadas") !== null)
         {
+            reservas_container.style.marginBottom = '8.2%';
             notificacion('TODAS LAS RESERVAS ELIMINADAS CON EXITO', 'red');
+        }
+        else
+        {
+            var botones_reservas = document.getElementById('botones_reservas');
+            var btn_modificar = document.getElementById('btn_modificar_reserva');
+            if(btn_modificar.classList.contains('boton-invisible'))
+            {
+                reservas_container.style.marginBottom = '8.2%';
+            }
+            else
+            {
+                reservas_container.removeAttribute('style');
+                botones_reservas.removeAttribute('style');
+            }
         }
     }
 });

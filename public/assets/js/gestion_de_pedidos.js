@@ -364,11 +364,6 @@ function aplicarEstiloPedidos(pedido)
     else
     {
         pedido.style.border= '2px solid var(--green)';
-        /*btn_retroceder.value = 'Confirmado';
-        btn_retroceder.style.border = '2px solid var(--color-yellow)';
-        btn_retroceder.addEventListener("mouseenter", incluirSombra);
-        btn_retroceder.addEventListener("mouseleave", borrarSombra);
-        btn_retroceder.addEventListener("click", moverEstado);*/
     }
 }
 

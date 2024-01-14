@@ -8,11 +8,11 @@
 @endsection
 @section('titulo', 'Gestión de reservas')
 @section('content')
-<div class="reservas-container">
+<div id="reservas_container" class="reservas-container">
     <div class="reservas-contenido">
         <h1 class="titulo-reservas">Gestión de reservas</h1>
         <form method="post">
-            <div class="botones-reservas">
+            <div id="botones_reservas" class="botones-reservas">
                 <button class="boton-nueva-reserva" type="submit" id="btn_nueva_reserva" name="btn_nueva_reserva" value="Nueva reserva">Nueva reserva</button>
                 <button class="boton-modificar {{!isset($reservas) ? 'boton-invisible' : ''}}" type="submit" id="btn_modificar_reserva" name="btn_modificar_reserva" value="Modificar reserva">Modificar reserva</button>
                 <button class="boton-eliminar {{!isset($reservas) ? 'boton-invisible' : ''}}" type="submit" id="btn_eliminar_reserva/s" name="btn_eliminar_reserva/s" value="Eliminar reserva/s">Eliminar reserva/s</button>
