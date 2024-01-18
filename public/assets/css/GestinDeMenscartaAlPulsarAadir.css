@@ -524,7 +524,7 @@ input[type="file"]::file-selector-button {
 .botones {
   position: relative;
   align-self: center;
-  margin: 7% auto;
+  margin: 0 auto;
   /*top: 324px;
   left: 335px;*/
   width: 771px;
@@ -540,7 +540,8 @@ input[type="file"]::file-selector-button {
   height: 100%;
   overflow: hidden;
   text-align: left;
-  
+  margin-top: 5%;
+  margin-bottom: 10%;
   font-size: var(--font-size-5xl);
   color: var(--yellow);
   font-family: var(--font-irish-grover);
