@@ -63,16 +63,12 @@ function comprobar(event){
               $("#err").fadeOut();
             },
             success: function(response){
-                
                 if(response.errores){
                     $('#correo-incorrecto').html('No se ha podido enviar el correo.<br>Puedes escribirnos desde tu propio correo a "crunchy.restaurante@gmail.com"');
                 }else{
                     limpiarInputs();
                     $('#correo-correcto').html('¡Correo enviado correctamente! <br>Te atenderemos lo antes posible.');
                 }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert('Error Message: ' + thrownError);
             }
         });
     }
