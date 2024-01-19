@@ -4,10 +4,8 @@
 <link rel="stylesheet" href="./assets/css/pedidos_pendientes.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap" />
 @endsection
-
 @section('titulo', 'Pedidos')
 @section('content')
-
 <div class="pedidos">
     @if($ok=='Confirmado')
     <h2 class="mensaje">Pedido confirmado!</h2>
@@ -52,9 +50,6 @@
             @endforeach
         </table>
     </div>
-
 </div>
-
 </body>
-
 @endsection

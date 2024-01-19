@@ -11,18 +11,19 @@
 <div class="gestin-de-menscarta-al-puls"> 
     <div class="contenedor-bot-coc">
         <div class="container-botones-izq">
-            <a href="gestion_de_pedidos.php"><button class="boton-pedidos-camarero bot" type="button" name="pedidos" id="pedidos">
-            <div class="texto-gm">Gesti&oacute;n de pedidos</div>
-            </button></a>
+            <a href="gestion_de_pedidos.php">
+                <button class="boton-pedidos-camarero bot" type="button" name="pedidos" id="pedidos">
+                    <div class="texto-gm">Gesti&oacute;n de pedidos</div>
+                </button>
+            </a>
         </div>
         <div class="container-botones-der">
-            <a href="gestion_de_reservas.php"><button class="boton-reservas-camarero bot" type="button" name="reservas" id="reservas">
-            <div class="texto-gm" id="ver">Gesti&oacute;n de reservas</div>
-            </button></a>
+            <a href="gestion_de_reservas.php">
+                <button class="boton-reservas-camarero bot" type="button" name="reservas" id="reservas">
+                    <div class="texto-gm" id="ver">Gesti&oacute;n de reservas</div>
+                </button>
+            </a>
         </div>
     </div>  
 </div>
 @endsection
-
-
-

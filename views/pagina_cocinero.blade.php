@@ -11,16 +11,19 @@
 <div class="gestin-de-menscarta-al-puls">   
     <div class="contenedor-bot-coc">
         <div class="container-botones-izq">
-            <a href="pagina_de_inventario.php"><button class="boton-inventario-cocinero bot" type="button" name="inventario" id="inventario">
-            <div class="texto-gm">Gesti&oacute;n de inventario</div>
-            </button></a>
+            <a href="pagina_de_inventario.php">
+                <button class="boton-inventario-cocinero bot" type="button" name="inventario" id="inventario">
+                    <div class="texto-gm">Gesti&oacute;n de inventario</div>
+                </button>
+            </a>
         </div>
         <div class="container-botones-der">
-            <a href="gestion_de_menus.php"><button class="boton-carta-cocinero bot" type="button" name="carta" id="carta">
-            <div class="texto-gm" id="ver">Gesti&oacute;n de carta</div>
-            </button></a>
+            <a href="gestion_de_menus.php">
+                <button class="boton-carta-cocinero bot" type="button" name="carta" id="carta">
+                <div class="texto-gm" id="ver">Gesti&oacute;n de carta</div>
+                </button>
+            </a>
         </div>
     </div>    
 </div>
 @endsection
-

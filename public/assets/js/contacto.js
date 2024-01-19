@@ -51,7 +51,6 @@ function comprobar(){
         $('#error-mensaje').html('Campo obligatorio');
         error_validacion=true;
     }
-    
     if(error_validacion===false){
         $.ajax({
             type: "POST",
@@ -59,7 +58,6 @@ function comprobar(){
             data: {nom: nombre, ap: apellidos, tel: telefono, cor: correo, as:asunto, men: mensaje},
             datatype: 'json',
             success: function(response){
-                
                 if(response.errores){
                     $('#correo-incorrecto').html('No se ha podido enviar el correo.<br>Puedes escribirnos desde tu propio correo a "crunchy.restaurante@gmail.com"');
                 }else{
@@ -67,6 +65,9 @@ function comprobar(){
                     $('#correo-correcto').html('¡Correo enviado correctamente! <br>Te atenderemos lo antes posible.');
                 }
             },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error Message: ' + thrownError);
+            }
         });
     }
 }
@@ -93,12 +94,12 @@ function puntero(){
 }
 
 function eliminar_acentos(cadena){
-	var chars={
-		"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u",
-		"à":"a", "è":"e", "ì":"i", "ò":"o", "ù":"u", "ñ":"n",
-		"Á":"A", "É":"E", "Í":"I", "Ó":"O", "Ú":"U",
-		"À":"A", "È":"E", "Ì":"I", "Ò":"O", "Ù":"U", "Ñ":"N"};
-	var expr=/[áàéèíìóòúùñ]/ig;
-	var res=cadena.replace(expr,function(e){return chars[e];});
-	return res;
+    var chars={
+        "á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u",
+        "à":"a", "è":"e", "ì":"i", "ò":"o", "ù":"u", "ñ":"n",
+        "Á":"A", "É":"E", "Í":"I", "Ó":"O", "Ú":"U",
+        "À":"A", "È":"E", "Ì":"I", "Ò":"O", "Ù":"U", "Ñ":"N"};
+    var expr=/[áàéèíìóòúùñ]/ig;
+    var res=cadena.replace(expr,function(e){return chars[e];});
+    return res;
 }

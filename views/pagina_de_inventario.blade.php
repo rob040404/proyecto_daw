@@ -5,13 +5,10 @@
 @section('javascript')
 <script src="./assets/js/jquery/jquery-3.6.0.min.js"></script>
 <script src="./assets/js/inventario.js"></script>
-
 @endsection
 @section('titulo', 'Inventario')
 @section('content')
-
 <div class="inventario">
-
     <h1 class="inventario-del-restaurante">Inventario del restaurante</h1>
     @if (isset($anadido) && $anadido)
     <h3 class="mensaje">Se ha añadido un nuevo producto.</h3>
@@ -26,7 +23,6 @@
                 <td scope="col">Modificar</td>
                 <td scope="col">Borrar</td>
             </tr>
-
             @foreach($stock as $producto)
             <tr>
                 <td>
@@ -51,11 +47,9 @@
                 </td>
             </tr>
             @endforeach
-
         </table>
     </div>
     <a href="nuevo_producto.php">
-
         <div class="boton-parent">
             <button class="boton">
                 <div class="texto-botones">Nuevo producto</div>
@@ -63,8 +57,5 @@
         </div>
     </a>
 </div>
-
-
 </body>
-
 @endsection

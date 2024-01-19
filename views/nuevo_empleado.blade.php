@@ -5,9 +5,7 @@
 @section('titulo', 'Alta de nuevo usuario')
 @section('content')
 <div class="nuevo-empleado">
-    <img class="background-icon" alt="" src="../public/assets/img/background-nuevo-producto@2x.png" />
-
-
+    <img class="background-icon" alt="" src="../public/assets/img/background-nuevo-producto@2x.png"/>
     <h1 class="h1">Dar de alta</h1>
     @if (isset($error))
     <h3 class="h3">{{ $error }}</h3>

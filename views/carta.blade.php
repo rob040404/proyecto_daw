@@ -15,12 +15,9 @@
             directamente a las calles de México. Desde los clásicos tacos y enchiladas hasta nuestros famosos guacamoles y margaritas, 
             cada bocado es una experiencia única llena de autenticidad y pasión por la cocina mexicana. ¡Disfruta de una aventura culinaria 
             que celebra la riqueza y diversidad de la gastronomía de México en cada plato!
-
          </div>
-
         <div class="borde-amarillo-carta">
             <h1 class="encabezado-entrantes">ENTRANTES</h1>
-            
             @php
                 $enchiladasExiste=false;
                 foreach($entrantes as $entrante){
@@ -36,18 +33,15 @@
                                 '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
                         }
                     }
-                }
-                
+                } 
             @endphp
-            
             @php
                 $flautasExiste=false;
                 foreach($entrantes as $entrante){
                     if($entrante->subcategoria==='flautas' && $entrante->estado==='activado'){
                         $flautasExiste=true;       
                     }
-                }
-                
+                } 
                 if($flautasExiste===true){
                     echo '<h3 class="encabezado-entrantes">FLAUTAS</h3>';
                     foreach($entrantes as $entrante){
@@ -56,10 +50,8 @@
                                 '</h4>'.$entrante->ingredientes.'<br>'.$entrante->precio.'€<br>';           
                         }
                     }
-                }
-                
+                } 
             @endphp
-            
             @php
                 $nachosExiste=false;
                 foreach($entrantes as $entrante){
@@ -67,7 +59,6 @@
                         $nachosExiste=true;       
                     }
                 }
-                
                 if($nachosExiste===true){
                     echo '<h3 class="encabezado-entrantes">NACHOS</h3>';
                     foreach($entrantes as $entrante){
@@ -77,9 +68,7 @@
                         }
                     }
                 }
-                
             @endphp
-            
             @php
                 $quesosExiste=false;
                 foreach($entrantes as $entrante){
@@ -97,9 +86,7 @@
                         }
                     }
                 }
-                
             @endphp
-            
             @php
                 $otroExiste=false;
                 foreach($entrantes as $entrante){
@@ -116,15 +103,10 @@
                         }
                     }
                 }
-                
-                
-            @endphp 
-           
-            
+            @endphp  
         </div>
         <div class="borde-rojo-carta">
             <h1 class="encabezado-principales">PRINCIPALES</h1>
-            
             @php
                 $tacosExiste=false;
                 foreach($principales as $principal){
@@ -132,7 +114,6 @@
                         $tacosExiste=true;       
                     }
                 }
-                
                 if($tacosExiste===true){
                     echo '<h3 class="encabezado-principales">TACOS</h3>';
                     foreach($principales as $principal){
@@ -143,7 +124,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $fajitasExiste=false;
                 foreach($principales as $principal){
@@ -151,7 +131,6 @@
                         $fajitasExiste=true;       
                     }
                 }
-                
                 if($fajitasExiste===true){
                     echo '<h3 class="encabezado-principales">FAJITAS</h3>';
                     foreach($principales as $principal){
@@ -162,7 +141,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $ensaladasExiste=false;
                 foreach($principales as $principal){
@@ -181,15 +159,13 @@
                     }
                 }
             @endphp
-            
             @php
                 $quesadillasExiste=false;
                 foreach($principales as $principal){
                     if($principal->subcategoria==='quesadillas' && $principal->estado==='activado'){
                         $quesadillasExiste=true;       
                     }
-                }
-                
+                } 
                 if($quesadillasExiste===true){
                 echo '<h3 class="encabezado-principales">QUESADILLAS</h3><p><u>UNA TORTITA RELLENA DE QUESO FUNDIDO Y...</u></p>';
                     foreach($principales as $principal){
@@ -200,7 +176,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $gringasExiste=false;
                 foreach($principales as $principal){
@@ -218,7 +193,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $cucharaExiste=false;
                 foreach($principales as $principal){
@@ -252,16 +226,11 @@
                                 '</h4>'.$principal->ingredientes.'<br>'.$principal->precio.'€<br>';           
                         }
                     }
-                }
-                
-                
-            @endphp 
-            
-            
+                }    
+            @endphp    
         </div>
         <div class="borde-azul-carta">
             <h1 class="encabezado-postres">POSTRES</h1>
-            
             @php
                 $platoExiste=false;
                 foreach($postres as $postre){
@@ -269,7 +238,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-postres">TARTAS</h3>';
                     foreach($postres as $postre){
@@ -280,7 +248,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($postres as $postre){
@@ -288,7 +255,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-postres">SORBETES</h3>';
                     foreach($postres as $postre){
@@ -299,7 +265,6 @@
                     }
                 }
             @endphp
-            
             @php
             
                 $platoExiste=false;
@@ -308,7 +273,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-postres">HELADOS</h3>';
                     foreach($postres as $postre){
@@ -334,15 +298,11 @@
                                 '</h4>'.$postre->ingredientes.'<br>'.$postre->precio.'€<br>';           
                         }
                     }
-                }
-                
-                
+                }    
             @endphp 
-            
         </div>
         <div class="borde-verde-carta">
             <h1 class="encabezado-bebidas">BEBIDAS</h1>
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -350,7 +310,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">REFRESCOS</h3>';
                     foreach($bebidas as $bebida){
@@ -361,15 +320,13 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
                     if($bebida->subcategoria==='zumos' && $bebida->estado==='activado'){
                         $platoExiste=true;       
                     }
-                }
-                
+                }   
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">ZUMOS</h3>';
                     foreach($bebidas as $bebida){
@@ -380,7 +337,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -388,7 +344,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">LIMONADAS</h3>';
                     foreach($bebidas as $bebida){
@@ -399,7 +354,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -407,7 +361,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">CAFES</h3>';
                     foreach($bebidas as $bebida){
@@ -418,7 +371,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -426,7 +378,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">CERVEZAS</h3>';
                     foreach($bebidas as $bebida){
@@ -437,7 +388,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -445,7 +395,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">VINOS</h3>';
                     foreach($bebidas as $bebida){
@@ -456,7 +405,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -464,7 +412,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">ZUMOS</h3>';
                     foreach($bebidas as $bebida){
@@ -475,7 +422,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -483,7 +429,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">GINEBRA</h3>';
                     foreach($bebidas as $bebida){
@@ -494,7 +439,6 @@
                     }
                 }    
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -502,7 +446,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">RON</h3>';
                     foreach($bebidas as $bebida){
@@ -513,7 +456,6 @@
                     }
                 }    
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -521,7 +463,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">WHISKY</h3>';
                     foreach($bebidas as $bebida){
@@ -532,7 +473,6 @@
                     }
                 }    
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -540,7 +480,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">MARGARITAS</h3>';
                     foreach($bebidas as $bebida){
@@ -551,7 +490,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -559,7 +497,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">MEZCALES</h3>';
                     foreach($bebidas as $bebida){
@@ -570,7 +507,6 @@
                     }
                 }
             @endphp
-            
             @php
                 $platoExiste=false;
                 foreach($bebidas as $bebida){
@@ -578,7 +514,6 @@
                         $platoExiste=true;       
                     }
                 }
-                
                 if($platoExiste===true){
                     echo '<h3 class="encabezado-bebidas">COCTELES</h3>';
                     foreach($bebidas as $bebida){
@@ -604,12 +539,9 @@
                                 '</h4>'.$bebida->ingredientes.'<br><u>'.$bebida->precio.'€</u><br>';           
                         }
                     }
-                }
-                
-                
+                }    
             @endphp 
         </div>
-        
         @php
             $otroExiste=false;
             if(!empty($otros)){
@@ -618,7 +550,6 @@
                         $otroExiste=true;
                     }
                 }
-                
                 if($otroExiste===true){
                     echo '<div class="borde-rosa-carta">';
                     echo    '<h1 class="encabezado-otros">OTROS</h1>';
@@ -629,17 +560,9 @@
                                 }
                             }
                     echo '</div>';
-                    
                 }
             }
-            
         @endphp
-        
-        
-        
-    <div class="contenido">
-      
+    <div class="contenido"> 
 </div>
 @endsection
-
-
