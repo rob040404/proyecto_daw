@@ -1,81 +1,80 @@
 .background-icon {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  object-fit: cover;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 .th {
-  border-bottom: 1px solid var(--color-beige);
+    border-bottom: 1px solid var(--color-beige);
 }
 
-
 .tabla {
-  align-self: stretch;
-  flex: 1;
-  background-color: var(--color-black);
+    align-self: stretch;
+    flex: 1;
+    background-color: var(--color-black);
 }
 
 .tabla-stock {
-  position: relative;
-  top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 931px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  color: var(--yellow);
-  font-size: 20px;
+    position: relative;
+    top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 931px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: var(--yellow);
+    font-size: 20px;
 }
+
 .table {
-  align-self: stretch;
-  border-radius: 16px;
-  background-color: #000;
-  border: 1px solid var(--color-gray-300);
-  overflow: hidden;
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: #000;
+    border: 1px solid var(--color-gray-300);
+    overflow: hidden;
 }
 
 .tabla {
-  position: relative;
-  width: 100%;
-  border-radius: 16px;
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
 }
 
 .inventario-del-restaurante {
-  position: relative;
-  top: 100px;
-  margin-right: auto;
-  font-size: inherit;
-  font-weight: 400;
-  font-family: inherit;
-  color: var(--blue);
-  font-size: 35px;
-  text-align: center;
+    position: relative;
+    top: 100px;
+    margin-right: auto;
+    font-size: inherit;
+    font-weight: 400;
+    font-family: inherit;
+    color: var(--blue);
+    font-size: 35px;
+    text-align: center;
 }
 
 .texto-botones {
-  position: relative;
-  font-size: var(--font-size-xl);
-  font-family: var(--font-irish-grover);
-  text-align: left;
-  color: var(--yellow);
+    position: relative;
+    font-size: var(--font-size-xl);
+    font-family: var(--font-irish-grover);
+    text-align: left;
+    color: var(--yellow);
 }
 
 .boton {
-  cursor: pointer;
+    cursor: pointer;
     border: 2px solid var(--blue);
     padding: var(--padding-3xs);
-    position: relative; /*absolute*/
-    /*bottom: 100px;*/
+    position: relative;
     top: 150px;
     left: calc(50% - 99px);
     border-radius: var(--br-base);
@@ -91,47 +90,47 @@
 }
 
 .inventario {
-  height: auto;
-  background-color: var(--color-black);
-  width: 100%;
-  overflow: hidden;
-  text-align: center;
-  font-family: var(--font-irish-grover);
-  padding-bottom: 200px;
-  background: url(../img/background-login@2x.png) repeat fixed center / cover;
+    height: auto;
+    background-color: var(--color-black);
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    font-family: var(--font-irish-grover);
+    padding-bottom: 200px;
+    background: url(../img/background-login@2x.png) repeat fixed center / cover;
 }
 
 .input-interior {
-  border: 1px solid var(--yellow);
-  background-color: transparent;
-  border-radius: 8px;
-  backdrop-filter: blur(4px);
-  box-sizing: border-box;
-  font-family: 'Irish Grover';
-  text-align: center;
-  color: var(--yellow);
-  width: 90px;
-  height: 30px;
-  font-size: 20px;
-  display: none;
+    border: 1px solid var(--yellow);
+    background-color: transparent;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    box-sizing: border-box;
+    font-family: 'Irish Grover';
+    text-align: center;
+    color: var(--yellow);
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
+    display: none;
 }
 
 .botonlapiz {
-  display: inline;
-  cursor: pointer;
+    display: inline;
+    cursor: pointer;
 }
 
 .botondisquete {
-  display: none;
-  cursor: pointer;
+    display: none;
+    cursor: pointer;
 }
 
 .botonpapelera {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .mensaje {
-  color: var(--green);
-  position: relative;
-  top: 100px;
+    color: var(--green);
+    position: relative;
+    top: 100px;
 }

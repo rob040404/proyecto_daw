@@ -7,8 +7,7 @@
 @section('titulo', 'Administracion')
 @section('content')
 <div class="admin">
-    <img class="background-icon" alt="" src="../public/assets/img/background_admin@2x.png" />
-
+    <img class="background-icon" alt="" src="../public/assets/img/background_admin@2x.png"/>
     <div class="logout-wrapper">
         <div class="logout" id="logoutText">Logout</div>
     </div>

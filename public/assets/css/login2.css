@@ -1,101 +1,101 @@
 .login {
-  position: relative;
-  color: var(--yellow);
+    position: relative;
+    color: var(--yellow);
 }
 
 .tag-login {
-  width: 78px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-3xs);
-  box-sizing: border-box;
+    width: 78px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-3xs);
+    box-sizing: border-box;
 }
 
 .input-login {
-  border: 2px solid var(--yellow);
-  background-color: transparent;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
-  backdrop-filter: blur(4px);
-  box-sizing: border-box;
-  width: 360px;
-  height: 75px;
-  font-family: 'Irish Grover';
-  font-size: larger;
-  text-align: center;
-  color: var(--yellow);
+    border: 2px solid var(--yellow);
+    background-color: transparent;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+    backdrop-filter: blur(4px);
+    box-sizing: border-box;
+    width: 360px;
+    height: 75px;
+    font-family: 'Irish Grover';
+    font-size: larger;
+    text-align: center;
+    color: var(--yellow);
 }
 
 .grupo-login,
 .tag-password {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .tag-password {
-  width: 138px;
-  flex-direction: row;
-  justify-content: center;
-  padding: var(--padding-3xs);
-  box-sizing: border-box;
+    width: 138px;
+    flex-direction: row;
+    justify-content: center;
+    padding: var(--padding-3xs);
+    box-sizing: border-box;
 }
 
 .input-password {
-  border: 2px solid var(--yellow);
-  background-color: transparent;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
-  backdrop-filter: blur(4px);
-  box-sizing: border-box;
-  width: 360px;
-  height: 75px;
-  font-family: 'Irish Grover';
-  font-size: larger;
-  text-align: center;
-  color: var(--yellow);
+    border: 2px solid var(--yellow);
+    background-color: transparent;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+    backdrop-filter: blur(4px);
+    box-sizing: border-box;
+    width: 360px;
+    height: 75px;
+    font-family: 'Irish Grover';
+    font-size: larger;
+    text-align: center;
+    color: var(--yellow);
 }
 
 .boton-confirmar,
 .grupo-formulario {
-  display: flex;
-  align-items: center;
-  font-size: var(--font-size-5xl);
-  font-family: var(--font-irish-grover);
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-5xl);
+    font-family: var(--font-irish-grover);
 }
 
 .boton-confirmar {
-  cursor: pointer;
-  border: 2px solid #4cb24c;
-  background-color: var(--color-black);
-  border-radius: 8px;
-  flex-direction: row;
-  justify-content: center;
-  padding: var(--padding-3xs);
-  opacity: 0.75;
-  color: #4cb24c;
-  font-size: 25px;
-  width: 180px;
-  height: 75px;
-  box-shadow: 0 4px 4px #4cb24c;
-  transform: translateX(50%);
+    cursor: pointer;
+    border: 2px solid #4cb24c;
+    background-color: var(--color-black);
+    border-radius: 8px;
+    flex-direction: row;
+    justify-content: center;
+    padding: var(--padding-3xs);
+    opacity: 0.75;
+    color: #4cb24c;
+    font-size: 25px;
+    width: 180px;
+    height: 75px;
+    box-shadow: 0 4px 4px #4cb24c;
+    transform: translateX(50%);
 }
 
 .grupo-formulario {
-  position: center;
-  padding-top: 100px;
-  width: 100%;
-  height: 640px;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 19px;
-  text-align: left;
-  color: var(--yellow);
-  font-family: 'Irish Grover';
-  border-radius: 6px;
+    position: center;
+    padding-top: 100px;
+    width: 100%;
+    height: 640px;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 19px;
+    text-align: left;
+    color: var(--yellow);
+    font-family: 'Irish Grover';
+    border-radius: 6px;
 }

@@ -1,182 +1,201 @@
 .background-icon1 {
-  position: absolute;
-  height: 78.29%;
-  width: 100%;
-  top: 5.29%;
-  right: 0;
-  bottom: 16.41%;
-  left: 0;
-  max-width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  object-fit: cover;
+    position: absolute;
+    height: 78.29%;
+    width: 100%;
+    top: 5.29%;
+    right: 0;
+    bottom: 16.41%;
+    left: 0;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
 }
+
 .trabaja-con-nosotros1 {
-  position: relative;
-  width: 232px;
-  height: 29px;
+    position: relative;
+    width: 232px;
+    height: 29px;
 }
+
 .trabaja-con-nosotros-wrapper {
-  position: absolute;
-  top: 272px;
-  left: 141px;
-  width: 78px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-3xs);
-  box-sizing: border-box;
+    position: absolute;
+    top: 272px;
+    left: 141px;
+    width: 78px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-3xs);
+    box-sizing: border-box;
 }
+
 .contacta-con-nosotros {
-  position: absolute;
-  height: 2.4%;
-  width: 26.46%;
-  top: 7%;
-  left: 36.6%;
-  font-size: 24px;
-  color: var(--blue);
-  display: inline-block;
+    position: absolute;
+    height: 2.4%;
+    width: 26.46%;
+    top: 7%;
+    left: 36.6%;
+    font-size: 24px;
+    color: var(--blue);
+    display: inline-block;
 }
+
 .enviar {
-  position: relative;
+    position: relative;
 }
+
 .enviar-wrapper {
-  position: absolute;
-  top: 1476px;
-  left: calc(50% + 44px);
-  border-radius: var(--br-5xs);
-  background-color: var(--yellow);
-  width: 208px;
-  height: 71px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-3xs);
-  box-sizing: border-box;
-  opacity: 0.75;
-  color: var(--pink);
+    position: absolute;
+    top: 1476px;
+    left: calc(50% + 44px);
+    border-radius: var(--br-5xs);
+    background-color: var(--yellow);
+    width: 208px;
+    height: 71px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-3xs);
+    box-sizing: border-box;
+    opacity: 0.75;
+    color: var(--pink);
 }
+
 .contacto-child,
 .contacto-child1,
 .contacto-inner,
 .contacto-item,
 .frame-div-contacto {
-  position: absolute;
-  top: 564px;
-  left: 50%;
-  margin-left: -250px;
-  border-radius: var(--br-5xs);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
-  backdrop-filter: blur(4px);
-  border: 3px solid var(--yellow);
-  box-sizing: border-box;
-  width: 500px;
-  height: 73px;
+    position: absolute;
+    top: 564px;
+    left: 50%;
+    margin-left: -250px;
+    border-radius: var(--br-5xs);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+    backdrop-filter: blur(4px);
+    border: 3px solid var(--yellow);
+    box-sizing: border-box;
+    width: 500px;
+    height: 73px;
 }
+
 .contacto-child1,
 .contacto-inner,
 .contacto-item,
 .frame-div-contacto {
-  top: 712px;
-  left: 469px;
-  left: 50%;
-  margin-left: -250px;
+    top: 712px;
+    left: 469px;
+    left: 50%;
+    margin-left: -250px;
 }
+
 .contacto-child1,
 .contacto-inner,
 .frame-div-contacto {
-  top: 869px;
-  left: 468px;
-  left: 50%;
-  margin-left: -250px;
+    top: 869px;
+    left: 468px;
+    left: 50%;
+    margin-left: -250px;
 }
+
 .contacto-child1,
 .frame-div-contacto{
-  top: 1026px;
-  left: 50%;
-  margin-left: -250px;
-  height: 250px;
+    top: 1026px;
+    left: 50%;
+    margin-left: -250px;
+    height: 250px;
 }
+
 .contacto-child1 {
-  top: 1166px;
-  height: 264px;
-  left: 50%;
-  margin-left: -250px;
+    top: 1166px;
+    height: 264px;
+    left: 50%;
+    margin-left: -250px;
 }
 
 .mensaje,
 .telfono,
 .telfono1 {
-  position: absolute;
-  top: 830px;
-  left: 474px;
+    position: absolute;
+    top: 830px;
+    left: 474px;
 }
+
 .mensaje,
 .telfono1 {
-  top: 987px;
+    top: 987px;
 }
+
 .mensaje {
-  top: 1127px;
+    top: 1127px;
 }
+
 .nombre-wrapper {
-  top: 366px;
-  left: 544px;
-  width: 78px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-3xs);
+    top: 366px;
+    left: 544px;
+    width: 78px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-3xs);
 }
+
 .apellidos-wrapper,
 .contacto-child2,
 .nombre-wrapper {
-  position: absolute;
-  box-sizing: border-box;
+    position: absolute;
+    box-sizing: border-box;
 }
+
 .contacto-child2 {
-  top: 415px;
-  left: 50%;
-  margin-left: -180px;
-  border-radius: var(--br-5xs);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
-  backdrop-filter: blur(4px);
-  border: 3px solid var(--yellow);
-  width: 360px;
-  height: 73px;
+    top: 415px;
+    left: 50%;
+    margin-left: -180px;
+    border-radius: var(--br-5xs);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25) inset;
+    backdrop-filter: blur(4px);
+    border: 3px solid var(--yellow);
+    width: 360px;
+    height: 73px;
 }
+
 .apellidos-wrapper {
-  top: 515px;
-  left: 468px;
-  width: 107px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: var(--padding-3xs);
+    top: 515px;
+    left: 468px;
+    width: 107px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-3xs);
 }
+
 .contacto-child3 {
-  position: absolute;
-  top: 663px;
-  left: 552px;
-  width: 78px;
+    position: absolute;
+    top: 663px;
+    left: 552px;
+    width: 78px;
 }
+
 .correo-electrnico {
-  position: absolute;
-  top: 673px;
-  left: 474px;
+    position: absolute;
+    top: 673px;
+    left: 474px;
 }
+
 .contacto-contacto {
-  position: relative;
-  background-color: var(--color-black);
-  width: 100%;
-  height: 1600px;
-  overflow: hidden;
-  text-align: center;
-  align-content: center;
-  font-size: var(--font-size-5xl);
-  color: var(--yellow);
-  font-family: var(--font-irish-grover);
+    position: relative;
+    background-color: var(--color-black);
+    width: 100%;
+    height: 1600px;
+    overflow: hidden;
+    text-align: center;
+    align-content: center;
+    font-size: var(--font-size-5xl);
+    color: var(--yellow);
+    font-family: var(--font-irish-grover);
 }

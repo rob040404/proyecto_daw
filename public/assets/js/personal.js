@@ -5,25 +5,19 @@ $(document).ready(function () {
 });
 
 function mostrarInput(e){
-    //this -> lapiz=document.getElementsByClassName('botonlapiz')[0];
     let fila=$(this).parent().parent();
     let celdas=$(fila).children(); 
-    //let campo=$(celdas[4]).children()[0];
     for (let i = 1; i <= 5; i++) {
         let campo=$(celdas[i]).children()[0];
-        //$(campo).toggleClass(...);
-        //$(...).removeAttr("disabled");
         $(campo).removeClass('input-interior-disabled').addClass('input-interior-enabled');
         $(campo).removeAttr('disabled');
     }
     let disquete=$(celdas[6]).children()[1];
     $(this).hide();
-    //$(campo).show();
     $(disquete).show();
 }
 
 function modificarUsuario(){
-    //this -> lapiz=document.getElementsByClassName('botonlapiz')[0];
     let fila=$(this).parent().parent(); //Este es el elemento tr que corresponde a cada producto
     let celdas=$(fila).children(); // Los elementos td que estan dentro de cada fila
     let idusuario=$(celdas[0]).text().trim(); // Texto que hay en la primera celda td con el id del producto
@@ -42,14 +36,11 @@ function modificarUsuario(){
         data: { "actualizarDatos": true, "iduser": idusuario, "nombre": nombre, "apellidos": apellidos,
                 "contrasena": contrasena, "puesto": puesto, "email": email },
         success: function (response) {
-            //muestraPista(response.letra);
             console.log(response);
             if (response.resultado) {
                 alert ("Modificado!");
                 for (let i = 1; i <= 5; i++) {
                 let campo=$(celdas[i]).children()[0];
-                //$(campo).toggleClass(...);
-                //$(...).removeAttr("disabled");
                 $(campo).removeClass('input-interior-enabled').addClass('input-interior-disabled');
                 $(campo).prop('disabled', true);
             }
@@ -57,7 +48,6 @@ function modificarUsuario(){
             $(disquete).hide();
             } else {
                 alert("Error: "+response.mensaje);
-                
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -68,12 +58,9 @@ function modificarUsuario(){
 }
 
 function eliminarUsuario(){
-    //this -> lapiz=document.getElementsByClassName('botonlapiz')[0];
     let fila=$(this).parent().parent(); //Este es el elemento tr que corresponde a cada producto
     let celdas=$(fila).children(); // Los elementos td que estan dentro de cada fila
     let idusuario=$(celdas[0]).text().trim(); // Texto que hay en la primera celda td con el id del producto
-    //let disquete=$(celdas[6]).children()[1];
-    //let lapiz=$(celdas[6]).children()[0];
     if (!confirm("Seguro?")){
         console.log("cancelado");
         return;
@@ -85,7 +72,6 @@ function eliminarUsuario(){
         contentType: "application/x-www-form-urlencoded",
         data: { "borrarUsuario": true, "iduser": idusuario},
         success: function (response) {
-            //muestraPista(response.letra);
             console.log(response);
             if (response.resultado) {
                 alert ("Eliminado!");

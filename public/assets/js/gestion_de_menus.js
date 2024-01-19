@@ -13,19 +13,23 @@ function iniciar(){
 function alerta(){
     window.alert('Funciona');
 }
+
 //Funciones para saber qué tipo de operación se va a realizar
 function operacion_activar(){
     var titulo='Activar/desactivar plato';
     form_buscar('activar', titulo);
 }
+
 function operacion_ver(){
     var titulo='Ver plato/s';
     form_buscar('ver', titulo);
 }
+
 function operacion_borrar(){
     var titulo='Borrar plato/s';
     form_buscar('borrar', titulo);
 }
+
 function operacion_modificar(){
     var titulo='Modificar plato';
     form_buscar('modificar', titulo);
@@ -35,6 +39,7 @@ function busqueda_categoria(){
     var categoria=true;
     ajax_buscar(categoria);
 }
+
 function busqueda_nombre(){
     var categoria=false;
     ajax_buscar(categoria);
@@ -44,7 +49,7 @@ function busqueda_nombre(){
 function form_buscar(operacion, titulo){
     limpiar_containers();
     var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir">'+titulo+'</div><br><br>'+
+        '<div class="aadir-nuevo-producto" id="encabezado-anadir">'+titulo+'</div><br><br>'+
         '<form id="formactivardesactivar" method="POST" name="formactivardesactivar" novalidate>'+
             '<div class="contenedor_borrar">'+
                 '<label for="nombre" class="texto-gm">Buscar por Nombre:</label><br>'+
@@ -54,8 +59,6 @@ function form_buscar(operacion, titulo){
                     '<div class="guardar" >Buscar</div>'+
                 '</button><br><br>'+
                 '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta"></div><br>'+
-                
-                
                 '<label for="nombre" class="texto-gm">Buscar por Categorías:</label><br>'+
                 '<select type="text" name="categoria-buscar" id="categoria-buscar" class="rectangulo-borrar categoria-borrar bot">'+
                     '<option value="todos" selected>Todas</option>'+
@@ -71,20 +74,17 @@ function form_buscar(operacion, titulo){
                 '<input type="hidden" id="operacion" name="operacion" value="'+operacion+'"/>'+
             '</div>'+
         '</form>';
-    
-   
     //Imprimimos el formulario en el contenedor opciones y al pulsarse el botón buscar se activa el ajax buscar y conecta con el servidor
     document.getElementById('contenedor_opciones').innerHTML=contenido;
     puntero();
     document.getElementById('buscar-por-nombre').addEventListener('click', busqueda_nombre);
     document.getElementById('buscar-por-categoria').addEventListener('click', busqueda_categoria);
-    
 }
 
 /*
  * Función para pasar los datos del formulario al servidor. Para que el sevidor busque en la BD el plato correspondiente y dvuelva sus valores
 
- * @param {type} por_categoria, sel le pasa si se está buscando el plato por nombre o por categoría
+ * @param {type} por_categoria, se le pasa si se está buscando el plato por nombre o por categoría
  * 
  */
 function ajax_buscar(por_categoria){
@@ -93,13 +93,10 @@ function ajax_buscar(por_categoria){
     var categoria= $('#categoria-buscar').val();
     var error=false;
     nom=nom.toLowerCase();
-    
-   
     if(!nom && !por_categoria){
         $('#intro-incorrecta').html('Introduce un nombre');
         error=true;
     }
-    
     if(error===false){
         $.ajax({
             type: 'POST',
@@ -121,7 +118,6 @@ function ajax_buscar(por_categoria){
                 }else if(response.operacion==='ver'){ //operación es ver platos
                      $('#intro-incorrecta').html('');
                      $('#intro-correcta').html(response.fila); //Imprimimos tabla de una fila o varia con los datos del plato, sin ningún botón
-                     
                 }else if(response.operacion==='borrar'){ //la operación es borrar
                      $('#intro-incorrecta').html('');
                      $('#intro-correcta').html(response.fila);//Imprimimos tabla de una fila o varias con los datos del plato, con botón borrar
@@ -132,7 +128,6 @@ function ajax_buscar(por_categoria){
                      $('.boton-borrar1').click(ajax_borrar_por_tabla);
                 }else if(response.operacion==='modificar' && !response.fila){//Sin error y la operación es modificar y busqueda por nombre
                      $('#intro-incorrecta').html('');
-                     
                      /**
                       * Llamamos la función form_modificar para imprimir el formulario para la modificación con los campos rellenos con los datos
                       * de los platos que en ese momento constan en la BD
@@ -159,7 +154,6 @@ function ajax_buscar(por_categoria){
                      
                      //Función para obtener las subselección de subcategorías según la categoría seleccionada
                      obtener_categoria(); 
-                     
                      var options=document.getElementsByTagName('option');
                      //Bucle para establecer como 'selected', la subcategoría que coincide con lo que nos ha pasado la BD
                      for(let i=0; i<options.length; i++){
@@ -167,7 +161,6 @@ function ajax_buscar(por_categoria){
                              options[i].setAttribute('selected', 'selected');
                          }
                      }
-                    
                     //En caso de que el plato tenga asociados ingredientes en la tabla restar
                     if(response.arrayCantidadesIng && response.arrayNombresIng){
                         var boxes=document.getElementsByClassName('box');
@@ -182,10 +175,7 @@ function ajax_buscar(por_categoria){
                             }
                         }
                     }
-                    
-                    
                     document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones').html('');});
-                    
                     /**
                      * Una vez bien impreso el formulario de modificación, al dar al botón 'mod', activamos el ajax para modificar el plato 
                      * con los nuevos datos
@@ -196,7 +186,6 @@ function ajax_buscar(por_categoria){
                 }else if(response.operacion==='modificar' && response.fila){ //operación modificar y se ha seleccionado el plato por la tabla
                     $('#intro-correcta').html(response.fila);
                     puntero();
-                    
                     $('.boton-modificar').click(function(e){
                         const idModPorTabla= e.target.dataset.id;
                         
@@ -206,7 +195,6 @@ function ajax_buscar(por_categoria){
                         var subcategoria= $(`#subcategoria${idModPorTabla}`).html();
                         var precio= $(`#precio${idModPorTabla}`).html();
                         var estado=$(`#estado${idModPorTabla}`).html();
-                        
                         $.ajax({
                             type: 'POST',
                             url: 'gestion_de_menus.php',
@@ -232,11 +220,9 @@ function ajax_buscar(por_categoria){
                                         document.getElementById('activado').setAttribute('selected', 'selected');
                                     }else if(estado==='desactivado'){
                                         document.getElementById('desactivado').setAttribute('selected', 'selected');
-                                    }
-                                    
+                                    }                                   
                                     //Función para obtener las subselección de subcategorías según la categoría seleccionada
                                     obtener_categoria(); 
-
                                     var options=document.getElementsByTagName('option');
                                     //Bucle para establecer como 'selected', la subcategoría que coincide con lo que nos ha pasado la BD
                                     for(let i=0; i<options.length; i++){
@@ -244,11 +230,9 @@ function ajax_buscar(por_categoria){
                                             options[i].setAttribute('selected', 'selected');
                                         }
                                     }
-
                                    if(response.arrayCantidadesIng && response.arrayNombresIng){
                                         var boxes=document.getElementsByClassName('box');
                                         var uds=document.getElementsByClassName('rectangulo-unidades');
-
                                         for(let i=0; i<boxes.length; i++){
                                              for(let j=0; j<response.arrayNombresIng.length; j++){
                                                  if(boxes[i].id===response.arrayNombresIng[j]){
@@ -257,32 +241,20 @@ function ajax_buscar(por_categoria){
                                                  }
                                              }
                                          }
-                                   }
-                                   
-
+                                   }                                  
                                     document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones').html('');});
-
                                     /**
                                      * Una vez bien impreso el formulario de modificación, al dar al botón 'mod', activamos el ajax para modificar el plato 
                                      * con los nuevos datos
                                      */
                                     document.getElementById('mod').addEventListener('click', ajax_modificar);
                                     document.getElementById('categoria').addEventListener('change', obtener_categoria); //Al cambiar de categoría, cambia las subcategorías
-                                    
-                                   
-                                //
                                 }
                             }
-                            
                         });
-                        
-                    });
-                    
-                    
+                    });  
                 }
             }
-            
-            
         });
     }
 }
@@ -297,19 +269,15 @@ function ajax_modificar(){
     var sub= $('#subcategoria').val();
     var pre=$('#precio').val();
     var es=$('#estado').val();
-    
     //Obtener ingredientes
     var arrayIngredientes= obtener_ingredientes();
     if(arrayIngredientes.length===0){
         arrayIngredientes='vacio';
     }
-    
     nom= nom.toLowerCase();
     pre=pre.trim(pre);
     pre=pre.replace(',','.');
-    //pre=parseFloat(pre);
     var patron_precio= /^[0-9]{1,2}\.[0-9]{2}$/;
-    
     limpiar_div_error();
     var error_validacion=false;
         if(!nom){
@@ -341,7 +309,6 @@ function ajax_modificar(){
             $('#error-precio').html('El formato debe ser de este tipo 10.99 Hasta 99.99');
             error_validacion=true;
         }
-        
         if(arrayIngredientes===false){
             $('#ing-incorrectos').html('Si seleccionas un ingrediente pon la cantidad: Número de 0 a 99, con hasta 3 decimales. ¡SIN ESPACIOS EN BLANCO!');
             error_validacion=true;
@@ -360,8 +327,7 @@ function ajax_modificar(){
                    ingredientesMod: arrayIngredientes
             },
             datatype: 'json',
-            success: function (response){
-                
+            success: function (response){  
                 if(response.inexistente){//Si el plato puesto no existe, aunque en teoría no debe darse ese caso
                     //$('#ing-incorrectos').html('');
                     $('#contenedor_opciones').html('');
@@ -381,12 +347,9 @@ function ajax_modificar(){
                     $('#intro-correcta').html('Plato actualizado con éxito');
                     limpiar_campos_anadir();
                 }
-                
                 if(!response.errores && !response.error && response.errorIngredientes){
                     $('#intro-incorrecta').html('Pero no se han guardado los ingredientes');
                 }
-            
-            
             }
         });
     }
@@ -409,6 +372,7 @@ function ajax_borrar_plato(){
         });
     }
 }
+
 /*
  * Función para borrar un plato de la BD, cuando se ha buscado por tabla
  * @param {type} e, recoge el elemento causante del evento
@@ -416,7 +380,6 @@ function ajax_borrar_plato(){
  */
 function ajax_borrar_por_tabla(e){
     const idBorrarPorTabla= e.target.dataset.id;
-    //const estado=$(`#estado${idBorrarPorTabla}`).html(); 
     $.ajax({
         type: 'POST',
         url: 'gestion_de_menus.php',
@@ -454,6 +417,7 @@ function ajax_cambiar_estado(){
         });
     }
 }
+
 /*
  * Función para cambiar el estado de un plato, cuando se ha buscado por tabla
  * @param {type} e, recoge el elemento causante del evento
@@ -474,6 +438,7 @@ function ajax_cambiar_por_tabla(e){
         }
     });
 }
+
 /**
  * Función para imprimir un formulario con los datos de un plato antes de ser modificado, y con él, poder modificarlos
  * @param {type} id_plato
@@ -484,78 +449,60 @@ function ajax_cambiar_por_tabla(e){
  * 
  */
 function form_modificar(id_plato, nom, des, pre, ingredientes){
-    //limpiar_containers();
-    
-    
     var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Modificar plato</p></div>'+
-            
+        '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Modificar plato</p></div>'+
         '<form id="formanadir" method="POST" name="formanadir" novalidate>'+
             '<div class="contenedor-anadir">'+
-            
                ' <div class="anadir-izq">'+
-                    
-                        '<label for="nombre" class="texto-gm etiqueta-izq">Nombre:</label><br>'+
-                        '<input type="text" name="nombre" id="nombre" class="rectangulo-input elemento-form-izq" maxlength="30" value="'+nom+'">'+
-                        '<div class="error-form elemento-form-izq etiqueta-izq"id="error-nombre"></div><br>'+
-                        '<label for="descripcion" class="texto-gm etiqueta-izq">Descripción:</label><br>'+
-                        '<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea elemento-form-izq">'+des+'</textarea>'+
-                        '<input type="hidden" id="id_plato" name="id_plato" value="'+id_plato+'"/>'+
+                    '<label for="nombre" class="texto-gm etiqueta-izq">Nombre:</label><br>'+
+                    '<input type="text" name="nombre" id="nombre" class="rectangulo-input elemento-form-izq" maxlength="30" value="'+nom+'">'+
+                    '<div class="error-form elemento-form-izq etiqueta-izq"id="error-nombre"></div><br>'+
+                    '<label for="descripcion" class="texto-gm etiqueta-izq">Descripción:</label><br>'+
+                    '<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea elemento-form-izq">'+des+'</textarea>'+
+                    '<input type="hidden" id="id_plato" name="id_plato" value="'+id_plato+'"/>'+
                 '</div>'+
                 '<div class="anadir-der">'+
-                    
-                        '<label for="categoria" class="texto-gm elemento-form-der" >Categoría:</label><br>'+
-                        //'<input type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der" maxlength="30"><br>+
-                        '<select type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der bot">'+
-                            '<option value="no">Seleccionar una opción</option>'+
-                            '<option value="entrante" id="entrante">Entrante</option>'+
-                            '<option value="principal" id="principal">Principal</option>'+
-                            '<option value="postre" id="postre">Postre</option>'+
-                            '<option value="bebida" id="bebida">Bebida</option>'+
-                            '<option value="otro" id="otro_cat">Otro</option>'+
-                        '</select>'+
-                        '<div id="error-categoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>'+
-                        
-                        '<div id="sub-container">'+
-                            
+                    '<label for="categoria" class="texto-gm elemento-form-der" >Categoría:</label><br>'+
+                    '<select type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der bot">'+
+                        '<option value="no">Seleccionar una opción</option>'+
+                        '<option value="entrante" id="entrante">Entrante</option>'+
+                        '<option value="principal" id="principal">Principal</option>'+
+                        '<option value="postre" id="postre">Postre</option>'+
+                        '<option value="bebida" id="bebida">Bebida</option>'+
+                        '<option value="otro" id="otro_cat">Otro</option>'+
+                    '</select>'+
+                    '<div id="error-categoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>'+
+                    '<div id="sub-container">'+
+                    '</div>'+
+                    '<div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>'+
+                    '<div class="contenedor-precio-estado">'+
+                        '<div class="subcontenedor-precio">'+
+                            '<label for="precio" class="texto-gm etiqueta-izq elemento-form-der">Precio:</label><br>'+
+                            '<input type="text" name="precio" id="precio" class="rectangulo-pequeno elemento-form-der" maxlength="8" value="'+pre+'">'+
+                            '<div id="error-precio" class="error-form etiqueta-der elemento-form-der"></div><br>'+  
+                       ' </div>'+
+                        '<div class="subcontenedor-estado">'+
+                            '<label for="estado" class="texto-gm elemento-form-der">Estado:</label><br>'+
+                            '<select type="text" name="estado" id="estado" class="rectangulo-pequeno elemento-form-der bot">'+
+                                 '<option value="activado" id="activado">Activado</option>'+
+                                 '<option value="desactivado" id="desactivado">Desactivado</option>'+
+                            '</select>'+
+                            '<br><div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div>'+
+                            '<br><br>'+
                         '</div>'+
-                        
-            //'<input type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der" maxlength="30">'+
-                        '<div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>'+
-                        '<div class="contenedor-precio-estado">'+
-                            '<div class="subcontenedor-precio">'+
-                                '<label for="precio" class="texto-gm etiqueta-izq elemento-form-der">Precio:</label><br>'+
-                                '<input type="text" name="precio" id="precio" class="rectangulo-pequeno elemento-form-der" maxlength="8" value="'+pre+'">'+
-                                '<div id="error-precio" class="error-form etiqueta-der elemento-form-der"></div><br>'+
-                                
-                           ' </div>'+
-                            '<div class="subcontenedor-estado">'+
-                                '<label for="estado" class="texto-gm elemento-form-der">Estado:</label><br>'+
-                                '<select type="text" name="estado" id="estado" class="rectangulo-pequeno elemento-form-der bot">'+
-                                     '<option value="activado" id="activado">Activado</option>'+
-                                     '<option value="desactivado" id="desactivado">Desactivado</option>'+
-                                '</select>'+
-                                '<br><div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div>'+
-                                '<br><br>'+
-                                
-                            '</div>'+
-                       ' </div> '+
+                   ' </div> '+
                ' </div>'+
                '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades</p></div><br>'+
-               
                 '<div class="conteiner-ingredientes">';
                 for(let i=0; i<ingredientes.length; i++){
                     if(i===0 || i===25 || i===50 || i===75|| i===100 || i===125){
                         contenido+=' <p>';
                     }
                     contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
-
-                }
-                    
+                }        
             contenido+= '</div>'+
-                '<div class="aadir-nuevo-producto incorrecto-form" id="ing-incorrectos"></div><br>'+
+            '<div class="aadir-nuevo-producto incorrecto-form" id="ing-incorrectos"></div><br>'+
             '</div>'+
-            
             '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta2"></div><br>'+
             '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta2"></div><br>'+
             '<div class="container-botones-form">'+
@@ -567,40 +514,26 @@ function form_modificar(id_plato, nom, des, pre, ingredientes){
                 '</button>'+
            ' </div>'+
         '</form>';
-        
-        
-        
-        return contenido;
-        /*document.getElementById("contenedor_opciones2").innerHTML=contenido;
-        document.getElementById('guardar').addEventListener('click', ajax_anadir);
-        document.getElementById('limpiar').addEventListener('click', limpiar_campos_anadir);*/
-        
-        
+    return contenido;    
 }
 
 //Función para impirmir un formulario a través del cual se van  introducir platos en la BD
 function form_anadir(ingredientes){
     limpiar_containers();
     var contenido='<p><br><br><br></p>'+
-            '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Añadir nuevo producto</p></div>'+
-            
+        '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Añadir nuevo producto</p></div>'+
         '<form id="formanadir" method="POST" name="formanadir" novalidate>'+
             '<div class="contenedor-anadir">'+
-            
                ' <div class="anadir-izq">'+
-                    
                         '<label for="nombre" class="texto-gm etiqueta-izq">Nombre:</label><br>'+
                         '<input type="text" name="nombre" id="nombre" class="rectangulo-input elemento-form-izq" maxlength="30">'+
                         '<div class="error-form elemento-form-izq etiqueta-izq"id="error-nombre"></div><br>'+
                         '<label for="descripcion" class="texto-gm etiqueta-izq">Descripción:</label><br>'+
                         '<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea elemento-form-izq"></textarea>'+
                         '<div class="error-form elemento-form-izq etiqueta-izq"id="error-descripcion"></div><br>'+
-                        
                 '</div>'+
                 '<div class="anadir-der">'+
-                    
                         '<label for="categoria" class="texto-gm elemento-form-der" >Categoría:</label><br>'+
-                        //'<input type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der" maxlength="30"><br>+
                         '<select type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der bot">'+
                             '<option value="no" class="bot" selected>Seleccionar una opción</option>'+
                             '<option value="entrante" class="bot">Entrante</option>'+
@@ -610,19 +543,14 @@ function form_anadir(ingredientes){
                             '<option value="otro" class="bot">Otro</option>'+
                         '</select>'+
                         '<div id="error-categoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>'+
-                        
                         '<div id="sub-container">'+
-                            
                         '</div>'+
-                        
-            //'<input type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der" maxlength="30">'+
                         '<div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>'+
                         '<div class="contenedor-precio-estado">'+
                             '<div class="subcontenedor-precio">'+
                                 '<label for="precio" class="texto-gm etiqueta-izq elemento-form-der">Precio:</label><br>'+
                                 '<input type="text" name="precio" id="precio" class="rectangulo-pequeno elemento-form-der" maxlength="8">'+
-                                '<div id="error-precio" class="error-form etiqueta-der elemento-form-der"></div><br>'+
-                                
+                                '<div id="error-precio" class="error-form etiqueta-der elemento-form-der"></div><br>'+  
                            ' </div>'+
                             '<div class="subcontenedor-estado">'+
                                 '<label for="estado" class="texto-gm elemento-form-der">Estado:</label><br>'+
@@ -632,31 +560,20 @@ function form_anadir(ingredientes){
                                 '</select>'+
                                 '<br><div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div>'+
                                 '<br><br>'+
-                                
                             '</div>'+
                        ' </div> '+
-               ' </div>'+
-               '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades:</p></div><br>'+
-               
-                '<div class="conteiner-ingredientes">';
-        
-        for(let i=0; i<ingredientes.length; i++){
-            if(i===0 || i===25 || i===50 || i===75|| i===100 || i===125){
-                contenido+=' <p>';
-            }
-            contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
-             
-        }
-                    
+            ' </div>'+
+            '<div class="encabezado-selec-ing" id="encabezado-titulo-ing"><p>Seleccionar ingredientes y unidades:</p></div><br>'+
+            '<div class="conteiner-ingredientes">';
+            for(let i=0; i<ingredientes.length; i++){
+                if(i===0 || i===25 || i===50 || i===75|| i===100 || i===125){
+                    contenido+=' <p>';
+                }
+                contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
+            }        
             contenido+= '</div>'+
             '<div class="aadir-nuevo-producto incorrecto-form" id="ing-incorrectos"></div><br>'+
             '</div>'+
-            //'<div class="aadir-nuevo-producto">'+
-               
-                //'<label for="nombre" class="texto-gm "><h4>Otros:</h4></label><br>'+
-                //'<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea-otros"></textarea><br>'+
-                
-            //'</div>'+
             '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta"></div><br>'+
             '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta"></div><br>'+
             '<div class="container-botones-form">'+
@@ -668,15 +585,13 @@ function form_anadir(ingredientes){
                 '</button>'+
            ' </div>'+
         '</form>';
-
         document.getElementById("contenedor_opciones2").innerHTML=contenido;
         document.getElementById('guardar').addEventListener('click', ajax_anadir);
         document.getElementById('limpiar').addEventListener('click', limpiar_campos_anadir);
         document.getElementById('categoria').addEventListener('change', obtener_categoria);
-        
         puntero();
-  
 }
+
 //Función con ajax para obtener los ingredientes disponibles en stock y que salgan el el formulario añadir
 function obtener_stock(){
     $.ajax({
@@ -706,13 +621,9 @@ function obtener_ingredientes(){
                 break;
             }else{
                 arrayIngredientes.push(new Array(boxes[i].value, uds[i].value));
-                //arrayIngredientes[boxes[i].value]=uds[i].value;
             }
         }
     }
-    
-    
-    var longitudArray=arrayIngredientes.length;
     if(!errorUds){
         return arrayIngredientes;
     }else{
@@ -722,14 +633,12 @@ function obtener_ingredientes(){
 
 //Función con ajax para añadir un plato a la BD
 function ajax_anadir(){
-    
     var nom= $('#nombre').val();
     var des=$('#descripcion').val();
     var cat=$('#categoria').val();
     var sub= $('#subcategoria').val();
     var pre=$('#precio').val();
     var es=$('#estado').val();
-    
     //Obtener ingredientes
     var arrayIngredientes= obtener_ingredientes();
     if(arrayIngredientes.length===0){
@@ -738,45 +647,42 @@ function ajax_anadir(){
     nom= nom.toLowerCase();
     pre=pre.trim(pre);
     pre=pre.replace(',','.');
-    //pre=parseFloat(pre);
     var patron_precio= /^[0-9]{1,2}\.[0-9]{2}$/;
-    
     limpiar_div_error();
     var error_validacion=false;
-        if(!nom){
-            $('#error-nombre').html('Campo obligatorio');
-            error_validacion=true;
-        }else if(nom.length<2){
-            $('#error-nombre').html('El nombre debe tener 2 o más caractéres');
-            error_validacion=true;
-        }
-        if(!des && cat!=='bebida'){
-            $('#error-descripcion').html('Campo obligatorio');
-            error_validacion=true;
-        }else if(cat!=='bebida' && des.length<10){
-            $('#error-descripcion').html('Escribe una descripción de al menos 10 caracteres');
-            error_validacion=true;
-        }
-        if(cat==='no'){
-            $('#error-categoria').html('Debes seleccionar una de las opciones');
-            error_validacion=true;
-        }
-        if(sub==='no'){
-           $('#error-subcategoria').html('Debes seleccionar una de las opciones');
-            error_validacion=true; 
-        }
-        if(!pre){
-            $('#error-precio').html('El formato debe ser de este tipo 10.99 Hasta 99.99');
-            error_validacion=true;
-        }else if(!patron_precio.test(pre)){
-            $('#error-precio').html('El formato debe ser de este tipo 10.99 Hasta 99.99');
-            error_validacion=true;
-        }
-        
-        if(arrayIngredientes===false){
-            $('#ing-incorrectos').html('Si seleccionas un ingrediente pon la cantidad: Número de 0 a 99, con hasta 3 decimales. ¡SIN ESPACIOS EN BLANCO!');
-            error_validacion=true;
-        }
+    if(!nom){
+        $('#error-nombre').html('Campo obligatorio');
+        error_validacion=true;
+    }else if(nom.length<2){
+        $('#error-nombre').html('El nombre debe tener 2 o más caractéres');
+        error_validacion=true;
+    }
+    if(!des && cat!=='bebida'){
+        $('#error-descripcion').html('Campo obligatorio');
+        error_validacion=true;
+    }else if(cat!=='bebida' && des.length<10){
+        $('#error-descripcion').html('Escribe una descripción de al menos 10 caracteres');
+        error_validacion=true;
+    }
+    if(cat==='no'){
+        $('#error-categoria').html('Debes seleccionar una de las opciones');
+        error_validacion=true;
+    }
+    if(sub==='no'){
+       $('#error-subcategoria').html('Debes seleccionar una de las opciones');
+        error_validacion=true; 
+    }
+    if(!pre){
+        $('#error-precio').html('El formato debe ser de este tipo 10.99 Hasta 99.99');
+        error_validacion=true;
+    }else if(!patron_precio.test(pre)){
+        $('#error-precio').html('El formato debe ser de este tipo 10.99 Hasta 99.99');
+        error_validacion=true;
+    }
+    if(arrayIngredientes===false){
+        $('#ing-incorrectos').html('Si seleccionas un ingrediente pon la cantidad: Número de 0 a 99, con hasta 3 decimales. ¡SIN ESPACIOS EN BLANCO!');
+        error_validacion=true;
+    }
     if(error_validacion===false){
         $.ajax({
             type: 'POST',
@@ -791,7 +697,6 @@ function ajax_anadir(){
             },
             datatype: 'json',
             success: function (response){
-                
                 if(response.existe){
                     $('#ing-incorrectos').html('');
                     $('#intro-incorrecta').html('');
@@ -812,8 +717,6 @@ function ajax_anadir(){
                 if(!response.errores && !response.error && response.errorIngredientes){
                     $('#intro-incorrecta').html('Pero no se han guardado los ingredientes');
                 }
-            
-            
             }
         });
     }
@@ -823,6 +726,7 @@ function limpiar_containers(){
     document.getElementById("contenedor_opciones").innerHTML="";
     document.getElementById("contenedor_opciones2").innerHTML="";
 }
+
 function limpiar_div_error(){
     $('.error-form').html("");
 }
@@ -865,7 +769,6 @@ function obtener_categoria(){
                                 '<option value="otro" class="bot">Otro</option>'+
                             '</select>'+
                             '<div id="error-subcategoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>';
-            
     var sub_bebida='<label for="subcategoria" class="texto-gm elemento-form-der">Sub-categoría:</label><br>'+
                             '<select type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der bot">'+
                                 '<option value="no" class="bot" selected>Seleccionar una opción</option>'+
@@ -893,7 +796,6 @@ function obtener_categoria(){
                                 '</optgroup>'+
                             '</select>'+
                             '<div id="error-subcategoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>';
-            
     if(cat==="entrante"){
         document.getElementById('sub-container').innerHTML=sub_entrante;
     }else if(cat==='principal'){
@@ -903,16 +805,13 @@ function obtener_categoria(){
     }else if(cat==="bebida"){
         document.getElementById('sub-container').innerHTML=sub_bebida;
     }
-    
     puntero();
-    
 }
+
 //Función para que se ponga el cursor de la manita a las hora de ponerlo sobre un elemento.
 function puntero(){
     var bot=document.getElementsByClassName('bot');
     for(let i=0; i<bot.length; i++){
        bot[i].style.cursor='pointer';
     }
-    
 }
-

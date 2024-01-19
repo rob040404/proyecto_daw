@@ -7,14 +7,11 @@ use App\BD\BD;
 use App\DAO\StockDAO;
 use Dotenv\Dotenv;
 
-session_start();
-
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 set_exception_handler(function ($exception) use ($blade) {
@@ -22,6 +19,7 @@ set_exception_handler(function ($exception) use ($blade) {
     echo $blade->run('error', compact('exception'));
     exit;
 });
+
 // Establece conexión a la base de datos PDO
 try {
     $host = $_ENV['DB_HOST'];
@@ -35,6 +33,7 @@ try {
     exit;
 }
 
+session_start();
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
@@ -53,6 +52,4 @@ if (isset($_GET['anadido'])) {
 } else {
     $anadido = false;
 }
-
-
 echo $blade->run('pagina_de_inventario', compact('sesion_abierta', 'stock', 'anadido'));

@@ -1,20 +1,24 @@
-body 
+body
 {
     background-image: url('../img/background@2x.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.reservas-container 
+.reservas-container
 {
     position: relative;
+    height: auto;
     overflow: hidden;
     font-family: var(--font-irish-grover);
 }
 
-.reservas-contenido 
+.reservas-contenido
 {
     margin-top: 6%;
     margin-bottom: 2%;
@@ -26,19 +30,23 @@ body
     margin: 0 auto;
     text-align: center;
 }
+
 .titulo-reservas
 {
     color: var(--blue);
 }
+
 .titulo-confirmacion-reserva
 {
     color: var(--yellow);
 }
+
 .titulo-confirmacion-reserva
 {
     font-size: 30px;
 }
-.botones-reservas 
+
+.botones-reservas
 {
     margin-top: 20px;
     display: flex;
@@ -46,6 +54,7 @@ body
     font-size: var(--font-size-xl);
     column-gap: 70px;
 }
+
 .boton-eliminar,
 .boton-modificar,
 .boton-nueva-reserva
@@ -63,39 +72,47 @@ body
     font-family: var(--font-irish-grover);
     font-size: 20px;
     :any-link, :link, :visited
-    {
-      text-decoration: none;
-      color: white;
+        {
+        text-decoration: none;
+        color: white;
     }
 }
+
 .boton-invisible
 {
     display: none;
 }
+
 .boton-nueva-reserva
 {
     border: 2px solid var(--blue);
 }
+
 .boton-nueva-reserva:hover
 {
     box-shadow: 0 4px 4px var(--blue);
 }
+
 .boton-modificar
 {
     border: 2px solid var(--color-yellow);
 }
+
 .boton-modificar:hover
 {
     box-shadow: 0 4px 4px var(--color-yellow);
 }
+
 .boton-eliminar
 {
     border: 2px solid var(--color-firebrick);
 }
+
 .boton-eliminar:hover
 {
     box-shadow: 0 4px 4px var(--color-firebrick);
 }
+
 .busqueda-reserva-container
 {
     margin-left: auto;
@@ -103,39 +120,46 @@ body
     width: 250px;
     margin-bottom: 20px;
 }
-.reserva-container 
-{ 
+
+.reserva-container
+{
     margin-left: auto;
     margin-right: auto;
     width: 650px;
 }
+
 .reserva-containers
 {
     display: flex;
 }
+
 .reserva-container1,
-.reserva-container2 
+.reserva-container2
 {
     width: 50%;
     margin-left: 1%;
     margin-right: 1%;
 }
+
 .titulo-label
 {
     position: relative;
     margin-top: 20px;
 }
+
 label, input
 {
     width: 99%;
     display: block;
     color: var(--yellow);
 }
+
 label
 {
     position: relative;
     margin-bottom: 10px;
 }
+
 input, select
 {
     background-color: transparent;
@@ -146,26 +170,38 @@ input, select
     border: 3px solid var(--yellow);
     color: var(--yellow);
 }
+
 select
 {
     width: 101%;
     height: 41.8px;
 }
+
 option
 {
     background-color: var(--color-black);
     color: var(--yellow);
 }
+
 input[type="date"]::-webkit-calendar-picker-indicator,
-input[type="time"]::-webkit-calendar-picker-indicator 
+input[type="time"]::-webkit-calendar-picker-indicator
 {
     filter: invert(1);
     font-size: 20px;
+}
+
+.sin-hora
+{
+    text-align: center;
+    color: var(--yellow);
+    margin-top: 60px;
+    font-size: 21px;
 }
 .finalizar-container
 {
     text-align: center;
 }
+
 .boton-finalizar
 {
     position: relative;
@@ -177,6 +213,7 @@ input[type="time"]::-webkit-calendar-picker-indicator
     font-size: 25px;
     font-family: var(--font-irish-grover);
 }
+
 .borrado-reservas-container
 {
     margin-left: auto;
@@ -184,6 +221,7 @@ input[type="time"]::-webkit-calendar-picker-indicator
     width: 900px;
     height: 70px;
 }
+
 .boton-eliminar-reserva
 {
     margin-top: 30px;
@@ -196,6 +234,7 @@ input[type="time"]::-webkit-calendar-picker-indicator
     font-size: 25px;
     font-family: var(--font-irish-grover);
 }
+
 .notification-container
 {
     margin-top: 20px;
@@ -211,6 +250,7 @@ input[type="time"]::-webkit-calendar-picker-indicator
     font-family: var(--font-irish-grover);
     display: none;
 }
+
 .listado-de-reservas-container
 {
     position: relative;
@@ -220,45 +260,54 @@ input[type="time"]::-webkit-calendar-picker-indicator
     width: 900px;
     text-align: center;
 }
-.listado-de-reservas 
+
+.listado-de-reservas
 {
     text-align: center;
     color: var(--blue);
 }
+
 .paginacion
 {
     display: flex;
     align-items: center;
 }
+
 .pagina_actual,
 .pagina_anterior,
 .pagina_siguiente
 {
     width: 100%;
 }
+
 .pagina_actual
 {
     text-align: center;
     font-size: 2em;
 }
+
 .pagina_anterior
 {
     text-align: left;
 }
+
 .pagina_siguiente
 {
     text-align: right;
 }
+
 .pagina_actual
 {
     text-align: center;
 }
+
 .link_paginacion
 {
     background-color: transparent;
     font-family: var(--font-irish-grover);
     color: var(--font-irish-grover);
 }
+
 table
 {
     border-radius: 16px;
@@ -266,17 +315,17 @@ table
     background-color: var(--color-black);
     color: var(--yellow);
 }
+
 th, td
 {
     font-size: 100%;
 }
-.sin-hora
+
+footer
 {
-    text-align: center;
-    color: var(--yellow);
-    margin-top: 60px;
-    font-size: 21px;
+    margin-top: auto;
 }
+
 .invisible
 {
     display: none;

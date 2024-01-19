@@ -2,12 +2,8 @@
 
 namespace App\modelo;
 
-// PDO se usa para interaccionar con la base de datos relacional
-use \PDO as PDO;
-
 class Empleado
 {
-
     private $id_usuario;
     private $nombre;
     private $apellidos;

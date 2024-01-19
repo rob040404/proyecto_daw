@@ -5,7 +5,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-
 class Mailer{
     private $nombre= null;
     private $apellidos= null;
@@ -18,7 +17,6 @@ class Mailer{
     private $fecha=null;
     private $hora=null;
     private $personas=null;
-
 
     public function __construct() {
         
@@ -124,14 +122,9 @@ class Mailer{
             $mail->Password   = 'vyrf pgcx vbdf ardo ';                               //SMTP password
             $mail->SMTPSecure = 'ssl';//PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-            //Recipients
             $mail->setFrom($this->correo, 'App');
             $mail->addAddress('crunchy.restaurante@gmail.com', 'Restaurante Crunchy');     //Add a recipient
-            //$mail->addAddress('ellen@example.com');               //Name is optional
             $mail->addReplyTo($this->correo);
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
 
             //Attachments
             if($this->archivoNombre && $this->archivotmp){

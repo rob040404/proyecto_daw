@@ -3,19 +3,16 @@
 require_once '../vendor/autoload.php';
 
 use eftec\bladeone\BladeOne;
+use Dotenv\Dotenv;
 use App\BD\BD;
 use App\DAO\EmpleadoDAO;
 use App\modelo\Empleado;
-use Dotenv\Dotenv;
-
-session_start();
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 set_exception_handler(function ($exception) use ($blade) {
@@ -37,6 +34,7 @@ try {
     exit;
 }
 $error = null;
+session_start();
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
@@ -62,5 +60,4 @@ if (isset($_SESSION['empleado'])) {
     header('Location: index.php');
     exit;
 }
-
 echo $blade->run('nuevo_empleado', compact('sesion_abierta', 'error'));

@@ -5,7 +5,6 @@
 @section('javascript')
 <script src="./assets/js/jquery/jquery-3.6.0.min.js"></script>
 <script src="./assets/js/personal.js"></script>
-
 @endsection
 @section('titulo', 'Personal')
 @section('content')
@@ -53,11 +52,9 @@
         @endforeach
     </table>
     <a href="nuevo_empleado.php">
-
         <button class="boton">
             <div class="texto-botones">Alta empleado</div>
         </button>
-
     </a>
 </div>
 @endsection

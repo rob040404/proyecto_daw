@@ -3,13 +3,14 @@
 namespace App\modelo;
 
 class Plato{
-    private $id_plato= null;
-    private $nombre= null;
-    private $ingredientes= null;
-    private $categoria= null;
-    private $subcategoria= null;
-    private $precio= null;
-    private $estado =null;
+    
+    private $id_plato=null;
+    private $nombre=null;
+    private $ingredientes=null;
+    private $categoria=null;
+    private $subcategoria=null;
+    private $precio=null;
+    private $estado=null;
     
     public function __construct() {
         
@@ -70,7 +71,4 @@ class Plato{
     public function setEstado($estado): void {
         $this->estado = $estado;
     }
-
-
 }
-

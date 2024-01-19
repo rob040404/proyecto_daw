@@ -7,14 +7,11 @@ use App\BD\BD;
 use App\DAO\EmpleadoDAO;
 use Dotenv\Dotenv;
 
-session_start();
-
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 set_exception_handler(function ($exception) use ($blade) {
@@ -34,6 +31,7 @@ try {
     exit;
 }
 
+session_start();
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
@@ -47,8 +45,4 @@ $empleado = null;
 $dao = new EmpleadoDAO($bd);
 $empleado = $dao->selectall();
 error_log(print_r($empleado, true));
-
-
-
-
 echo $blade->run('pagina_de_personal', compact('sesion_abierta', 'empleado'));
