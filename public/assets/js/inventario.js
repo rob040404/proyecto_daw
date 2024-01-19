@@ -4,13 +4,7 @@ $(document).ready(function () {
     $(".botonlapiz").click(mostrarInput);
 });
 
-
 function modificarCantidad(e) { //lo que ocurre cuando se pulsa el disquete
-    //e.preventDefault();
-    //e.stopImmediatePropagation();
-    //alert("Soy boton lapiz :)");
-
-    //this -> lapiz=document.getElementsByClassName('botonlapiz')[0];
     let fila=$(this).parent().parent(); //Este es el elemento tr que corresponde a cada producto
     let celdas=$(fila).children(); // Los elementos td que estan dentro de cada fila
     let idprod=$(celdas[0]).text().trim(); // Texto que hay en la primera celda td con el id del producto
@@ -25,7 +19,6 @@ function modificarCantidad(e) { //lo que ocurre cuando se pulsa el disquete
         contentType: "application/x-www-form-urlencoded",
         data: { "actualizarStock": true, "idproducto": idprod, "cantidad": cantidad },
         success: function (response) {
-            //muestraPista(response.letra);
             console.log(response);
             if (response.resultado) {
                 //MODIFICAR LA CANTIDAD
@@ -66,11 +59,8 @@ function eliminarProducto(e){
             if (response.resultado) {
                 alert ("Eliminado!");
                 $(celdas[3]).html(response.cantidad);
-
-
             } else {
                 alert("Error: "+response.mensaje);
-                
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -80,8 +70,7 @@ function eliminarProducto(e){
     });
 }
 
-function mostrarInput(e){
-    //this -> lapiz=document.getElementsByClassName('botonlapiz')[0];
+function mostrarInput(){
     let fila=$(this).parent().parent();
     let celdas=$(fila).children(); 
     let campo=$(celdas[4]).children()[0];

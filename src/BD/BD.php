@@ -8,7 +8,7 @@ use \Exception;
 class BD
 {
     protected static $bd = null;
-
+    
     private function __construct()
     {
         try {

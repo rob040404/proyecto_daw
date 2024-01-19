@@ -1,27 +1,21 @@
 <?php
-
 require_once '../vendor/autoload.php';
 require_once 'tablas_platos.php';
+
 use eftec\bladeone\BladeOne;
+use Dotenv\Dotenv;
 use App\BD\BD;
 use App\modelo\Plato;
-use App\modelo\Stock;
 use App\DAO\PlatoDAO;
 use App\DAO\RestarDAO;
 use App\DAO\StockDAO;
-use Dotenv\Dotenv;
-
-session_start();
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
 $views= __DIR__.'/../views';
 $cache= __DIR__.'/../cache';
-
 $blade= new BladeOne($views, $cache);
-
-
 
 // Establece conexión a la base de datos PDO
 try {
@@ -36,6 +30,7 @@ try {
     exit;
 }
 
+session_start();
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
@@ -53,20 +48,16 @@ if(!empty($_POST) && isset($_POST['obtenerStock'])){
     $rescepcion=trim(filter_input(INPUT_POST, 'obtenerStock', FILTER_UNSAFE_RAW));
     $ingredientes= array();
     $stock1DAO= new StockDAO($bd);
-    
     $resultados=$stock1DAO->obtener_nombres();
-    
     if($resultados){
         foreach ($resultados as $resultado){
             $ingredientes[]=$resultado->nombre_producto;
         }
     }
-    
     $response= compact('ingredientes');
     header('Content-type: Application/json');
     echo json_encode($response);
     die;
-    
 }
 //Recibe los datos por ajax, para insertar un plato con los valores dados
 else if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['precio']) && isset($_POST['estado'])){
@@ -77,26 +68,20 @@ else if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']
     $precio=filter_input(INPUT_POST, 'precio', FILTER_UNSAFE_RAW);
     $estado=filter_input(INPUT_POST, 'estado', FILTER_UNSAFE_RAW);
     $ingredientes=$_POST['ingredientes'];
-    
     $errores=false;
     $existe=false;
     $errorIngredientes=false;
-    
     $plato1= new Plato();
     $plato1DAO= new PlatoDAO($bd);
     $stock1DAO= new StockDAO($bd);
     $restar1DAO=new RestarDAO($bd);
-
-    
     $plato1->setNombre($nombre);
     $plato1->setIngredientes($descripcion);
     $plato1->setCategoria($categoria);
     $plato1->setSubcategoria($subcategoria);
     $plato1->setPrecio($precio);
     $plato1->setEstado($estado);
-    
     $respuesta=$plato1DAO->insertarPlato($plato1->getNombre(), $plato1->getIngredientes(), $plato1->getCategoria(), $plato1->getSubcategoria(), $plato1->getPrecio(), $plato1->getEstado());
-    
     if($respuesta==='existe'){
         $existe=true;
     }else if($respuesta===false){
@@ -117,7 +102,6 @@ else if(!empty($_POST) && isset($_POST['nombre']) && isset($_POST['descripcion']
             }
         }
     }
-    
     $response= compact('existe', 'errores', 'errorIngredientes');
     header('Content-type: application/json');
     echo json_encode($response);
@@ -138,13 +122,11 @@ else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_catego
     $ingredientes=false;
     $arrayNombresIng=false;
     $arrayCantidadesIng= false;
-    
     if($por_categoria){
         $registro=$plato1DAO->buscar_por_cat($categoria);
     }else{
         $registro= $plato1DAO->buscarPorNombre($nombre);
     }
-    
     $id_plato=false;
     $nom=false;
     $des=false;
@@ -152,9 +134,7 @@ else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_catego
     $sub=false;
     $pre=false;
     $es=false;
-    
     $ingredientesPlato=false;
-    
     if($registro===false){
         $error=true;
     } else if(!$por_categoria){             //Si la petición viene de búsqueda por nombre
@@ -173,9 +153,7 @@ else if(!empty($_POST) && isset($_POST['operacion']) && isset($_POST['por_catego
             $arrayCantidadesIng= false;
             $stock1DAO= new StockDAO($bd);
             $restar1DAO=new RestarDAO($bd);
-            
             $resultados=$stock1DAO->obtener_nombres();
-    
             if($resultados){
                 foreach ($resultados as $resultado){
                     $ingredientes[]=$resultado->nombre_producto;
@@ -404,6 +382,3 @@ else if(!empty ($_POST) && isset ($_POST['idBorrarPorTabla'])){
 else{
     echo $blade->run('gestion_de_menus', compact('sesion_abierta'));
 }
-
-
-

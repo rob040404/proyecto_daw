@@ -7,8 +7,6 @@ use Dotenv\Dotenv;
 use App\BD\BD;
 use App\DAO\EmpleadoDAO;
 
-session_start();
-
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
@@ -34,6 +32,7 @@ try {
 $empleado = null;
 $dao = new EmpleadoDAO($bd);
 $sesion_abierta = false;
+session_start();
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
@@ -57,7 +56,6 @@ if (isset($_SESSION['empleado'])) {
     // si no hay nada, nos quedamos en la pagina login
     $test = "";
 }
-
 //Verificar sesion abierta, procesar formulario index del ahorcado
 //$test = "Hola Crunchy!";
 echo $blade->run("login2", compact('test', 'sesion_abierta'));
