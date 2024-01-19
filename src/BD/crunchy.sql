@@ -92,6 +92,22 @@ create table if not exists restar(
     )
 ENGINE InnoDB;
 
+DELIMITER //
+
+CREATE TRIGGER actualizarMesaYFechaHoraPedido
+AFTER UPDATE
+ON reservas
+FOR EACH ROW
+BEGIN
+    UPDATE pedidos
+    SET mesa = NEW.mesa,
+        fecha_hora_pedido = NEW.fecha_hora_reserva
+    WHERE id_reserva = NEW.id_reserva;
+END;
+//
+
+DELIMITER ;
+
 -- 3.- Creamos un usuario  
 create user if not exists crunchy@'localhost' identified by "1234";
 
