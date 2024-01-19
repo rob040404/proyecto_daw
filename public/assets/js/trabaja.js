@@ -51,7 +51,6 @@ function comprobar(event){
         $('#error-fichero').html('Campo obligatorio');
         error_validacion=true;
     }
-    
     if(error_validacion===false){
         $.ajax({
             type: "POST",
@@ -72,7 +71,9 @@ function comprobar(event){
                     $('#correo-correcto').html('¡Correo enviado correctamente! <br>Te atenderemos lo antes posible.');
                 }
             },
-        
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error Message: ' + thrownError);
+            }
         });
     }
 }

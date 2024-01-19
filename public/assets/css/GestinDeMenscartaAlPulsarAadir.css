@@ -519,8 +519,6 @@ input[type="file"]::file-selector-button {
     position: relative;
     align-self: center;
     margin: 0 auto;
-    /*top: 324px;
-    left: 335px;*/
     width: 771px;
     height: 381px;
     font-size: var(--font-size-xl);

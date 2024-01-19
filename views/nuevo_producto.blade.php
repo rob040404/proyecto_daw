@@ -6,8 +6,6 @@
 @section('content')
 <div class="nuevo-producto">
     <img class="background-icon" alt="" src="../public/assets/img/background-nuevo-producto@2x.png" />
-
-
     <h1 class="h1">Crear nuevo producto</h1>
     @if (isset($error))
     <h1 class="h1">{{ $error }}</h1>
