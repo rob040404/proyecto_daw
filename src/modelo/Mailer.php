@@ -61,11 +61,11 @@ class Mailer{
         return $this->hora;
     }
     public function getPersonas() {
-        return $this->comensales;
+        return $this->personas;
     }
 
-    public function setPersonas($comensales): void {
-        $this->comensales = $comensales;
+    public function setPersonas($personas): void {
+        $this->personas = $personas;
     }
 
         public function setFecha($fecha): void {

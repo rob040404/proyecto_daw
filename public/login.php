@@ -56,6 +56,4 @@ if (isset($_SESSION['empleado'])) {
     // si no hay nada, nos quedamos en la pagina login
     $test = "";
 }
-//Verificar sesion abierta, procesar formulario index del ahorcado
-//$test = "Hola Crunchy!";
 echo $blade->run("login2", compact('test', 'sesion_abierta'));
