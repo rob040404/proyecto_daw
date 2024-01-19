@@ -24,7 +24,7 @@ class PedidoDAO
         $dt_dia_siguiente = DateTime::createFromFormat('Y-m-d', $dia_actual);
         $dt_dia_siguiente -> modify('+1 day');
         $dia_siguiente = $dt_dia_siguiente -> format('Y-m-d');
-        $sql = 'select pedidos.id_pedido as id_pedido, reservas.mesa as mesa, pedidos.estado_pedido as estado_pedido, '
+        $sql = 'select pedidos.id_pedido as id_pedido, pedidos.mesa as mesa, pedidos.estado_pedido as estado_pedido, '
         . 'pedidos.fecha_hora_pedido as fecha_hora_pedido, pedidos.id_reserva as id_reserva, usuarios.nombre as nombre_empleado '
         . 'from pedidos inner join reservas on pedidos.id_reserva=reservas.id_reserva inner join usuarios on '
         . 'reservas.id_usuario = usuarios.id_usuario where pedidos.fecha_hora_pedido between :dia_actual and :dia_siguiente;';
