@@ -64,9 +64,6 @@ function comprobar(){
                     limpiarInputs();
                     $('#correo-correcto').html('¡Correo enviado correctamente! <br>Te atenderemos lo antes posible.');
                 }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert('Error Message: ' + thrownError);
             }
         });
     }
