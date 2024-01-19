@@ -3,17 +3,11 @@ use crunchydb;
 -- INSERCIÓN EN 'USUARIOS'
 INSERT INTO usuarios (nombre, apellidos, contrasena, rol, email) 
 VALUES ('Sancho', 'Panza', '1234', 'admin', 'sancho@crunchy.com'),
-        ('Alonso', 'Quijano', '1234', 'cocinero', 'quijote@quijote.com'),
+        ('Alonso', 'Quijano', '1234', 'cocinero', 'quijote@crunchy.com'),
         ('Dulcinea', 'del Toboso', '1234', 'camarero', 'dulcinea@crunchy.com'),
         ('Pepe', 'De la Torre', '1234', 'camarero', 'pepe@crunchy.com'),
         ('Beatriz', 'Fernandez', '1234', 'camarero', 'bea@crunchy.com'),
         ('Rocinante', 'Exposito', '1234', 'admin', 'rocinante@crunchy.com');
-
--- ¡¡PARA LA CARTA !!
--- 1. BORRAR TABLAS 'PLATOS', 'STOCK', Y SI SE PUEDE 'RESTAR'. AUNQUE HABIENDO BORRADO LAS ANTERIORES ESA NO DEBE DAR PROBLEMA
--- 2. INSERTAR INGREDIENTES EN TABLA 'STOCK'
--- 3. INSERTAR PLATOS EN TABLA 'PLATOS'
--- 4. INSERTAR VALORES EN TABLA 'RESTAR'
 
 -- INSERCIÓN EN 'STOCK'
 INSERT INTO `stock` (`id_producto`, `nombre_producto`, `precio`, `cantidad`) VALUES
