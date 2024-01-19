@@ -14,13 +14,12 @@ if (isset($_GET['logout'])) {
     if ($empleado->getRol() == 'admin') {
         header('Location: pagina_de_administracion.php');
         exit;
-    }else if ($empleado->getRol()== 'cocinero'){
+    } else if ($empleado->getRol() == 'cocinero') {
         header('Location: pagina_cocinero.php');
         exit;
-    }else if ($empleado->getRol()== 'camarero'){
+    } else if ($empleado->getRol() == 'camarero') {
         header('Location: pagina_camarero.php');
         exit;
     }
-// TODO: poner otros roles que tiene que dirigir a las paginas correspondientes
 }
 header('Location: principal.php');
