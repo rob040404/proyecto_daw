@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../public/assets/css/global.css" />
   <link rel="stylesheet" href="../public/assets/css/index.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Irish Grover:wght@400&display=swap" />
+  <link rel="icon" type="image/jpg" href="assets/img/favicon.png"/>
   @yield('estilos')
   @yield('javascript')
   <title>@yield('titulo')</title>

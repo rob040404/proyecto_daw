@@ -66,7 +66,7 @@ if(filter_input_array(INPUT_POST))
         $mail -> setFecha(explode(' ', $fecha_hora_formateada["fecha_hora_reserva"])[0]);
         $mail -> setHora(explode(' ', $fecha_hora_formateada["fecha_hora_reserva"])[1]);
         $mail -> setPersonas($values['personas']);
-        //$enviado = $mail -> enviarReserva();
+        $enviado = $mail -> enviarReserva();
         echo $blade -> run('reservar', compact('sesion_abierta', 'reserva', 'fecha_hora'));
     }
 }
