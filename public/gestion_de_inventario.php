@@ -1,14 +1,9 @@
 <?php
-
-
 require_once '../vendor/autoload.php';
 
-
+use Dotenv\Dotenv;
 use App\BD\BD;
 use App\DAO\StockDAO;
-use Dotenv\Dotenv;
-
-session_start();
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
@@ -36,6 +31,7 @@ try {
     echo json_encode(["resultado" => false, "mensaje" => "Error de conexion a la base de datos."]);
 }
 
+session_start();
 if (isset($_SESSION['empleado'])) {
     // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $dao = new StockDAO($bd);

@@ -13,19 +13,23 @@ function iniciar(){
 function alerta(){
     window.alert('Funciona');
 }
+
 //Funciones para saber qué tipo de operación se va a realizar
 function operacion_activar(){
     var titulo='Activar/desactivar plato';
     form_buscar('activar', titulo);
 }
+
 function operacion_ver(){
     var titulo='Ver plato/s';
     form_buscar('ver', titulo);
 }
+
 function operacion_borrar(){
     var titulo='Borrar plato/s';
     form_buscar('borrar', titulo);
 }
+
 function operacion_modificar(){
     var titulo='Modificar plato';
     form_buscar('modificar', titulo);
@@ -35,6 +39,7 @@ function busqueda_categoria(){
     var categoria=true;
     ajax_buscar(categoria);
 }
+
 function busqueda_nombre(){
     var categoria=false;
     ajax_buscar(categoria);
@@ -71,20 +76,17 @@ function form_buscar(operacion, titulo){
                 '<input type="hidden" id="operacion" name="operacion" value="'+operacion+'"/>'+
             '</div>'+
         '</form>';
-    
-   
     //Imprimimos el formulario en el contenedor opciones y al pulsarse el botón buscar se activa el ajax buscar y conecta con el servidor
     document.getElementById('contenedor_opciones').innerHTML=contenido;
     puntero();
     document.getElementById('buscar-por-nombre').addEventListener('click', busqueda_nombre);
     document.getElementById('buscar-por-categoria').addEventListener('click', busqueda_categoria);
-    
 }
 
 /*
  * Función para pasar los datos del formulario al servidor. Para que el sevidor busque en la BD el plato correspondiente y dvuelva sus valores
 
- * @param {type} por_categoria, sel le pasa si se está buscando el plato por nombre o por categoría
+ * @param {type} por_categoria, se le pasa si se está buscando el plato por nombre o por categoría
  * 
  */
 function ajax_buscar(por_categoria){
@@ -93,13 +95,10 @@ function ajax_buscar(por_categoria){
     var categoria= $('#categoria-buscar').val();
     var error=false;
     nom=nom.toLowerCase();
-    
-   
     if(!nom && !por_categoria){
         $('#intro-incorrecta').html('Introduce un nombre');
         error=true;
     }
-    
     if(error===false){
         $.ajax({
             type: 'POST',
@@ -121,7 +120,6 @@ function ajax_buscar(por_categoria){
                 }else if(response.operacion==='ver'){ //operación es ver platos
                      $('#intro-incorrecta').html('');
                      $('#intro-correcta').html(response.fila); //Imprimimos tabla de una fila o varia con los datos del plato, sin ningún botón
-                     
                 }else if(response.operacion==='borrar'){ //la operación es borrar
                      $('#intro-incorrecta').html('');
                      $('#intro-correcta').html(response.fila);//Imprimimos tabla de una fila o varias con los datos del plato, con botón borrar
@@ -132,7 +130,6 @@ function ajax_buscar(por_categoria){
                      $('.boton-borrar1').click(ajax_borrar_por_tabla);
                 }else if(response.operacion==='modificar' && !response.fila){//Sin error y la operación es modificar y busqueda por nombre
                      $('#intro-incorrecta').html('');
-                     
                      /**
                       * Llamamos la función form_modificar para imprimir el formulario para la modificación con los campos rellenos con los datos
                       * de los platos que en ese momento constan en la BD
@@ -159,7 +156,6 @@ function ajax_buscar(por_categoria){
                      
                      //Función para obtener las subselección de subcategorías según la categoría seleccionada
                      obtener_categoria(); 
-                     
                      var options=document.getElementsByTagName('option');
                      //Bucle para establecer como 'selected', la subcategoría que coincide con lo que nos ha pasado la BD
                      for(let i=0; i<options.length; i++){
@@ -167,7 +163,6 @@ function ajax_buscar(por_categoria){
                              options[i].setAttribute('selected', 'selected');
                          }
                      }
-                    
                     //En caso de que el plato tenga asociados ingredientes en la tabla restar
                     if(response.arrayCantidadesIng && response.arrayNombresIng){
                         var boxes=document.getElementsByClassName('box');
@@ -182,10 +177,7 @@ function ajax_buscar(por_categoria){
                             }
                         }
                     }
-                    
-                    
                     document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones').html('');});
-                    
                     /**
                      * Una vez bien impreso el formulario de modificación, al dar al botón 'mod', activamos el ajax para modificar el plato 
                      * con los nuevos datos
@@ -196,7 +188,6 @@ function ajax_buscar(por_categoria){
                 }else if(response.operacion==='modificar' && response.fila){ //operación modificar y se ha seleccionado el plato por la tabla
                     $('#intro-correcta').html(response.fila);
                     puntero();
-                    
                     $('.boton-modificar').click(function(e){
                         const idModPorTabla= e.target.dataset.id;
                         
@@ -206,7 +197,6 @@ function ajax_buscar(por_categoria){
                         var subcategoria= $(`#subcategoria${idModPorTabla}`).html();
                         var precio= $(`#precio${idModPorTabla}`).html();
                         var estado=$(`#estado${idModPorTabla}`).html();
-                        
                         $.ajax({
                             type: 'POST',
                             url: 'gestion_de_menus.php',
@@ -232,11 +222,9 @@ function ajax_buscar(por_categoria){
                                         document.getElementById('activado').setAttribute('selected', 'selected');
                                     }else if(estado==='desactivado'){
                                         document.getElementById('desactivado').setAttribute('selected', 'selected');
-                                    }
-                                    
+                                    }                                   
                                     //Función para obtener las subselección de subcategorías según la categoría seleccionada
                                     obtener_categoria(); 
-
                                     var options=document.getElementsByTagName('option');
                                     //Bucle para establecer como 'selected', la subcategoría que coincide con lo que nos ha pasado la BD
                                     for(let i=0; i<options.length; i++){
@@ -244,11 +232,9 @@ function ajax_buscar(por_categoria){
                                             options[i].setAttribute('selected', 'selected');
                                         }
                                     }
-
                                    if(response.arrayCantidadesIng && response.arrayNombresIng){
                                         var boxes=document.getElementsByClassName('box');
                                         var uds=document.getElementsByClassName('rectangulo-unidades');
-
                                         for(let i=0; i<boxes.length; i++){
                                              for(let j=0; j<response.arrayNombresIng.length; j++){
                                                  if(boxes[i].id===response.arrayNombresIng[j]){
@@ -257,32 +243,20 @@ function ajax_buscar(por_categoria){
                                                  }
                                              }
                                          }
-                                   }
-                                   
-
+                                   }                                  
                                     document.getElementById('cancelar').addEventListener('click', function(){$('#contenedor_opciones').html('');});
-
                                     /**
                                      * Una vez bien impreso el formulario de modificación, al dar al botón 'mod', activamos el ajax para modificar el plato 
                                      * con los nuevos datos
                                      */
                                     document.getElementById('mod').addEventListener('click', ajax_modificar);
                                     document.getElementById('categoria').addEventListener('change', obtener_categoria); //Al cambiar de categoría, cambia las subcategorías
-                                    
-                                   
-                                //
                                 }
-                            }
-                            
+                            } 
                         });
-                        
-                    });
-                    
-                    
+                    });  
                 }
             }
-            
-            
         });
     }
 }
@@ -297,19 +271,16 @@ function ajax_modificar(){
     var sub= $('#subcategoria').val();
     var pre=$('#precio').val();
     var es=$('#estado').val();
-    
     //Obtener ingredientes
     var arrayIngredientes= obtener_ingredientes();
     if(arrayIngredientes.length===0){
         arrayIngredientes='vacio';
     }
-    
     nom= nom.toLowerCase();
     pre=pre.trim(pre);
     pre=pre.replace(',','.');
     //pre=parseFloat(pre);
     var patron_precio= /^[0-9]{1,2}\.[0-9]{2}$/;
-    
     limpiar_div_error();
     var error_validacion=false;
         if(!nom){
@@ -341,7 +312,6 @@ function ajax_modificar(){
             $('#error-precio').html('El formato debe ser de este tipo 10.99 Hasta 99.99');
             error_validacion=true;
         }
-        
         if(arrayIngredientes===false){
             $('#ing-incorrectos').html('Si seleccionas un ingrediente pon la cantidad: Número de 0 a 99, con hasta 3 decimales. ¡SIN ESPACIOS EN BLANCO!');
             error_validacion=true;
@@ -360,8 +330,7 @@ function ajax_modificar(){
                    ingredientesMod: arrayIngredientes
             },
             datatype: 'json',
-            success: function (response){
-                
+            success: function (response){  
                 if(response.inexistente){//Si el plato puesto no existe, aunque en teoría no debe darse ese caso
                     //$('#ing-incorrectos').html('');
                     $('#contenedor_opciones').html('');
@@ -381,12 +350,9 @@ function ajax_modificar(){
                     $('#intro-correcta').html('Plato actualizado con éxito');
                     limpiar_campos_anadir();
                 }
-                
                 if(!response.errores && !response.error && response.errorIngredientes){
                     $('#intro-incorrecta').html('Pero no se han guardado los ingredientes');
                 }
-            
-            
             }
         });
     }
@@ -409,6 +375,7 @@ function ajax_borrar_plato(){
         });
     }
 }
+
 /*
  * Función para borrar un plato de la BD, cuando se ha buscado por tabla
  * @param {type} e, recoge el elemento causante del evento
@@ -454,6 +421,7 @@ function ajax_cambiar_estado(){
         });
     }
 }
+
 /*
  * Función para cambiar el estado de un plato, cuando se ha buscado por tabla
  * @param {type} e, recoge el elemento causante del evento
@@ -474,6 +442,7 @@ function ajax_cambiar_por_tabla(e){
         }
     });
 }
+
 /**
  * Función para imprimir un formulario con los datos de un plato antes de ser modificado, y con él, poder modificarlos
  * @param {type} id_plato
@@ -484,12 +453,9 @@ function ajax_cambiar_por_tabla(e){
  * 
  */
 function form_modificar(id_plato, nom, des, pre, ingredientes){
-    //limpiar_containers();
-    
-    
     var contenido='<p><br><br><br></p>'+
             '<div class="aadir-nuevo-producto" id="encabezado-anadir"><p>Modificar plato</p></div>'+
-            
+
         '<form id="formanadir" method="POST" name="formanadir" novalidate>'+
             '<div class="contenedor-anadir">'+
             
@@ -505,7 +471,6 @@ function form_modificar(id_plato, nom, des, pre, ingredientes){
                 '<div class="anadir-der">'+
                     
                         '<label for="categoria" class="texto-gm elemento-form-der" >Categoría:</label><br>'+
-                        //'<input type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der" maxlength="30"><br>+
                         '<select type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der bot">'+
                             '<option value="no">Seleccionar una opción</option>'+
                             '<option value="entrante" id="entrante">Entrante</option>'+
@@ -520,7 +485,6 @@ function form_modificar(id_plato, nom, des, pre, ingredientes){
                             
                         '</div>'+
                         
-            //'<input type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der" maxlength="30">'+
                         '<div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>'+
                         '<div class="contenedor-precio-estado">'+
                             '<div class="subcontenedor-precio">'+
@@ -567,15 +531,7 @@ function form_modificar(id_plato, nom, des, pre, ingredientes){
                 '</button>'+
            ' </div>'+
         '</form>';
-        
-        
-        
-        return contenido;
-        /*document.getElementById("contenedor_opciones2").innerHTML=contenido;
-        document.getElementById('guardar').addEventListener('click', ajax_anadir);
-        document.getElementById('limpiar').addEventListener('click', limpiar_campos_anadir);*/
-        
-        
+        return contenido;    
 }
 
 //Función para impirmir un formulario a través del cual se van  introducir platos en la BD
@@ -600,7 +556,6 @@ function form_anadir(ingredientes){
                 '<div class="anadir-der">'+
                     
                         '<label for="categoria" class="texto-gm elemento-form-der" >Categoría:</label><br>'+
-                        //'<input type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der" maxlength="30"><br>+
                         '<select type="text" name="categoria" id="categoria" class="rectangulo-input elemento-form-der bot">'+
                             '<option value="no" class="bot" selected>Seleccionar una opción</option>'+
                             '<option value="entrante" class="bot">Entrante</option>'+
@@ -615,7 +570,6 @@ function form_anadir(ingredientes){
                             
                         '</div>'+
                         
-            //'<input type="text" name="subcategoria" id="subcategoria" class="rectangulo-input elemento-form-der" maxlength="30">'+
                         '<div id="error-mensaje" class="error-form etiqueta-der elemento-form-der"></div><br>'+
                         '<div class="contenedor-precio-estado">'+
                             '<div class="subcontenedor-precio">'+
@@ -645,18 +599,11 @@ function form_anadir(ingredientes){
                 contenido+=' <p>';
             }
             contenido+='<label for="nombre" class="texto-gm etiqueta-izq check">'+ingredientes[i] +'<input type="checkbox" id="'+ingredientes[i] +'" name="'+ingredientes[i] +'" value="'+ingredientes[i] +'" class="box bot">Uds:<input type="number" name="categoria" id="categoria" class="rectangulo-unidades" maxlength="8"></label><br>';
-             
         }
                     
             contenido+= '</div>'+
             '<div class="aadir-nuevo-producto incorrecto-form" id="ing-incorrectos"></div><br>'+
             '</div>'+
-            //'<div class="aadir-nuevo-producto">'+
-               
-                //'<label for="nombre" class="texto-gm "><h4>Otros:</h4></label><br>'+
-                //'<textarea type="text" name="descripcion" id="descripcion" class="rectangulo-textarea-otros"></textarea><br>'+
-                
-            //'</div>'+
             '<div class="aadir-nuevo-producto correcto-form" id="intro-correcta"></div><br>'+
             '<div class="aadir-nuevo-producto incorrecto-form" id="intro-incorrecta"></div><br>'+
             '<div class="container-botones-form">'+
@@ -673,10 +620,9 @@ function form_anadir(ingredientes){
         document.getElementById('guardar').addEventListener('click', ajax_anadir);
         document.getElementById('limpiar').addEventListener('click', limpiar_campos_anadir);
         document.getElementById('categoria').addEventListener('change', obtener_categoria);
-        
         puntero();
-  
 }
+
 //Función con ajax para obtener los ingredientes disponibles en stock y que salgan el el formulario añadir
 function obtener_stock(){
     $.ajax({
@@ -706,13 +652,9 @@ function obtener_ingredientes(){
                 break;
             }else{
                 arrayIngredientes.push(new Array(boxes[i].value, uds[i].value));
-                //arrayIngredientes[boxes[i].value]=uds[i].value;
             }
         }
     }
-    
-    
-    var longitudArray=arrayIngredientes.length;
     if(!errorUds){
         return arrayIngredientes;
     }else{
@@ -722,7 +664,6 @@ function obtener_ingredientes(){
 
 //Función con ajax para añadir un plato a la BD
 function ajax_anadir(){
-    
     var nom= $('#nombre').val();
     var des=$('#descripcion').val();
     var cat=$('#categoria').val();
@@ -738,7 +679,6 @@ function ajax_anadir(){
     nom= nom.toLowerCase();
     pre=pre.trim(pre);
     pre=pre.replace(',','.');
-    //pre=parseFloat(pre);
     var patron_precio= /^[0-9]{1,2}\.[0-9]{2}$/;
     
     limpiar_div_error();
@@ -812,8 +752,6 @@ function ajax_anadir(){
                 if(!response.errores && !response.error && response.errorIngredientes){
                     $('#intro-incorrecta').html('Pero no se han guardado los ingredientes');
                 }
-            
-            
             }
         });
     }
@@ -823,6 +761,7 @@ function limpiar_containers(){
     document.getElementById("contenedor_opciones").innerHTML="";
     document.getElementById("contenedor_opciones2").innerHTML="";
 }
+
 function limpiar_div_error(){
     $('.error-form').html("");
 }
@@ -893,7 +832,7 @@ function obtener_categoria(){
                                 '</optgroup>'+
                             '</select>'+
                             '<div id="error-subcategoria" class="error-form etiqueta-der elemento-form-der"></div><br><br>';
-            
+
     if(cat==="entrante"){
         document.getElementById('sub-container').innerHTML=sub_entrante;
     }else if(cat==='principal'){
@@ -903,16 +842,15 @@ function obtener_categoria(){
     }else if(cat==="bebida"){
         document.getElementById('sub-container').innerHTML=sub_bebida;
     }
-    
+   
     puntero();
-    
 }
+
 //Función para que se ponga el cursor de la manita a las hora de ponerlo sobre un elemento.
 function puntero(){
     var bot=document.getElementsByClassName('bot');
     for(let i=0; i<bot.length; i++){
        bot[i].style.cursor='pointer';
     }
-    
 }
 

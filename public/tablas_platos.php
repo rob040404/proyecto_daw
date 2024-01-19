@@ -5,44 +5,30 @@ function tabla($registro, $operacion){
             <thead>
                 <tr>
                     <th>Nombre</th>';
-    
-    
                     if($operacion==='ver'|| $operacion==='borrar'){
     $contenido.=        '<th>Descripción</th>';
                     }
-                    
-                    
     $contenido.=    '<th>Categoría</th>
                     <th>Subcategoría</th>
                     <th>Precio</th>
                     <th>Estado</th>';
-    
                     if($operacion==='activar'){
     $contenido.=   '<th>Cambiar estado</th>';                   
                     }else if($operacion==='borrar'){
     $contenido.=    '<th>Eliminar plato</th>';     
                     }
-    
-    
     $contenido.='</tr>
             </thead>
             <tbody>
                 <tr>
                     <td id="nombre">'.$registro->nombre.'</td>';
-    
-    
                     if($operacion==='ver'|| $operacion==='borrar'){
     $contenido.=        '<td id="descripcion">'.$registro->ingredientes.'</td>';
                     }
-                    
-                    
-                    
     $contenido.=                '<td id="categoria">'.$registro->categoria.'</td>
                     <td id="subcategoria">'.$registro->subcategoria.'</td>
                     <td id="precio">'.$registro->precio.'</td>
                     <td id="estado">'.$registro->estado.'</td>';
-    
-    
                     if($operacion==='activar'){
     $contenido.=        '<td>
                             <button type="button" class="boton-tabla" name="cambiar-estado" id="cambiar-estado">
@@ -56,13 +42,9 @@ function tabla($registro, $operacion){
                             </button>
                         </td>';
                     }
-                    
-                    
-                    
     $contenido.=       '</tr>
                     </tbody>
                 </table>';
-    
     return $contenido;
 }
 
@@ -71,18 +53,13 @@ function tabla_larga($registro, $operacion){
             <thead>
                 <tr>
                     <th>Nombre</th>';
-    
-    
                     if($operacion==='ver'|| $operacion==='borrar' || $operacion==='modificar'){
     $contenido.=        '<th>Descripción</th>';
                     }
-                    
-                    
     $contenido.=    '<th>Categoría</th>
                     <th>Subcategoría</th>
                     <th>Precio</th>
                     <th>Estado</th>';
-    
                     if($operacion==='activar'){
     $contenido.=   '<th>Cambiar estado</th>';                   
                     }else if($operacion==='borrar'){
@@ -90,7 +67,6 @@ function tabla_larga($registro, $operacion){
                     }else if($operacion==='modificar'){
     $contenido.=    '<th>Acción</th>';     
                     }
-                    
     $contenido.='</tr>
             </thead>
              <tbody>
@@ -129,13 +105,10 @@ function tabla_larga($registro, $operacion){
                         </td>';
                     }
     $contenido.= '</tr>';
-
     }
     //Fin de bucle                
     $contenido.=   '</tbody>
                 </table>
             <input type="hidden" id="cambiar-estado"><input type="hidden" id="borrar-plato">';
-    
-    return $contenido;
-              
+    return $contenido;         
 }

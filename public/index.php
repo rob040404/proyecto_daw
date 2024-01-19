@@ -1,6 +1,7 @@
 <?php
 
 require_once '../vendor/autoload.php';
+
 session_start();
 if (isset($_GET['logout'])) {
     // Destruyo la sesión
@@ -20,12 +21,6 @@ if (isset($_GET['logout'])) {
         header('Location: pagina_camarero.php');
         exit;
     }
-    
 // TODO: poner otros roles que tiene que dirigir a las paginas correspondientes
 }
-
-
-
-
-
 header('Location: principal.php');

@@ -2,17 +2,14 @@
 
 require_once '../vendor/autoload.php';
 use eftec\bladeone\BladeOne;
-use App\BD\BD;
 use Dotenv\Dotenv;
-
-session_start();
+use App\BD\BD;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 // Establece conexión a la base de datos PDO
@@ -28,13 +25,12 @@ try {
     exit;
 }
 
+session_start();
 if (isset($_SESSION['empleado'])) {
-    // si la sesion esta abierta, nos tiene que redirigir a la pagina admin
     $sesion_abierta = true;
 } else {
     $sesion_abierta = false;
     header('Location: index.php');
     exit;
 }
-
 echo $blade->run('pagina_camarero', compact('sesion_abierta'));

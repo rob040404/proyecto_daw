@@ -1,10 +1,10 @@
 <?php
 require_once '../vendor/autoload.php';
+use eftec\bladeone\BladeOne;
 use Dotenv\Dotenv;
+use App\BD\BD;
 use App\modelo\Mailer;
 use App\modelo\Reserva;
-use eftec\bladeone\BladeOne;
-use App\BD\BD;
 use App\DAO\ReservaDAO;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
@@ -12,7 +12,6 @@ $dotenv->load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 // Establece conexión a la base de datos PDO
@@ -30,6 +29,7 @@ catch (PDOException $error)
     echo $blade -> run("errorbd", compact('error'));
     exit();
 }
+
 session_start();
 $sesion_abierta = isset($_SESSION['empleado']); 
 $reservasDAO = new ReservaDAO($bd);

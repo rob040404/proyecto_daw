@@ -1,11 +1,9 @@
 $(document).ready(iniciar); 
 
-
 function iniciar(){
     document.getElementById('form-trabaja').addEventListener('submit', comprobar);
     puntero();
 }
-
 
 function comprobar(event){
     event.preventDefault();
@@ -17,47 +15,42 @@ function comprobar(event){
     var correo= $('#correo').val();
     var fichero= $('#archivo').val();
     var mensaje= $('#mensaje').val();
-    
-    
     var error_validacion=false;
     var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-    
     limpiar_div_error();
-    
-    
-        if(!nombre){
-            $('#error-nombre').html('Campo obligatorio');
-            error_validacion=true;
-        }else if(nombre.length<2){
-            $('#error-nombre').html('El nombre debe tener 2 o más caractéres');
-            error_validacion=true;
-        }
-        if(!apellidos){
-            $('#error-apellidos').html('Campo obligatorio');
-            error_validacion=true;
-        }else if(apellidos.length<2){
-            $('#error-apellidos').html('El apellido debe tener 2 o más caractéres');
-            error_validacion=true;
-        }
-        if(!telefono){
-            $('#error-telefono').html('Campo obligatorio');
-            error_validacion=true;
-        }
-        if(!correo){
-            $('#error-correo').html('Campo obligatorio');
-            error_validacion=true;
-        }else if(!validEmail.test(correo)){
-            $('#error-correo').html('E-mail no válido');
-            error_validacion=true;
-        }
-        if(!mensaje){
-            $('#error-mensaje').html('Campo obligatorio');
-            error_validacion=true;
-        }
-        if(!fichero){
-            $('#error-fichero').html('Campo obligatorio');
-            error_validacion=true;
-        }
+    if(!nombre){
+        $('#error-nombre').html('Campo obligatorio');
+        error_validacion=true;
+    }else if(nombre.length<2){
+        $('#error-nombre').html('El nombre debe tener 2 o más caractéres');
+        error_validacion=true;
+    }
+    if(!apellidos){
+        $('#error-apellidos').html('Campo obligatorio');
+        error_validacion=true;
+    }else if(apellidos.length<2){
+        $('#error-apellidos').html('El apellido debe tener 2 o más caractéres');
+        error_validacion=true;
+    }
+    if(!telefono){
+        $('#error-telefono').html('Campo obligatorio');
+        error_validacion=true;
+    }
+    if(!correo){
+        $('#error-correo').html('Campo obligatorio');
+        error_validacion=true;
+    }else if(!validEmail.test(correo)){
+        $('#error-correo').html('E-mail no válido');
+        error_validacion=true;
+    }
+    if(!mensaje){
+        $('#error-mensaje').html('Campo obligatorio');
+        error_validacion=true;
+    }
+    if(!fichero){
+        $('#error-fichero').html('Campo obligatorio');
+        error_validacion=true;
+    }
     
     if(error_validacion===false){
         $.ajax({
@@ -82,7 +75,6 @@ function comprobar(event){
         
         });
     }
-    
 }
 
 function limpiar_div_error(){
@@ -94,7 +86,6 @@ function limpiarInputs(){
     document.getElementById('apellidos').value=""; 
     document.getElementById('correo').value=""; 
     document.getElementById('telefono').value=""; 
-    
     document.getElementById('mensaje').value="";
 }
 
@@ -103,5 +94,4 @@ function puntero(){
     for(let i=0; i<bot.length; i++){
        bot[i].style.cursor='pointer';
     }
-    
 }

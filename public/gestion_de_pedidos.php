@@ -1,4 +1,5 @@
 <?php
+
 require_once '../vendor/autoload.php';
 
 use Dotenv\Dotenv;
@@ -18,7 +19,6 @@ $dotenv->load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 // Establece conexión a la base de datos PDO
@@ -33,11 +33,13 @@ try {
     echo $blade->run("errorbd", compact('error'));
     exit();
 }
+
 session_start();
 if (!isset($_SESSION['empleado'])) {
     header('Location: login.php');
     exit;
 }
+
 $empleadoDAO = new EmpleadoDAO($bd);
 $pedidoDAO = new PedidoDAO($bd);
 $platoDAO = new PlatoDAO($bd);
@@ -90,12 +92,6 @@ if (filter_input(INPUT_POST, 'btn_retroceder') || filter_input(INPUT_POST, 'btn_
                 $pedidoDAO->actualizarEstadoPedido(
                     new Pedido($id_pedido, null, 'Pendiente')
                 );
-                /*
-                    $restar = $restarDAO->obtenerIngredientesSinStock($id_pedido);
-                    foreach ($restar as $item) {
-                        $stock[] = $stockDAO->selectid($item->getId_producto())->getNombre_producto();
-                    }
-                    */
                 $estado_pedido = 'Pendiente';
             }
         } else {

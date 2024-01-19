@@ -1,5 +1,7 @@
 <?php
+
 require_once '../vendor/autoload.php';
+
 use Dotenv\Dotenv;
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
@@ -12,7 +14,6 @@ $dotenv -> load();
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-
 $blade = new BladeOne($views, $cache);
 
 // Establece conexión a la base de datos PDO

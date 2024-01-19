@@ -1,5 +1,7 @@
 <?php
+
 namespace App\modelo;
+
 class Pedido
 {
     public $id_pedido;
@@ -107,4 +109,3 @@ class Pedido
         return $this -> detalles_pedido;
     }
 }
-
